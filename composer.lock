@@ -1125,16 +1125,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v11.24.0",
+            "version": "v11.25.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "557da2b02e298acbd12b3fb7d04d16ea253c5f20"
+                "reference": "b487a9089c0b1c71ac63bb6bc44fb4b00dc6da2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/557da2b02e298acbd12b3fb7d04d16ea253c5f20",
-                "reference": "557da2b02e298acbd12b3fb7d04d16ea253c5f20",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/b487a9089c0b1c71ac63bb6bc44fb4b00dc6da2e",
+                "reference": "b487a9089c0b1c71ac63bb6bc44fb4b00dc6da2e",
                 "shasum": ""
             },
             "require": {
@@ -1330,7 +1330,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2024-09-24T14:46:11+00:00"
+            "time": "2024-09-26T11:21:58+00:00"
         },
         {
             "name": "laravel/prompts",
@@ -1895,23 +1895,23 @@
         },
         {
             "name": "livewire/flux",
-            "version": "v1.0.0",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/flux.git",
-                "reference": "7c0385aab95afc423c2c66c97bd798325be06591"
+                "reference": "122e35ec39b09113dbf46026261238ed81ca8509"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/flux/zipball/7c0385aab95afc423c2c66c97bd798325be06591",
-                "reference": "7c0385aab95afc423c2c66c97bd798325be06591",
+                "url": "https://api.github.com/repos/livewire/flux/zipball/122e35ec39b09113dbf46026261238ed81ca8509",
+                "reference": "122e35ec39b09113dbf46026261238ed81ca8509",
                 "shasum": ""
             },
             "require": {
                 "illuminate/console": "^10.0|^11.0",
                 "illuminate/support": "^10.0|^11.0",
                 "illuminate/view": "^10.0|^11.0",
-                "laravel/prompts": "^0.1.24",
+                "laravel/prompts": "^0.1|^0.2",
                 "livewire/livewire": "^3.5",
                 "php": "^8.1",
                 "symfony/console": "^6.0|^7.0"
@@ -1952,25 +1952,25 @@
             ],
             "support": {
                 "issues": "https://github.com/livewire/flux/issues",
-                "source": "https://github.com/livewire/flux/tree/v1.0.0"
+                "source": "https://github.com/livewire/flux/tree/v1.0.2"
             },
-            "time": "2024-09-21T18:43:39+00:00"
+            "time": "2024-09-26T14:14:42+00:00"
         },
         {
             "name": "livewire/flux-pro",
-            "version": "1.0.0",
+            "version": "1.0.2",
             "dist": {
                 "type": "zip",
-                "url": "https://composer.fluxui.dev/download/9d108eef-584f-44ab-8841-ffb6e52c2b68/flux-pro-1.0.0.zip",
-                "reference": "5c1dfe50943ca4e2fc5835889ed94a64850ca11a",
-                "shasum": "d2cfe67584e076d5333f3b38c56fa6321f7d776d"
+                "url": "https://composer.fluxui.dev/download/9d1a641a-f965-4cb2-b0ed-0109e0c3d88f/flux-pro-1.0.2.zip",
+                "reference": "654713971298551bf49b4499a7705831fd86c4f1",
+                "shasum": "74876b665c10ef9d0dc4e624df4ec6df37239091"
             },
             "require": {
                 "illuminate/console": "^10.0|^11.0",
                 "illuminate/support": "^10.0|^11.0",
                 "illuminate/view": "^10.0|^11.0",
-                "laravel/prompts": "^0.1.24",
-                "livewire/flux": "^1.0.0",
+                "laravel/prompts": "^0.1.24|^0.2",
+                "livewire/flux": "^1.0.2",
                 "livewire/livewire": "^3.5",
                 "php": "^8.1",
                 "symfony/console": "^6.0|^7.0"
@@ -2011,7 +2011,7 @@
                 "livewire",
                 "ui"
             ],
-            "time": "2024-09-21T18:47:12+00:00"
+            "time": "2024-09-26T16:05:43+00:00"
         },
         {
             "name": "livewire/livewire",
@@ -6217,26 +6217,26 @@
         },
         {
             "name": "filp/whoops",
-            "version": "2.15.4",
+            "version": "2.16.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "a139776fa3f5985a50b509f2a02ff0f709d2a546"
+                "reference": "befcdc0e5dce67252aa6322d82424be928214fa2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/a139776fa3f5985a50b509f2a02ff0f709d2a546",
-                "reference": "a139776fa3f5985a50b509f2a02ff0f709d2a546",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/befcdc0e5dce67252aa6322d82424be928214fa2",
+                "reference": "befcdc0e5dce67252aa6322d82424be928214fa2",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.5.9 || ^7.0 || ^8.0",
+                "php": "^7.1 || ^8.0",
                 "psr/log": "^1.0.1 || ^2.0 || ^3.0"
             },
             "require-dev": {
-                "mockery/mockery": "^0.9 || ^1.0",
-                "phpunit/phpunit": "^4.8.36 || ^5.7.27 || ^6.5.14 || ^7.5.20 || ^8.5.8 || ^9.3.3",
-                "symfony/var-dumper": "^2.6 || ^3.0 || ^4.0 || ^5.0"
+                "mockery/mockery": "^1.0",
+                "phpunit/phpunit": "^7.5.20 || ^8.5.8 || ^9.3.3",
+                "symfony/var-dumper": "^4.0 || ^5.0"
             },
             "suggest": {
                 "symfony/var-dumper": "Pretty print complex values better with var-dumper available",
@@ -6276,7 +6276,7 @@
             ],
             "support": {
                 "issues": "https://github.com/filp/whoops/issues",
-                "source": "https://github.com/filp/whoops/tree/2.15.4"
+                "source": "https://github.com/filp/whoops/tree/2.16.0"
             },
             "funding": [
                 {
@@ -6284,7 +6284,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-11-03T12:00:00+00:00"
+            "time": "2024-09-25T12:00:00+00:00"
         },
         {
             "name": "hamcrest/hamcrest-php",
@@ -6827,16 +6827,16 @@
         },
         {
             "name": "pestphp/pest",
-            "version": "v3.2.2",
+            "version": "v3.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pestphp/pest.git",
-                "reference": "989e43d1a01e5a3b5333cffe5c8e633ac4d17da2"
+                "reference": "5fe79d9c18a674e9cce2f36f365516c26ae87b49"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pestphp/pest/zipball/989e43d1a01e5a3b5333cffe5c8e633ac4d17da2",
-                "reference": "989e43d1a01e5a3b5333cffe5c8e633ac4d17da2",
+                "url": "https://api.github.com/repos/pestphp/pest/zipball/5fe79d9c18a674e9cce2f36f365516c26ae87b49",
+                "reference": "5fe79d9c18a674e9cce2f36f365516c26ae87b49",
                 "shasum": ""
             },
             "require": {
@@ -6922,7 +6922,7 @@
             ],
             "support": {
                 "issues": "https://github.com/pestphp/pest/issues",
-                "source": "https://github.com/pestphp/pest/tree/v3.2.2"
+                "source": "https://github.com/pestphp/pest/tree/v3.2.4"
             },
             "funding": [
                 {
@@ -6934,7 +6934,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-09-24T09:23:43+00:00"
+            "time": "2024-09-26T22:53:39+00:00"
         },
         {
             "name": "pestphp/pest-plugin",
@@ -7517,16 +7517,16 @@
         },
         {
             "name": "phpstan/phpdoc-parser",
-            "version": "1.31.0",
+            "version": "1.32.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpdoc-parser.git",
-                "reference": "249f15fb843bf240cf058372dad29e100cee6c17"
+                "reference": "6ca22b154efdd9e3c68c56f5d94670920a1c19a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/249f15fb843bf240cf058372dad29e100cee6c17",
-                "reference": "249f15fb843bf240cf058372dad29e100cee6c17",
+                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/6ca22b154efdd9e3c68c56f5d94670920a1c19a4",
+                "reference": "6ca22b154efdd9e3c68c56f5d94670920a1c19a4",
                 "shasum": ""
             },
             "require": {
@@ -7558,9 +7558,9 @@
             "description": "PHPDoc parser with support for nullable, intersection and generic types",
             "support": {
                 "issues": "https://github.com/phpstan/phpdoc-parser/issues",
-                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.31.0"
+                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.32.0"
             },
-            "time": "2024-09-22T11:32:18+00:00"
+            "time": "2024-09-26T07:23:32+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
