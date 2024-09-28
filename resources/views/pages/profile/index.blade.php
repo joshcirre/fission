@@ -8,7 +8,9 @@ use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
 use Livewire\Volt\Component;
 
-use function Laravel\Folio\name;
+use function Laravel\Folio\{middleware, name};
+
+middleware(['auth']);
 
 name('profile.update');
 
