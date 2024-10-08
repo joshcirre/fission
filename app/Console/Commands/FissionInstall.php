@@ -16,6 +16,8 @@ class FissionInstall extends Command
 
     protected $description = 'Run the Fission installation process';
 
+    private $authJsonExists = false;
+
     public function handle()
     {
         app()->detectEnvironment(function () {
@@ -23,6 +25,8 @@ class FissionInstall extends Command
         });
 
         info('Starting Fission installation...');
+
+        $this->copyAuthJson();
 
         // Run npm install
         if (! File::exists('node_modules')) {
@@ -32,14 +36,16 @@ class FissionInstall extends Command
             warning('Node modules already exist. Skipping npm install.');
         }
 
-        $this->copyAuthJson();
-
-        // Run flux:activate
-        info('Activating Flux...');
-        $this->call('flux:activate');
+        // Run flux:activate only if auth.json doesn't exist
+        if (! $this->authJsonExists) {
+            info('Activating Flux...');
+            $this->call('flux:activate');
+        } else {
+            info('auth.json found. Skipping Flux manual activation.');
+        }
 
         $this->setupEnvFile();
-        $this->reloadEnvironment();  // Add this line
+        $this->reloadEnvironment();
         $this->generateAppKey();
         $this->runMigrations();
         $this->setProjectName();
@@ -163,8 +169,16 @@ class FissionInstall extends Command
             info('Found auth.json in ~/Code/ directory. Copying to application...');
             File::copy($sourceAuthJson, $destinationAuthJson);
             info('auth.json copied successfully.');
+
+            // Run composer install again to ensure Flux Pro is properly installed
+            info('Running composer install to activate Flux Pro...');
+            exec('composer install');
+            info('Flux Pro activated.');
+
+            $this->authJsonExists = true;
         } else {
-            warning('No auth.json found in ~/Code/ directory. Skipping.');
+            warning('No preset auth.json found. You can add your credentials for Flux in a bit.');
+            $this->authJsonExists = false;
         }
     }
 }
