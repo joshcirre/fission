@@ -103,7 +103,7 @@ class FissionInstall extends Command
 
         $this->updateEnv('APP_NAME', $name);
 
-        $defaultUrl = 'http://localhost';
+        $defaultUrl = 'http://127.0.0.1:8000';
         $url = text(
             label: 'What is the URL of your project?',
             placeholder: $defaultUrl,
