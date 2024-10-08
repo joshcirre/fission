@@ -8,6 +8,7 @@
         "php": "^8.2",
         "laravel/folio": "^1.1",
         "laravel/framework": "^11.9",
+        "laravel/prompts": "^0.3.0",
         "laravel/tinker": "^2.9",
         "livewire/flux": "^1.0",
         "livewire/flux-pro": "^1.0",
