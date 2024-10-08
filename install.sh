@@ -12,5 +12,3 @@ composer install
 
 # Run the Fission installation
 php artisan fission:install
-
-echo "Fission installation complete."

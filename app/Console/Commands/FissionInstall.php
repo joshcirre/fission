@@ -18,6 +18,10 @@ class FissionInstall extends Command
 
     public function handle()
     {
+        app()->detectEnvironment(function () {
+            return 'local';
+        });
+
         info('Starting Fission installation...');
 
         // Run npm install
@@ -40,7 +44,8 @@ class FissionInstall extends Command
 
         $this->cleanup();
 
-        info('Fission installation completed successfully!');
+        info('Fission installation completed successfully! ☢️');
+        info('Keep creating. 🫡');
     }
 
     private function setupEnvFile()
@@ -79,7 +84,9 @@ class FissionInstall extends Command
     {
         if (confirm('Do you want to run database migrations?', true)) {
             info('Running database migrations...');
-            $this->call('migrate');
+            $this->call('migrate', [
+                '--force' => true, // This will bypass the production check
+            ]);
         }
     }
 
@@ -125,7 +132,7 @@ class FissionInstall extends Command
             info('Removing installation files...');
 
             // Remove the entire Commands folder
-            File::deleteDirectory(app_path('Console/Commands'));
+            File::deleteDirectory(app_path('Console'));
 
             // Remove the install.sh script
             File::delete(base_path('install.sh'));
