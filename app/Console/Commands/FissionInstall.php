@@ -20,14 +20,6 @@ class FissionInstall extends Command
     {
         info('Starting Fission installation...');
 
-        // Run composer install
-        if (! File::exists('vendor')) {
-            info('Running composer install...');
-            exec('composer install');
-        } else {
-            warning('Vendor directory already exists. Skipping composer install.');
-        }
-
         // Run npm install
         if (! File::exists('node_modules')) {
             info('Running npm install...');
@@ -36,34 +28,56 @@ class FissionInstall extends Command
             warning('Node modules already exist. Skipping npm install.');
         }
 
-        // Run flux:install
-        info('Running flux:install...');
-        $this->call('flux:install');
+        // Run flux:activate
+        info('Activating Flux...');
+        $this->call('flux:activate');
 
         // Copy .env.example to .env
-        info('Checking .env file...');
+        $this->setupEnvFile();
+
+        // Generate application key
+        $this->generateAppKey();
+
+        // Run database migrations
+        $this->runMigrations();
+
+        // Set project name
+        $this->setProjectName();
+
+        info('Fission installation completed successfully!');
+    }
+
+    private function setupEnvFile()
+    {
+        info('Setting up .env file...');
         if (! File::exists('.env')) {
             File::copy('.env.example', '.env');
             info('.env file created successfully.');
         } else {
             warning('.env file already exists. Skipping.');
         }
+    }
 
-        // Generate application key
+    private function generateAppKey()
+    {
         info('Checking application key...');
         if (empty(env('APP_KEY'))) {
             $this->call('key:generate');
         } else {
             warning('Application key already exists. Skipping.');
         }
+    }
 
-        // Run database migrations
+    private function runMigrations()
+    {
         if (confirm('Do you want to run database migrations?', true)) {
             info('Running database migrations...');
             $this->call('migrate');
         }
+    }
 
-        // Get project name
+    private function setProjectName()
+    {
         $defaultName = $this->argument('name') ?: basename(getcwd());
         $name = text(
             label: 'What is the name of your project?',
@@ -72,10 +86,7 @@ class FissionInstall extends Command
             required: true
         );
 
-        // Update .env with project name
         $this->updateEnv('APP_NAME', $name);
-
-        info('Fission installation completed successfully!');
     }
 
     private function updateEnv($key, $value)
