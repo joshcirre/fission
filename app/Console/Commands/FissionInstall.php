@@ -32,6 +32,8 @@ class FissionInstall extends Command
             warning('Node modules already exist. Skipping npm install.');
         }
 
+        $this->copyAuthJson();
+
         // Run flux:activate
         info('Activating Flux...');
         $this->call('flux:activate');
@@ -47,8 +49,6 @@ class FissionInstall extends Command
         info('Fission installation completed successfully! ☢️');
         info('👉 Run `npm run dev` to start the local server.');
         info('Keep creating. 🫡');
-
-        $this->copyAuthJson();
     }
 
     private function setupEnvFile()
