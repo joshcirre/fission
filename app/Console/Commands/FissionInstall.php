@@ -47,6 +47,8 @@ class FissionInstall extends Command
         info('Fission installation completed successfully! ☢️');
         info('👉 Run `npm run dev` to start the local server.');
         info('Keep creating. 🫡');
+
+        $this->copyAuthJson();
     }
 
     private function setupEnvFile()
@@ -150,5 +152,19 @@ class FissionInstall extends Command
         $app->bootstrapWith([
             \Illuminate\Foundation\Bootstrap\LoadEnvironmentVariables::class,
         ]);
+    }
+
+    private function copyAuthJson()
+    {
+        $sourceAuthJson = $_SERVER['HOME'].'/Code/flux-auth.json';
+        $destinationAuthJson = base_path('auth.json');
+
+        if (File::exists($sourceAuthJson)) {
+            info('Found auth.json in ~/Code/ directory. Copying to application...');
+            File::copy($sourceAuthJson, $destinationAuthJson);
+            info('auth.json copied successfully.');
+        } else {
+            warning('No auth.json found in ~/Code/ directory. Skipping.');
+        }
     }
 }
