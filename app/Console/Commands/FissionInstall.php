@@ -32,17 +32,13 @@ class FissionInstall extends Command
         info('Activating Flux...');
         $this->call('flux:activate');
 
-        // Copy .env.example to .env
         $this->setupEnvFile();
-
-        // Generate application key
+        $this->reloadEnvironment();  // Add this line
         $this->generateAppKey();
-
-        // Run database migrations
         $this->runMigrations();
-
-        // Set project name
         $this->setProjectName();
+
+        $this->cleanup();
 
         info('Fission installation completed successfully!');
     }
@@ -54,7 +50,18 @@ class FissionInstall extends Command
             File::copy('.env.example', '.env');
             info('.env file created successfully.');
         } else {
-            warning('.env file already exists. Skipping.');
+            warning('.env file already exists. Skipping creation.');
+        }
+
+        // Ensure APP_ENV is set to local
+        $envContent = File::get('.env');
+        if (! preg_match('/^APP_ENV=/', $envContent)) {
+            File::append('.env', "\nAPP_ENV=local");
+            info('APP_ENV set to local.');
+        } else {
+            $envContent = preg_replace('/^APP_ENV=(.*)$/m', 'APP_ENV=local', $envContent);
+            File::put('.env', $envContent);
+            info('APP_ENV updated to local.');
         }
     }
 
@@ -87,6 +94,16 @@ class FissionInstall extends Command
         );
 
         $this->updateEnv('APP_NAME', $name);
+
+        $defaultUrl = 'http://localhost';
+        $url = text(
+            label: 'What is the URL of your project?',
+            placeholder: $defaultUrl,
+            default: $defaultUrl,
+            required: true
+        );
+
+        $this->updateEnv('APP_URL', $url);
     }
 
     private function updateEnv($key, $value)
@@ -100,5 +117,30 @@ class FissionInstall extends Command
                 file_get_contents($path)
             ));
         }
+    }
+
+    private function cleanup()
+    {
+        if (confirm('Do you want to remove the installation files?', true)) {
+            info('Removing installation files...');
+
+            // Remove the entire Commands folder
+            File::deleteDirectory(app_path('Console/Commands'));
+
+            // Remove the install.sh script
+            File::delete(base_path('install.sh'));
+
+            info('Installation files removed.');
+        } else {
+            info('Installation files kept. You can manually remove them later if needed.');
+        }
+    }
+
+    private function reloadEnvironment()
+    {
+        $app = app();
+        $app->bootstrapWith([
+            \Illuminate\Foundation\Bootstrap\LoadEnvironmentVariables::class,
+        ]);
     }
 }
