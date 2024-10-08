@@ -2,9 +2,11 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "dev": "concurrently \"npm:serve\" \"npm:vite-dev\"",
-        "vite-dev": "vite",
-        "serve": "php artisan serve"
+        "dev": "concurrently -k -p \"[{name}]\" -c \"blue.bold,green.bold,red.bold\" \"npm:php:serve\" \"npm:php:pail\" \"npm:vite:dev\"",
+        "vite:dev": "vite",
+        "build": "vite build",
+        "php:serve": "php artisan serve",
+        "php:pail": "php artisan pail"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.2",
