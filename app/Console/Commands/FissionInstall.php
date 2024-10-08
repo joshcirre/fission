@@ -18,6 +18,8 @@ class FissionInstall extends Command
 
     private $authJsonExists = false;
 
+    private $additionalPackages = [];
+
     public function handle()
     {
         app()->detectEnvironment(function () {
