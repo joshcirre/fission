@@ -2,13 +2,15 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "dev": "vite",
-        "build": "vite build"
+        "dev": "concurrently \"npm:serve\" \"npm:vite-dev\"",
+        "vite-dev": "vite",
+        "serve": "php artisan serve"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.2",
         "autoprefixer": "^10.4.2",
         "axios": "^1.7.4",
+        "concurrently": "^9.0.1",
         "laravel-vite-plugin": "^1.0",
         "postcss": "^8.4.31",
         "tailwindcss": "^3.1.0",
