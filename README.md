@@ -9,6 +9,8 @@
 > [!IMPORTANT]
 > This is an opinionated starter kit created by me (Josh Cirre) using Laravel Folio, Livewire Volt, and Livewire Flux. While PRs are welcome, this is designed to fit the needs of one person.
 
+> [!TIP]
+> To get up and running quickly, clone this repo and run `bash install.sh` in your cloned directory.
 
 ## Why Does This Exist?
 Up until Livewire Flux released, I used Breeze as a starting point for 99% of new projects that I would create. Typically, those new projects were built for demos on videos or starting points for tutorials. In addition, I would start side projects or app ideas with Breeze, as well.
