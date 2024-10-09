@@ -122,6 +122,13 @@ class FissionInstall extends Command
         );
 
         $this->updateEnv('APP_URL', $url);
+
+        // Extract port number from user input
+        preg_match('/(?<=:)\d+/', $url, $matches);
+        $port = $matches[0] ?? null;
+
+        // Add APP_PORT variable to .env
+        $this->updateEnv('APP_PORT', $port);
     }
 
     private function updateEnv($key, $value)
@@ -164,8 +171,11 @@ class FissionInstall extends Command
 
     private function copyAuthJson()
     {
-        $sourceAuthJson = $_SERVER['HOME'].'/Code/flux-auth.json';
+        $sourceAuthJson = $_SERVER['HOME'].'/.config/flux/auth.json';
         $destinationAuthJson = base_path('auth.json');
+
+        info('Looking for auth.json at: ' . $sourceAuthJson);
+
 
         if (File::exists($sourceAuthJson)) {
             info('Found auth.json in ~/Code/ directory. Copying to application...');
