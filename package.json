@@ -5,7 +5,7 @@
         "dev": "concurrently -k -p \"[{name}]\" -c \"blue.bold,green.bold,red.bold\" \"npm:php:serve\" \"npm:php:pail\" \"npm:vite:dev\"",
         "vite:dev": "vite",
         "build": "vite build",
-        "php:serve": "php artisan serve",
+        "php:serve": "eval $(grep 'APP_PORT' .env) && php artisan serve --port=$APP_PORT",
         "php:pail": "php artisan pail"
     },
     "devDependencies": {
