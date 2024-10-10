@@ -71,14 +71,14 @@ class FissionInstall extends Command
 
         // Ensure APP_ENV is set to local
         $envContent = File::get('.env');
-        if (! preg_match('/^APP_ENV=/', $envContent)) {
+        if (! preg_match('/^\s*APP_ENV=/m', $envContent)) {
             File::append('.env', "\nAPP_ENV=local");
             info('APP_ENV set to local.');
         } else {
-            $envContent = preg_replace('/^APP_ENV=(.*)$/m', 'APP_ENV=local', $envContent);
+            $envContent = preg_replace('/^\s*APP_ENV=.*$/m', 'APP_ENV=local', $envContent);
             File::put('.env', $envContent);
             info('APP_ENV updated to local.');
-        }
+        }        
     }
 
     private function generateAppKey()
@@ -122,20 +122,38 @@ class FissionInstall extends Command
         );
 
         $this->updateEnv('APP_URL', $url);
+
+        // Extract port number from user input
+        preg_match('/(?<=:)\d+/', $url, $matches);
+        $port = $matches[0] ?? null;
+
+        // Add APP_PORT variable to .env
+        echo "Adding APP_PORT={$port} to .env";
+        $this->updateEnv('APP_PORT', $port);
     }
 
     private function updateEnv($key, $value)
     {
         $path = base_path('.env');
-
+    
         if (File::exists($path)) {
-            file_put_contents($path, preg_replace(
-                "/^{$key}=.*/m",
-                "{$key}=\"{$value}\"",
-                file_get_contents($path)
-            ));
+            $envContent = file_get_contents($path);
+            $newEntry = "{$key}=\"{$value}\"";
+    
+            // Add the variable if it doesn't exist
+            if (preg_match("/^{$key}=.*/m", $envContent)) {
+                $envContent = preg_replace(
+                    "/^{$key}=.*/m",
+                    $newEntry,
+                    $envContent
+                );
+            } else {
+                $envContent .= "\n{$newEntry}";
+            }
+            file_put_contents($path, $envContent);
         }
     }
+    
 
     private function cleanup()
     {
@@ -164,8 +182,11 @@ class FissionInstall extends Command
 
     private function copyAuthJson()
     {
-        $sourceAuthJson = $_SERVER['HOME'].'/Code/flux-auth.json';
+        $sourceAuthJson = $_SERVER['HOME'].'/.config/flux/auth.json';
         $destinationAuthJson = base_path('auth.json');
+
+        info('Looking for auth.json at: ' . $sourceAuthJson);
+
 
         if (File::exists($sourceAuthJson)) {
             info('Found auth.json in ~/Code/ directory. Copying to application...');
