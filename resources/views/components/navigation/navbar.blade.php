@@ -25,7 +25,7 @@ $logout = function (Logout $logout) {
     @volt('layout.navigation.navbar.routes')
         <flux:navbar class="max-lg:hidden">
             @foreach ($routes as $route)
-                <flux:navbar.item :icon="$route['icon']" :href="$route['to']">
+                <flux:navbar.item :icon="$route['icon']" :href="$route['to']" wire:navigate>
                     {{ $route['name'] }}
                 </flux:navbar.item>
                 <!-- If this is not the last route, add a separator -->

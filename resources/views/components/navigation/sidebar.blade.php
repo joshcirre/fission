@@ -12,7 +12,7 @@ state('routes');
         @volt('layout.navigation.sidebar.routes')
             <flux:navlist variant="outline">
                 @foreach ($routes as $route)
-                    <flux:navlist.item :icon="$route['icon']" :href="$route['to']">
+                    <flux:navlist.item :icon="$route['icon']" :href="$route['to']" wire:navigate>
                         {{ $route['name'] }}
                     </flux:navlist.item>
                 @endforeach
