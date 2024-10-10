@@ -65,7 +65,7 @@ new class extends Component {
             return;
         }
 
-        Flux::toast(__($status));
+        Flux::toast(__($status), variant: 'success');
 
         $this->redirectRoute('login', navigate: true);
     }

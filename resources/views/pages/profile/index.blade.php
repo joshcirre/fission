@@ -49,7 +49,7 @@ new class extends Component {
 
         $user->save();
 
-        Flux::toast('Profile updated successfully.');
+        Flux::toast('Profile updated successfully.', variant: 'success');
     }
 
     public function sendVerification(): void
@@ -63,7 +63,7 @@ new class extends Component {
 
         $user->sendEmailVerificationNotification();
 
-        Flux::toast('Verification link sent!');
+        Flux::toast('Verification link sent!', variant: 'success');
     }
 
     public function updatePassword(): void
@@ -84,7 +84,7 @@ new class extends Component {
 
         $this->reset('current_password', 'password', 'password_confirmation');
 
-        Flux::toast('Password updated successfully.');
+        Flux::toast('Password updated successfully.', variant: 'success');
     }
 
     public function deleteUser(Logout $logout): void
@@ -95,7 +95,7 @@ new class extends Component {
 
         tap(Auth::user(), $logout(...))->delete();
 
-        Flux::toast('Account deleted successfully.');
+        Flux::toast('Account deleted successfully.', variant: 'success');
 
         $this->redirect('/', navigate: true);
     }
