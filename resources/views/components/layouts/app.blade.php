@@ -84,10 +84,8 @@ new class extends Component {
     </flux:sidebar>
 
     <flux:main container>
-
-        <div class="flex-1 self-stretch max-md:pt-6">
+        <div class="self-stretch flex-1 max-md:pt-6">
             {{ $slot }}
-        </div>
         </div>
     </flux:main>
     @persist('toast')
