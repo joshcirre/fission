@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Password;
-use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
 
 use function Laravel\Folio\name;
@@ -33,7 +32,7 @@ new class extends Component {
 
         $this->reset('email');
 
-        Flux::toast(__($status));
+        Flux::toast(__($status), variant: 'success');
     }
 }; ?>
 
