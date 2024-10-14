@@ -50,6 +50,7 @@ class FissionInstall extends Command
         $this->reloadEnvironment();
         $this->generateAppKey();
         $this->runMigrations();
+        $this->installPan();
         $this->setProjectName();
 
         $this->cleanup();
@@ -72,11 +73,11 @@ class FissionInstall extends Command
         // Ensure APP_ENV is set to local
         $envContent = File::get('.env');
         if (! preg_match('/^APP_ENV=/', $envContent)) {
-            File::append('.env', "\nAPP_ENV=local");
+            $this->updateEnv('APP_ENV', 'local');
             info('APP_ENV set to local.');
         } else {
             $envContent = preg_replace('/^APP_ENV=(.*)$/m', 'APP_ENV=local', $envContent);
-            File::put('.env', $envContent);
+            $this->updateEnv('APP_ENV', 'local');
             info('APP_ENV updated to local.');
         }
     }
@@ -160,6 +161,11 @@ class FissionInstall extends Command
         $app->bootstrapWith([
             \Illuminate\Foundation\Bootstrap\LoadEnvironmentVariables::class,
         ]);
+    }
+
+    private function installPan()
+    {
+        $this->call('install:pan');
     }
 
     private function copyAuthJson()
