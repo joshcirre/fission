@@ -125,23 +125,15 @@ class FissionInstall extends Command
         $this->updateEnv('APP_URL', $url);
 
         // Get port number from $defaultUrl
-        preg_match('/(?<=:)\d+/', $url, $matches);
-        $port = $matches[0] ?? null;
+        $port = parse_url($url, PHP_URL_PORT) ?? '8000';
 
-        // Make sure php:serve port in package.json scripts matches user selection 
-        if ($port == '8000') {
-            $packageJsonPath = base_path('package.json');
-            $packageJson = json_decode(file_get_contents($packageJsonPath), true);
-            $packageJson['scripts']['php:serve'] = "php artisan serve";
-            file_put_contents($packageJsonPath, json_encode($packageJson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
-        }
-
-        else {
-            $packageJsonPath = base_path('package.json');
-            $packageJson = json_decode(file_get_contents($packageJsonPath), true);
-            $packageJson['scripts']['php:serve'] = "php artisan serve --port={$port}";
-            file_put_contents($packageJsonPath, json_encode($packageJson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
-        }        
+        // Update package.json with selected port
+        $packageJsonPath = base_path('package.json');
+        $packageJson = json_decode(file_get_contents($packageJsonPath));
+        $packageJson->scripts->{"php:serve"} = ($port === null || $port == '8000') 
+        ? "php artisan serve" 
+        : "php artisan serve --port={$port}";
+        file_put_contents($packageJsonPath, json_encode($packageJson, JSON_PRETTY_PRINT));
     }
 
     private function updateEnv($key, $value)
