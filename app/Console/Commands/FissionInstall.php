@@ -76,7 +76,7 @@ class FissionInstall extends Command
             $this->updateEnv('APP_ENV', 'local');
             info('APP_ENV set to local.');
         } else {
-            $envContent = preg_replace('/^APP_ENV=(.*)$/m', 'APP_ENV=local', $envContent);
+            $envContent = preg_replace('/^\s*APP_ENV=.*$/m', 'APP_ENV=local', $envContent);
             $this->updateEnv('APP_ENV', 'local');
             info('APP_ENV updated to local.');
         }
@@ -123,6 +123,24 @@ class FissionInstall extends Command
         );
 
         $this->updateEnv('APP_URL', $url);
+
+        // Get port number from $defaultUrl
+        preg_match('/(?<=:)\d+/', $url, $matches);
+        $port = $matches[0] ?? null;
+
+        if ($port == '8000') {
+            $packageJsonPath = base_path('package.json');
+            $packageJson = json_decode(file_get_contents($packageJsonPath), true);
+            $packageJson['scripts']['php:serve'] = "php artisan serve";
+            file_put_contents($packageJsonPath, json_encode($packageJson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+        }
+
+        else {
+            $packageJsonPath = base_path('package.json');
+            $packageJson = json_decode(file_get_contents($packageJsonPath), true);
+            $packageJson['scripts']['php:serve'] = "php artisan serve --port={$port}";
+            file_put_contents($packageJsonPath, json_encode($packageJson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+        }        
     }
 
     private function updateEnv($key, $value)
@@ -135,6 +153,20 @@ class FissionInstall extends Command
                 "{$key}=\"{$value}\"",
                 file_get_contents($path)
             ));
+            $envContent = file_get_contents($path);
+            $newEntry = "{$key}=\"{$value}\"";
+
+            // Add the variable if it doesn't exist
+            if (preg_match("/^{$key}=.*/m", $envContent)) {
+                $envContent = preg_replace(
+                    "/^{$key}=.*/m",
+                    $newEntry,
+                    $envContent
+                );
+            } else {
+                $envContent .= "\n{$newEntry}";
+            }
+            file_put_contents($path, $envContent);      
         }
     }
 
