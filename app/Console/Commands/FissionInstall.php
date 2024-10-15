@@ -128,6 +128,7 @@ class FissionInstall extends Command
         preg_match('/(?<=:)\d+/', $url, $matches);
         $port = $matches[0] ?? null;
 
+        // Make sure php:serve port in package.json scripts matches user selection 
         if ($port == '8000') {
             $packageJsonPath = base_path('package.json');
             $packageJson = json_decode(file_get_contents($packageJsonPath), true);
