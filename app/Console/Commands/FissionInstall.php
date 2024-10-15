@@ -153,20 +153,6 @@ class FissionInstall extends Command
                 "{$key}=\"{$value}\"",
                 file_get_contents($path)
             ));
-            $envContent = file_get_contents($path);
-            $newEntry = "{$key}=\"{$value}\"";
-
-            // Add the variable if it doesn't exist
-            if (preg_match("/^{$key}=.*/m", $envContent)) {
-                $envContent = preg_replace(
-                    "/^{$key}=.*/m",
-                    $newEntry,
-                    $envContent
-                );
-            } else {
-                $envContent .= "\n{$newEntry}";
-            }
-            file_put_contents($path, $envContent);      
         }
     }
 
