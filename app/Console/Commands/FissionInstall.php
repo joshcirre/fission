@@ -76,7 +76,7 @@ class FissionInstall extends Command
             $this->updateEnv('APP_ENV', 'local');
             info('APP_ENV set to local.');
         } else {
-            $envContent = preg_replace('/^\s*APP_ENV=.*$/m', 'APP_ENV=local', $envContent);
+            $envContent = preg_replace('/^APP_ENV=(.*)$/m', 'APP_ENV=local', $envContent);
             $this->updateEnv('APP_ENV', 'local');
             info('APP_ENV updated to local.');
         }
