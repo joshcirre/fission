@@ -127,13 +127,22 @@ class FissionInstall extends Command
         // Get port number from $defaultUrl
         $port = parse_url($url, PHP_URL_PORT) ?? '8000';
 
-        // Update package.json with selected port
+        // Update package.json
         $packageJsonPath = base_path('package.json');
         $packageJson = json_decode(file_get_contents($packageJsonPath));
         $packageJson->scripts->{"php:serve"} = ($port === null || $port == '8000') 
         ? "php artisan serve" 
         : "php artisan serve --port={$port}";
         file_put_contents($packageJsonPath, json_encode($packageJson, JSON_PRETTY_PRINT));
+
+        // Update composer.json
+        $composerJsonPath = base_path('composer.json');
+        $composerJson = json_decode(file_get_contents($composerJsonPath));
+        $phpServeCommand = ($port === null || $port == '8000') 
+            ? "php artisan serve" 
+            : "php artisan serve --port={$port}";
+        $composerJson->scripts->dev[0] = "npx concurrently -k -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"{$phpServeCommand}\" \"php artisan queue:listen --tries=1\" \"php artisan pail\" \"npm run dev\" --names=server,queue,logs,vite";
+        file_put_contents($composerJsonPath, json_encode($composerJson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));        
     }
 
     private function updateEnv($key, $value)
