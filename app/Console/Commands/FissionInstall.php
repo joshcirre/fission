@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 
 use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\info;
@@ -122,7 +123,14 @@ class FissionInstall extends Command
             required: true
         );
 
+        // Ensure the URL is correctly formatted
+        if (!filter_var($url, FILTER_VALIDATE_URL)) {
+            warning('The provided URL is not valid. Please enter a valid URL.');
+            return;
+        }
+
         $this->updateEnv('APP_URL', $url);
+        Log::info('APP_URL has been updated successfully.');
     }
 
     private function updateEnv($key, $value)
@@ -130,11 +138,19 @@ class FissionInstall extends Command
         $path = base_path('.env');
 
         if (File::exists($path)) {
-            file_put_contents($path, preg_replace(
-                "/^{$key}=.*/m",
-                "{$key}=\"{$value}\"",
-                file_get_contents($path)
-            ));
+            $envContent = file_get_contents($path);
+
+            if (preg_match("/^{$key}=.*/m", $envContent)) {
+                $envContent = preg_replace(
+                    "/^{$key}=.*/m",
+                    "{$key}=\"{$value}\"",
+                    $envContent
+                );
+            } else {
+                $envContent .= "\n{$key}=\"{$value}\"";
+            }
+
+            file_put_contents($path, $envContent);
         }
     }
 
