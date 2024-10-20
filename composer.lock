@@ -771,16 +771,16 @@
         },
         {
             "name": "guzzlehttp/promises",
-            "version": "2.0.3",
+            "version": "2.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/promises.git",
-                "reference": "6ea8dd08867a2a42619d65c3deb2c0fcbf81c8f8"
+                "reference": "f9c436286ab2892c7db7be8c8da4ef61ccf7b455"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/promises/zipball/6ea8dd08867a2a42619d65c3deb2c0fcbf81c8f8",
-                "reference": "6ea8dd08867a2a42619d65c3deb2c0fcbf81c8f8",
+                "url": "https://api.github.com/repos/guzzle/promises/zipball/f9c436286ab2892c7db7be8c8da4ef61ccf7b455",
+                "reference": "f9c436286ab2892c7db7be8c8da4ef61ccf7b455",
                 "shasum": ""
             },
             "require": {
@@ -834,7 +834,7 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/promises/issues",
-                "source": "https://github.com/guzzle/promises/tree/2.0.3"
+                "source": "https://github.com/guzzle/promises/tree/2.0.4"
             },
             "funding": [
                 {
@@ -850,7 +850,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-07-18T10:29:17+00:00"
+            "time": "2024-10-17T10:06:22+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -1129,16 +1129,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v11.28.0",
+            "version": "v11.28.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "80843d20cf9337b94fb71e7f25f33f4b1e6c7c5f"
+                "reference": "3ef5c8a85b4c598d5ffaf98afd72f6a5d6a0be2c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/80843d20cf9337b94fb71e7f25f33f4b1e6c7c5f",
-                "reference": "80843d20cf9337b94fb71e7f25f33f4b1e6c7c5f",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/3ef5c8a85b4c598d5ffaf98afd72f6a5d6a0be2c",
+                "reference": "3ef5c8a85b4c598d5ffaf98afd72f6a5d6a0be2c",
                 "shasum": ""
             },
             "require": {
@@ -1334,7 +1334,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2024-10-15T14:14:58+00:00"
+            "time": "2024-10-16T16:32:21+00:00"
         },
         {
             "name": "laravel/pail",
@@ -1977,16 +1977,16 @@
         },
         {
             "name": "livewire/flux",
-            "version": "v1.0.10",
+            "version": "v1.0.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/flux.git",
-                "reference": "9d71e83ee5ca652563ce2c08e42b87bdbb22a4ec"
+                "reference": "35cb51a96fbc8d0d55f75c169fc2127296c24b6c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/flux/zipball/9d71e83ee5ca652563ce2c08e42b87bdbb22a4ec",
-                "reference": "9d71e83ee5ca652563ce2c08e42b87bdbb22a4ec",
+                "url": "https://api.github.com/repos/livewire/flux/zipball/35cb51a96fbc8d0d55f75c169fc2127296c24b6c",
+                "reference": "35cb51a96fbc8d0d55f75c169fc2127296c24b6c",
                 "shasum": ""
             },
             "require": {
@@ -1994,7 +1994,7 @@
                 "illuminate/support": "^10.0|^11.0",
                 "illuminate/view": "^10.0|^11.0",
                 "laravel/prompts": "^0.1|^0.2|^0.3",
-                "livewire/livewire": "^3.5",
+                "livewire/livewire": "^3.5.12",
                 "php": "^8.1",
                 "symfony/console": "^6.0|^7.0"
             },
@@ -2034,26 +2034,26 @@
             ],
             "support": {
                 "issues": "https://github.com/livewire/flux/issues",
-                "source": "https://github.com/livewire/flux/tree/v1.0.10"
+                "source": "https://github.com/livewire/flux/tree/v1.0.14"
             },
-            "time": "2024-10-13T01:47:41+00:00"
+            "time": "2024-10-17T19:53:12+00:00"
         },
         {
             "name": "livewire/flux-pro",
-            "version": "1.0.10",
+            "version": "1.0.14",
             "dist": {
                 "type": "zip",
-                "url": "https://composer.fluxui.dev/download/9d407ddd-61ed-417b-8f93-eb6875f5fb12/flux-pro-1.0.10.zip",
-                "reference": "cbbac6aecd7e6d475658ff3efe9eebe90ed72c85",
-                "shasum": "cefca124e6769fedd11cfcb0510a0ef6d713512f"
+                "url": "https://composer.fluxui.dev/download/9d44f4d1-92a6-4c9c-bcc4-6b3da0bc055d/flux-pro-1.0.14.zip",
+                "reference": "0f12a06411c9ed7d93c0f4d81ce45c9b7b9f2a7b",
+                "shasum": "2561e8832f580416d2a897a541ff037ca03af1bd"
             },
             "require": {
                 "illuminate/console": "^10.0|^11.0",
                 "illuminate/support": "^10.0|^11.0",
                 "illuminate/view": "^10.0|^11.0",
                 "laravel/prompts": "^0.1.24|^0.2|^0.3",
-                "livewire/flux": "1.0.10",
-                "livewire/livewire": "^3.5",
+                "livewire/flux": "1.0.14",
+                "livewire/livewire": "^3.5.12",
                 "php": "^8.1",
                 "symfony/console": "^6.0|^7.0"
             },
@@ -2093,7 +2093,7 @@
                 "livewire",
                 "ui"
             ],
-            "time": "2024-10-15T14:39:13+00:00"
+            "time": "2024-10-17T19:55:07+00:00"
         },
         {
             "name": "livewire/livewire",
@@ -2745,16 +2745,16 @@
         },
         {
             "name": "panphp/pan",
-            "version": "v0.1.1",
+            "version": "v0.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/panphp/pan.git",
-                "reference": "9fff804ee63645fcb5a8ef5c840a023ef14731a2"
+                "reference": "ce26b8064ad6d78d33c444857def93d4eaaf28e5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/panphp/pan/zipball/9fff804ee63645fcb5a8ef5c840a023ef14731a2",
-                "reference": "9fff804ee63645fcb5a8ef5c840a023ef14731a2",
+                "url": "https://api.github.com/repos/panphp/pan/zipball/ce26b8064ad6d78d33c444857def93d4eaaf28e5",
+                "reference": "ce26b8064ad6d78d33c444857def93d4eaaf28e5",
                 "shasum": ""
             },
             "require": {
@@ -2766,7 +2766,7 @@
             "require-dev": {
                 "laravel/pint": "^1.18.1",
                 "orchestra/testbench": "^9.5.2",
-                "pestphp/pest": "^3.3.2",
+                "pestphp/pest": "^3.4.1",
                 "pestphp/pest-plugin-type-coverage": "^3.1.0",
                 "phpstan/phpstan": "^1.12.6",
                 "rector/rector": "^1.2.7",
@@ -2809,12 +2809,16 @@
             ],
             "support": {
                 "issues": "https://github.com/panphp/pan/issues",
-                "source": "https://github.com/panphp/pan/tree/v0.1.1"
+                "source": "https://github.com/panphp/pan/tree/v0.1.5"
             },
             "funding": [
                 {
                     "url": "https://www.paypal.com/paypalme/enunomaduro",
                     "type": "custom"
+                },
+                {
+                    "url": "https://github.com/iamdavidhill",
+                    "type": "github"
                 },
                 {
                     "url": "https://github.com/nunomaduro",
@@ -2825,7 +2829,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2024-10-14T10:35:11+00:00"
+            "time": "2024-10-18T14:13:34+00:00"
         },
         {
             "name": "phpoption/phpoption",
@@ -8322,16 +8326,16 @@
         },
         {
             "name": "sebastian/comparator",
-            "version": "6.1.0",
+            "version": "6.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/comparator.git",
-                "reference": "fa37b9e2ca618cb051d71b60120952ee8ca8b03d"
+                "reference": "5ef523a49ae7a302b87b2102b72b1eda8918d686"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/fa37b9e2ca618cb051d71b60120952ee8ca8b03d",
-                "reference": "fa37b9e2ca618cb051d71b60120952ee8ca8b03d",
+                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/5ef523a49ae7a302b87b2102b72b1eda8918d686",
+                "reference": "5ef523a49ae7a302b87b2102b72b1eda8918d686",
                 "shasum": ""
             },
             "require": {
@@ -8387,7 +8391,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/comparator/issues",
                 "security": "https://github.com/sebastianbergmann/comparator/security/policy",
-                "source": "https://github.com/sebastianbergmann/comparator/tree/6.1.0"
+                "source": "https://github.com/sebastianbergmann/comparator/tree/6.1.1"
             },
             "funding": [
                 {
@@ -8395,7 +8399,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-09-11T15:42:56+00:00"
+            "time": "2024-10-18T15:00:48+00:00"
         },
         {
             "name": "sebastian/complexity",
