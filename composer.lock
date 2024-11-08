@@ -1977,16 +1977,16 @@
         },
         {
             "name": "livewire/flux",
-            "version": "v1.0.20",
+            "version": "v1.0.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/flux.git",
-                "reference": "589589276779ce6f6dfeb902399bf89864397b8b"
+                "reference": "6e7062eaef458d0e11aec3692cddf57a82de4c4b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/flux/zipball/589589276779ce6f6dfeb902399bf89864397b8b",
-                "reference": "589589276779ce6f6dfeb902399bf89864397b8b",
+                "url": "https://api.github.com/repos/livewire/flux/zipball/6e7062eaef458d0e11aec3692cddf57a82de4c4b",
+                "reference": "6e7062eaef458d0e11aec3692cddf57a82de4c4b",
                 "shasum": ""
             },
             "require": {
@@ -2034,25 +2034,25 @@
             ],
             "support": {
                 "issues": "https://github.com/livewire/flux/issues",
-                "source": "https://github.com/livewire/flux/tree/v1.0.20"
+                "source": "https://github.com/livewire/flux/tree/v1.0.22"
             },
-            "time": "2024-11-03T22:16:58+00:00"
+            "time": "2024-11-07T18:55:36+00:00"
         },
         {
             "name": "livewire/flux-pro",
-            "version": "1.0.20",
+            "version": "1.0.22",
             "dist": {
                 "type": "zip",
-                "url": "https://composer.fluxui.dev/download/9d6a84da-59d2-412f-b3bf-24f6103a46b4/flux-pro-1.0.20.zip",
-                "reference": "9b1e090ea4339582561dd0242848c6efb3d11d36",
-                "shasum": "c3d824267232c390e0dd98a0ba9409766a9b92e4"
+                "url": "https://composer.fluxui.dev/download/9d6f1f0b-297c-48bd-8e80-52d8dbdc49b9/flux-pro-1.0.22.zip",
+                "reference": "c5ea24a6a821fff7474d4f75417d2dc2da91422e",
+                "shasum": "5705f861a30f7a33e1857452a7d221cb6b801e0b"
             },
             "require": {
                 "illuminate/console": "^10.0|^11.0",
                 "illuminate/support": "^10.0|^11.0",
                 "illuminate/view": "^10.0|^11.0",
                 "laravel/prompts": "^0.1.24|^0.2|^0.3",
-                "livewire/flux": "1.0.20",
+                "livewire/flux": "1.0.22",
                 "livewire/livewire": "^3.5.12",
                 "php": "^8.1",
                 "symfony/console": "^6.0|^7.0"
@@ -2093,7 +2093,7 @@
                 "livewire",
                 "ui"
             ],
-            "time": "2024-11-05T12:03:31+00:00"
+            "time": "2024-11-07T18:57:58+00:00"
         },
         {
             "name": "livewire/livewire",
@@ -2346,16 +2346,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "3.8.1",
+            "version": "3.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "10ac0aa86b8062219ce21e8189123d611ca3ecd9"
+                "reference": "e1268cdbc486d97ce23fef2c666dc3c6b6de9947"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/10ac0aa86b8062219ce21e8189123d611ca3ecd9",
-                "reference": "10ac0aa86b8062219ce21e8189123d611ca3ecd9",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/e1268cdbc486d97ce23fef2c666dc3c6b6de9947",
+                "reference": "e1268cdbc486d97ce23fef2c666dc3c6b6de9947",
                 "shasum": ""
             },
             "require": {
@@ -2448,7 +2448,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-11-03T16:02:24+00:00"
+            "time": "2024-11-07T17:46:48+00:00"
         },
         {
             "name": "nette/schema",
