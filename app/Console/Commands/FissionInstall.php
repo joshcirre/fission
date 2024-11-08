@@ -56,7 +56,7 @@ class FissionInstall extends Command
         $this->cleanup();
 
         info('Fission installation completed successfully! ☢️');
-        info('👉 Run `composer run dev` to start the local server.');
+        info('👉 Run `php artisan solo` or `composer run dev` to start the local server.');
         info('Keep creating. 🫡');
     }
 
