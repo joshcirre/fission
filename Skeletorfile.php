@@ -73,6 +73,11 @@ return function (Skeletor $skeletor) {
         $skeletor->info('✓ Flux Pro activated.');
     }
 
+    $skeletor->spin('Installing pan...', function () use ($skeletor) {
+        $skeletor->exec(['php', 'artisan', 'pan:install', '--ansi']);
+    });
+    $skeletor->info('✓ pan installed.');
+
     if ($skeletor->confirm('Would you like to run the database migrations?', true)) {
         $skeletor->spin('Running database migrations...', function () use ($skeletor) {
             $skeletor->writeFile('database/database.sqlite', '');
