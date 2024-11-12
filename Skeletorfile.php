@@ -2,12 +2,40 @@
 
 use NiftyCo\Skeletor\Skeletor;
 
+function updateEnv(string $key, string $value, string $contents): string
+{
+    return preg_replace(
+        "/^{$key}=.*/m",
+        "{$key}=\"{$value}\"",
+        $contents
+    );
+}
+
 return function (Skeletor $skeletor) {
     $skeletor->intro('Starting Fission setup...');
+
+    $defaultName = basename(getcwd());
+
+    $appName = $skeletor->text(
+        label: 'What is the name of your project?',
+        placeholder: $defaultName,
+        default: $defaultName,
+        required: true
+    );
+
+    $defaultUrl = 'http://localhost:8000';
+    $appUrl = $skeletor->text(
+        label: 'What is the URL of your project?',
+        placeholder: $defaultUrl,
+        default: $defaultUrl,
+        required: true
+    );
 
 
     if (!$skeletor->exists('.env')) {
         $env = $skeletor->readFile('.env.example');
+        $env = updateEnv('APP_NAME', $appName, $env);
+        $env = updateEnv('APP_URL', $appUrl, $env);
         $skeletor->writeFile('.env', $env);
         $skeletor->info('✓ .env file created.');
     }
