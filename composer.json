@@ -18,6 +18,7 @@
         "panphp/pan": "^0.1.1"
     },
     "require-dev": {
+        "aniftyco/skeletor": "dev-master",
         "fakerphp/faker": "^1.23",
         "laravel/breeze": "^2.2",
         "laravel/pint": "^1.18",
@@ -53,9 +54,7 @@
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
-            "@php artisan key:generate --ansi",
-            "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
-            "@php artisan migrate --graceful --ansi"
+            "NiftyCo\\Skeletor\\Runner::execute"
         ],
         "dev": [
             "Composer\\Config::disableProcessTimeout",
