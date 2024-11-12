@@ -1,8 +1,8 @@
 {
-    "name": "laravel/laravel",
+    "name": "joshcirre/fission",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
-    "keywords": ["laravel", "framework"],
+    "description": "An opinionated starter kit for building Laravel applications.",
+    "keywords": ["laravel", "framework", "starter-kit"],
     "license": "MIT",
     "require": {
         "php": "^8.2",
