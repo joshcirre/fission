@@ -21,22 +21,20 @@ A license for Flux (technically, "Flux Pro") is required to use Fission. Fission
 
 ## Installation
 
-This project includes a custom installation script that streamlines the setup process. Here's what the `install.sh` script does in a nutshell:
+This project includes a custom installation script that streamlines the setup process. Here's what the script does in a nutshell:
 
-- Installs required Composer packages
-- Runs custom `fission:install` Artisan command
 - Sets up environment (.env file)
 - Activates Flux Pro (skipped if auth file found)
 - Installs NPM dependencies
 - Generates application key
 - Offers to run database migrations
 - Configures project name and URL
-- Offers to remove installation files
+- Removes installation files
 - Provides instructions to start local development server
 
 To install, simply run:
 
-`bash install.sh`
+`composer create-project joshcirre/fission my-app`
 
 ## License
 
