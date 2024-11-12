@@ -28,6 +28,9 @@ class FissionInstall extends Command
 
         info('Starting Fission installation...');
 
+        // Handle Git repository
+        $this->handleGitRepository();
+
         $this->copyAuthJson();
 
         // Run npm install
@@ -58,6 +61,46 @@ class FissionInstall extends Command
         info('Fission installation completed successfully! ☢️');
         info('👉 Run `php artisan solo` or `composer run dev` to start the local server.');
         info('Keep creating. 🫡');
+    }
+
+    private function handleGitRepository()
+    {
+        info('Managing Git repository...');
+
+        // Check if .git directory exists
+        if (File::isDirectory(base_path('.git'))) {
+            // Remove existing Git repository
+            File::deleteDirectory(base_path('.git'));
+            info('Removed existing Git repository.');
+
+            // Ask if user wants to initialize a new repository
+            if (confirm('Do you want to initialize a fresh Git repository?', true)) {
+                exec('git init');
+                info('Initialized fresh Git repository.');
+
+                // Create initial commit
+                if (confirm('Create initial commit?', true)) {
+                    exec('git add .');
+                    exec('git commit -m "Initial commit"');
+                    info('Created initial commit.');
+                }
+            }
+        } else {
+            warning('No existing Git repository found.');
+
+            // Still offer to initialize a new one
+            if (confirm('Do you want to initialize a new Git repository?', true)) {
+                exec('git init');
+                info('Initialized new Git repository.');
+
+                // Create initial commit
+                if (confirm('Create initial commit?', true)) {
+                    exec('git add .');
+                    exec('git commit -m "Initial commit"');
+                    info('Created initial commit.');
+                }
+            }
+        }
     }
 
     private function setupEnvFile()
