@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "65944c5245c91316fb09cbee2d622a4a",
+    "content-hash": "5eaa1b67947eec7b1aff2019dfe5f9ad",
     "packages": [
         {
             "name": "brick/math",
@@ -6177,6 +6177,64 @@
             "time": "2024-11-08T18:49:30+00:00"
         },
         {
+            "name": "aniftyco/skeletor",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aniftyco/skeletor.git",
+                "reference": "66bdd848d48235bbb2d3b4af73d7cf9937cf8bc6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aniftyco/skeletor/zipball/66bdd848d48235bbb2d3b4af73d7cf9937cf8bc6",
+                "reference": "66bdd848d48235bbb2d3b4af73d7cf9937cf8bc6",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/prompts": "^0.3.1",
+                "php": "^8.1",
+                "symfony/process": "^7.1"
+            },
+            "require-dev": {
+                "composer/composer": "^2.8",
+                "illuminate/collections": "^11.30",
+                "pestphp/pest": "^3.5"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "NiftyCo\\Skeletor\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "NiftyCo, LLC",
+                    "homepage": "https://aniftyco.com"
+                },
+                {
+                    "name": "Josh Manders",
+                    "homepage": "https://x.com/joshmanders"
+                }
+            ],
+            "description": "Summon Skeletor's minion: a Composer companion to unleash extra functionality with every `create-project` command.",
+            "homepage": "https://github.com/aniftyco/skeletor",
+            "keywords": [
+                "Skeleton",
+                "composer",
+                "create-project"
+            ],
+            "support": {
+                "issues": "https://github.com/aniftyco/skeletor/issues",
+                "source": "https://github.com/aniftyco/skeletor/tree/master"
+            },
+            "time": "2024-11-12T02:28:24+00:00"
+        },
+        {
             "name": "brianium/paratest",
             "version": "v7.6.0",
             "source": {
@@ -9363,6 +9421,7 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
+        "aniftyco/skeletor": 20,
         "joetannenbaum/chewie": 20
     },
     "prefer-stable": true,
@@ -9370,6 +9429,6 @@
     "platform": {
         "php": "^8.2"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }
