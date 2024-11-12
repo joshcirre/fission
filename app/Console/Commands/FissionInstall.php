@@ -20,6 +20,8 @@ class FissionInstall extends Command
 
     private $additionalPackages = [];
 
+    private $initializeGit = false;
+
     public function handle()
     {
         app()->detectEnvironment(function () {
@@ -28,8 +30,8 @@ class FissionInstall extends Command
 
         info('Starting Fission installation...');
 
-        // Handle Git repository
-        $this->handleGitRepository();
+        // Remove existing Git repository first
+        $this->removeGitRepository();
 
         $this->copyAuthJson();
 
@@ -58,48 +60,58 @@ class FissionInstall extends Command
 
         $this->cleanup();
 
+        // Initialize Git repository after cleanup if requested
+        $this->initializeGitRepository();
+
         info('Fission installation completed successfully! ☢️');
         info('👉 Run `php artisan solo` or `composer run dev` to start the local server.');
         info('Keep creating. 🫡');
     }
 
-    private function handleGitRepository()
+    private function removeGitRepository()
     {
-        info('Managing Git repository...');
+        info('Checking Git repository status...');
 
-        // Check if .git directory exists
         if (File::isDirectory(base_path('.git'))) {
             // Remove existing Git repository
             File::deleteDirectory(base_path('.git'));
             info('Removed existing Git repository.');
+        }
 
-            // Ask if user wants to initialize a new repository
-            if (confirm('Do you want to initialize a fresh Git repository?', true)) {
-                exec('git init');
-                info('Initialized fresh Git repository.');
+        // Ask if user wants to initialize a new repository after cleanup
+        $this->initializeGit = confirm('Would you like to initialize a fresh Git repository after installation?', true);
+    }
 
-                // Create initial commit
-                if (confirm('Create initial commit?', true)) {
-                    exec('git add .');
-                    exec('git commit -m "Initial commit"');
-                    info('Created initial commit.');
-                }
+    private function initializeGitRepository()
+    {
+        if ($this->initializeGit) {
+            info('Initializing fresh Git repository...');
+
+            exec('git init');
+
+            // Create a basic .gitignore if it doesn't exist
+            if (! File::exists(base_path('.gitignore'))) {
+                File::put(base_path('.gitignore'), implode("\n", [
+                    '/.phpunit.cache',
+                    '/vendor',
+                    'composer.phar',
+                    'composer.lock',
+                    '.DS_Store',
+                    'Thumbs.db',
+                    '/phpunit.xml',
+                    '/.idea',
+                    '/.fleet',
+                    '/.vscode',
+                    '.phpunit.result.cache',
+                ]));
+                info('Created .gitignore file.');
             }
-        } else {
-            warning('No existing Git repository found.');
 
-            // Still offer to initialize a new one
-            if (confirm('Do you want to initialize a new Git repository?', true)) {
-                exec('git init');
-                info('Initialized new Git repository.');
+            // Create initial commit with everything
+            exec('git add .');
+            exec('git commit -m "Initial commit"');
 
-                // Create initial commit
-                if (confirm('Create initial commit?', true)) {
-                    exec('git add .');
-                    exec('git commit -m "Initial commit"');
-                    info('Created initial commit.');
-                }
-            }
+            info('Git repository initialized with initial commit.');
         }
     }
 
