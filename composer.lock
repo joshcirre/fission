@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f5b5aceeed694879e01617cdad0a5be9",
+    "content-hash": "abe3f9b0654a83686fa918600c5aea3b",
     "packages": [
         {
             "name": "brick/math",
@@ -1129,16 +1129,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v11.33.1",
+            "version": "v11.33.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "8b139ac898a5c32657dcdce66549f299f282b7a7"
+                "reference": "6b9832751cf8eed18b3c73df5071f78f0682aa5d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/8b139ac898a5c32657dcdce66549f299f282b7a7",
-                "reference": "8b139ac898a5c32657dcdce66549f299f282b7a7",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/6b9832751cf8eed18b3c73df5071f78f0682aa5d",
+                "reference": "6b9832751cf8eed18b3c73df5071f78f0682aa5d",
                 "shasum": ""
             },
             "require": {
@@ -1334,7 +1334,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2024-11-19T21:08:12+00:00"
+            "time": "2024-11-19T22:47:13+00:00"
         },
         {
             "name": "laravel/pail",
@@ -1475,32 +1475,32 @@
         },
         {
             "name": "laravel/serializable-closure",
-            "version": "v1.3.7",
+            "version": "v2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/serializable-closure.git",
-                "reference": "4f48ade902b94323ca3be7646db16209ec76be3d"
+                "reference": "0d8d3d8086984996df86596a86dea60398093a81"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/serializable-closure/zipball/4f48ade902b94323ca3be7646db16209ec76be3d",
-                "reference": "4f48ade902b94323ca3be7646db16209ec76be3d",
+                "url": "https://api.github.com/repos/laravel/serializable-closure/zipball/0d8d3d8086984996df86596a86dea60398093a81",
+                "reference": "0d8d3d8086984996df86596a86dea60398093a81",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.3|^8.0"
+                "php": "^8.1"
             },
             "require-dev": {
-                "illuminate/support": "^8.0|^9.0|^10.0|^11.0",
-                "nesbot/carbon": "^2.61|^3.0",
-                "pestphp/pest": "^1.21.3",
-                "phpstan/phpstan": "^1.8.2",
-                "symfony/var-dumper": "^5.4.11|^6.2.0|^7.0.0"
+                "illuminate/support": "^10.0|^11.0",
+                "nesbot/carbon": "^2.67|^3.0",
+                "pestphp/pest": "^2.36",
+                "phpstan/phpstan": "^2.0",
+                "symfony/var-dumper": "^6.2.0|^7.0.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.x-dev"
+                    "dev-master": "2.x-dev"
                 }
             },
             "autoload": {
@@ -1532,7 +1532,7 @@
                 "issues": "https://github.com/laravel/serializable-closure/issues",
                 "source": "https://github.com/laravel/serializable-closure"
             },
-            "time": "2024-11-14T18:34:49+00:00"
+            "time": "2024-11-19T01:38:44+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -6626,7 +6626,7 @@
         },
         {
             "name": "joetannenbaum/chewie",
-            "version": "dev-main",
+            "version": "0.1.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/joetannenbaum/chewie.git",
@@ -6645,7 +6645,6 @@
                 "pestphp/pest": "^2.33",
                 "tightenco/duster": "^2.7"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "files": [
@@ -6724,16 +6723,16 @@
         },
         {
             "name": "laravel/pint",
-            "version": "v1.18.1",
+            "version": "v1.18.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/pint.git",
-                "reference": "35c00c05ec43e6b46d295efc0f4386ceb30d50d9"
+                "reference": "f55daaf7eb6c2f49ddf6702fb42e3091c64d8a64"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/pint/zipball/35c00c05ec43e6b46d295efc0f4386ceb30d50d9",
-                "reference": "35c00c05ec43e6b46d295efc0f4386ceb30d50d9",
+                "url": "https://api.github.com/repos/laravel/pint/zipball/f55daaf7eb6c2f49ddf6702fb42e3091c64d8a64",
+                "reference": "f55daaf7eb6c2f49ddf6702fb42e3091c64d8a64",
                 "shasum": ""
             },
             "require": {
@@ -6786,7 +6785,7 @@
                 "issues": "https://github.com/laravel/pint/issues",
                 "source": "https://github.com/laravel/pint"
             },
-            "time": "2024-09-24T17:22:50+00:00"
+            "time": "2024-11-20T09:33:46+00:00"
         },
         {
             "name": "laravel/sail",
@@ -9356,18 +9355,9 @@
             "time": "2024-03-03T12:36:25+00:00"
         }
     ],
-    "aliases": [
-        {
-            "package": "joetannenbaum/chewie",
-            "version": "dev-main",
-            "alias": "0.1.8",
-            "alias_normalized": "0.1.8.0"
-        }
-    ],
+    "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "joetannenbaum/chewie": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
