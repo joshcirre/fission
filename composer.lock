@@ -1129,16 +1129,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v11.35.1",
+            "version": "v11.36.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "dcfa130ede1a6fa4343dc113410963e791ad34fb"
+                "reference": "df06f5163f4550641fdf349ebc04916a61135a64"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/dcfa130ede1a6fa4343dc113410963e791ad34fb",
-                "reference": "dcfa130ede1a6fa4343dc113410963e791ad34fb",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/df06f5163f4550641fdf349ebc04916a61135a64",
+                "reference": "df06f5163f4550641fdf349ebc04916a61135a64",
                 "shasum": ""
             },
             "require": {
@@ -1159,7 +1159,7 @@
                 "guzzlehttp/uri-template": "^1.0",
                 "laravel/prompts": "^0.1.18|^0.2.0|^0.3.0",
                 "laravel/serializable-closure": "^1.3|^2.0",
-                "league/commonmark": "^2.2.1",
+                "league/commonmark": "^2.6",
                 "league/flysystem": "^3.25.1",
                 "league/flysystem-local": "^3.25.1",
                 "league/uri": "^7.5.1",
@@ -1174,7 +1174,7 @@
                 "symfony/console": "^7.0.3",
                 "symfony/error-handler": "^7.0.3",
                 "symfony/finder": "^7.0.3",
-                "symfony/http-foundation": "^7.0.3",
+                "symfony/http-foundation": "^7.2.0",
                 "symfony/http-kernel": "^7.0.3",
                 "symfony/mailer": "^7.0.3",
                 "symfony/mime": "^7.0.3",
@@ -1340,7 +1340,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2024-12-12T18:25:58+00:00"
+            "time": "2024-12-17T22:32:08+00:00"
         },
         {
             "name": "laravel/pail",
@@ -1481,16 +1481,16 @@
         },
         {
             "name": "laravel/serializable-closure",
-            "version": "v2.0.0",
+            "version": "v2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/serializable-closure.git",
-                "reference": "0d8d3d8086984996df86596a86dea60398093a81"
+                "reference": "613b2d4998f85564d40497e05e89cb6d9bd1cbe8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/serializable-closure/zipball/0d8d3d8086984996df86596a86dea60398093a81",
-                "reference": "0d8d3d8086984996df86596a86dea60398093a81",
+                "url": "https://api.github.com/repos/laravel/serializable-closure/zipball/613b2d4998f85564d40497e05e89cb6d9bd1cbe8",
+                "reference": "613b2d4998f85564d40497e05e89cb6d9bd1cbe8",
                 "shasum": ""
             },
             "require": {
@@ -1538,7 +1538,7 @@
                 "issues": "https://github.com/laravel/serializable-closure/issues",
                 "source": "https://github.com/laravel/serializable-closure"
             },
-            "time": "2024-11-19T01:38:44+00:00"
+            "time": "2024-12-16T15:26:28+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -2159,16 +2159,16 @@
         },
         {
             "name": "livewire/flux",
-            "version": "v1.0.32",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/flux.git",
-                "reference": "9e68e7a4e51c2cd8257d873acef7c63ced05e8e4"
+                "reference": "b3c48f8a7c424a08683609bcdc098efc39fb9b57"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/flux/zipball/9e68e7a4e51c2cd8257d873acef7c63ced05e8e4",
-                "reference": "9e68e7a4e51c2cd8257d873acef7c63ced05e8e4",
+                "url": "https://api.github.com/repos/livewire/flux/zipball/b3c48f8a7c424a08683609bcdc098efc39fb9b57",
+                "reference": "b3c48f8a7c424a08683609bcdc098efc39fb9b57",
                 "shasum": ""
             },
             "require": {
@@ -2216,25 +2216,25 @@
             ],
             "support": {
                 "issues": "https://github.com/livewire/flux/issues",
-                "source": "https://github.com/livewire/flux/tree/v1.0.32"
+                "source": "https://github.com/livewire/flux/tree/v1.1.0"
             },
-            "time": "2024-12-13T00:04:03+00:00"
+            "time": "2024-12-16T23:05:21+00:00"
         },
         {
             "name": "livewire/flux-pro",
-            "version": "1.0.32",
+            "version": "1.1.0",
             "dist": {
                 "type": "zip",
-                "url": "https://composer.fluxui.dev/download/9db5f576-bcff-4629-8bab-3b1b2fe76e6c/flux-pro-1.0.32.zip",
-                "reference": "4503a294405afbb68b04e257e3fdfa272968868b",
-                "shasum": "b3c8863c3bb39a5cef3d64151d3b1bbff232ea5e"
+                "url": "https://composer.fluxui.dev/download/9dbf3ea4-f522-4e22-b119-a9f544ba8ab2/flux-pro-1.1.0.zip",
+                "reference": "f0874895885eb07ffdf34384fae07c490100885f",
+                "shasum": "687c48b0657103935b6fdaa238c594d9b77edc7a"
             },
             "require": {
                 "illuminate/console": "^10.0|^11.0",
                 "illuminate/support": "^10.0|^11.0",
                 "illuminate/view": "^10.0|^11.0",
                 "laravel/prompts": "^0.1.24|^0.2|^0.3",
-                "livewire/flux": "1.0.32",
+                "livewire/flux": "1.1.0",
                 "livewire/livewire": "^3.5.12",
                 "php": "^8.1",
                 "symfony/console": "^6.0|^7.0"
@@ -2275,7 +2275,7 @@
                 "livewire",
                 "ui"
             ],
-            "time": "2024-12-13T00:05:29+00:00"
+            "time": "2024-12-17T14:52:35+00:00"
         },
         {
             "name": "livewire/livewire",
@@ -6844,16 +6844,16 @@
         },
         {
             "name": "laravel/breeze",
-            "version": "v2.2.6",
+            "version": "v2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/breeze.git",
-                "reference": "907b12160d1b8b8213e7e2e011987fffb5567edc"
+                "reference": "d59702967b9ae21879df905d691a50132966c4ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/breeze/zipball/907b12160d1b8b8213e7e2e011987fffb5567edc",
-                "reference": "907b12160d1b8b8213e7e2e011987fffb5567edc",
+                "url": "https://api.github.com/repos/laravel/breeze/zipball/d59702967b9ae21879df905d691a50132966c4ff",
+                "reference": "d59702967b9ae21879df905d691a50132966c4ff",
                 "shasum": ""
             },
             "require": {
@@ -6901,7 +6901,7 @@
                 "issues": "https://github.com/laravel/breeze/issues",
                 "source": "https://github.com/laravel/breeze"
             },
-            "time": "2024-11-20T15:01:15+00:00"
+            "time": "2024-12-14T21:21:42+00:00"
         },
         {
             "name": "laravel/pint",
