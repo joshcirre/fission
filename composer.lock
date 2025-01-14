@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "db05f1f994d25caabfd122c3c511d9ac",
+    "content-hash": "d3a45a7367d1ef8b84cd3e2a82ce689b",
     "packages": [
         {
             "name": "brick/math",
@@ -1129,16 +1129,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v11.37.0",
+            "version": "v11.38.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "6cb103d2024b087eae207654b3f4b26646119ba5"
+                "reference": "297652d91811fda163cc1929716117dccae2adbd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/6cb103d2024b087eae207654b3f4b26646119ba5",
-                "reference": "6cb103d2024b087eae207654b3f4b26646119ba5",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/297652d91811fda163cc1929716117dccae2adbd",
+                "reference": "297652d91811fda163cc1929716117dccae2adbd",
                 "shasum": ""
             },
             "require": {
@@ -1339,7 +1339,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2025-01-02T20:10:21+00:00"
+            "time": "2025-01-14T18:11:19+00:00"
         },
         {
             "name": "laravel/pail",
@@ -1421,16 +1421,16 @@
         },
         {
             "name": "laravel/prompts",
-            "version": "v0.3.2",
+            "version": "v0.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/prompts.git",
-                "reference": "0e0535747c6b8d6d10adca8b68293cf4517abb0f"
+                "reference": "749395fcd5f8f7530fe1f00dfa84eb22c83d94ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/prompts/zipball/0e0535747c6b8d6d10adca8b68293cf4517abb0f",
-                "reference": "0e0535747c6b8d6d10adca8b68293cf4517abb0f",
+                "url": "https://api.github.com/repos/laravel/prompts/zipball/749395fcd5f8f7530fe1f00dfa84eb22c83d94ea",
+                "reference": "749395fcd5f8f7530fe1f00dfa84eb22c83d94ea",
                 "shasum": ""
             },
             "require": {
@@ -1474,9 +1474,9 @@
             "description": "Add beautiful and user-friendly forms to your command-line applications.",
             "support": {
                 "issues": "https://github.com/laravel/prompts/issues",
-                "source": "https://github.com/laravel/prompts/tree/v0.3.2"
+                "source": "https://github.com/laravel/prompts/tree/v0.3.3"
             },
-            "time": "2024-11-12T14:59:47+00:00"
+            "time": "2024-12-30T15:53:31+00:00"
         },
         {
             "name": "laravel/serializable-closure",
@@ -2158,16 +2158,16 @@
         },
         {
             "name": "livewire/flux",
-            "version": "v1.1.2",
+            "version": "v1.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/flux.git",
-                "reference": "d6b3db107835b42690f163e34863024393ec642e"
+                "reference": "1575a4d21b745f3f1bad004dc5a92d4b2c63547d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/flux/zipball/d6b3db107835b42690f163e34863024393ec642e",
-                "reference": "d6b3db107835b42690f163e34863024393ec642e",
+                "url": "https://api.github.com/repos/livewire/flux/zipball/1575a4d21b745f3f1bad004dc5a92d4b2c63547d",
+                "reference": "1575a4d21b745f3f1bad004dc5a92d4b2c63547d",
                 "shasum": ""
             },
             "require": {
@@ -2215,25 +2215,25 @@
             ],
             "support": {
                 "issues": "https://github.com/livewire/flux/issues",
-                "source": "https://github.com/livewire/flux/tree/v1.1.2"
+                "source": "https://github.com/livewire/flux/tree/v1.1.3"
             },
-            "time": "2024-12-23T15:36:06+00:00"
+            "time": "2025-01-14T21:26:58+00:00"
         },
         {
             "name": "livewire/flux-pro",
-            "version": "1.1.2",
+            "version": "1.1.3",
             "dist": {
                 "type": "zip",
-                "url": "https://composer.fluxui.dev/download/9dcb62e3-7e0c-4033-8420-84fd666c66e4/flux-pro-1.1.2.zip",
-                "reference": "b91883bff52d812bf1e1175224d65abaf21885ce",
-                "shasum": "731c5a9daac3139d6991b0be49ec58866adf90be"
+                "url": "https://composer.fluxui.dev/download/9df8207b-8cb7-40d5-af0a-e3ee3600fef2/flux-pro-1.1.3.zip",
+                "reference": "7c142479c85d6c6635bf775f4641671be5d16647",
+                "shasum": "f40fa28145e2ec71aa68e91e1aec2e2f318163fd"
             },
             "require": {
                 "illuminate/console": "^10.0|^11.0",
                 "illuminate/support": "^10.0|^11.0",
                 "illuminate/view": "^10.0|^11.0",
                 "laravel/prompts": "^0.1.24|^0.2|^0.3",
-                "livewire/flux": "1.1.2",
+                "livewire/flux": "1.1.3",
                 "livewire/livewire": "^3.5.12",
                 "php": "^8.1",
                 "symfony/console": "^6.0|^7.0"
@@ -2274,7 +2274,7 @@
                 "livewire",
                 "ui"
             ],
-            "time": "2024-12-23T15:43:51+00:00"
+            "time": "2025-01-14T21:30:25+00:00"
         },
         {
             "name": "livewire/livewire",
@@ -6845,16 +6845,16 @@
         },
         {
             "name": "laravel/breeze",
-            "version": "v2.3.0",
+            "version": "v2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/breeze.git",
-                "reference": "d59702967b9ae21879df905d691a50132966c4ff"
+                "reference": "60ac80abfa08c3c2dbc61e4b16f02230b843cfd3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/breeze/zipball/d59702967b9ae21879df905d691a50132966c4ff",
-                "reference": "d59702967b9ae21879df905d691a50132966c4ff",
+                "url": "https://api.github.com/repos/laravel/breeze/zipball/60ac80abfa08c3c2dbc61e4b16f02230b843cfd3",
+                "reference": "60ac80abfa08c3c2dbc61e4b16f02230b843cfd3",
                 "shasum": ""
             },
             "require": {
@@ -6902,20 +6902,20 @@
                 "issues": "https://github.com/laravel/breeze/issues",
                 "source": "https://github.com/laravel/breeze"
             },
-            "time": "2024-12-14T21:21:42+00:00"
+            "time": "2025-01-13T16:52:29+00:00"
         },
         {
             "name": "laravel/pint",
-            "version": "v1.19.0",
+            "version": "v1.20.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/pint.git",
-                "reference": "8169513746e1bac70c85d6ea1524d9225d4886f0"
+                "reference": "53072e8ea22213a7ed168a8a15b96fbb8b82d44b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/pint/zipball/8169513746e1bac70c85d6ea1524d9225d4886f0",
-                "reference": "8169513746e1bac70c85d6ea1524d9225d4886f0",
+                "url": "https://api.github.com/repos/laravel/pint/zipball/53072e8ea22213a7ed168a8a15b96fbb8b82d44b",
+                "reference": "53072e8ea22213a7ed168a8a15b96fbb8b82d44b",
                 "shasum": ""
             },
             "require": {
@@ -6968,20 +6968,20 @@
                 "issues": "https://github.com/laravel/pint/issues",
                 "source": "https://github.com/laravel/pint"
             },
-            "time": "2024-12-30T16:20:10+00:00"
+            "time": "2025-01-14T16:20:53+00:00"
         },
         {
             "name": "laravel/sail",
-            "version": "v1.39.1",
+            "version": "v1.40.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sail.git",
-                "reference": "1a3c7291bc88de983b66688919a4d298d68ddec7"
+                "reference": "237e70656d8eface4839de51d101284bd5d0cf71"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sail/zipball/1a3c7291bc88de983b66688919a4d298d68ddec7",
-                "reference": "1a3c7291bc88de983b66688919a4d298d68ddec7",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/237e70656d8eface4839de51d101284bd5d0cf71",
+                "reference": "237e70656d8eface4839de51d101284bd5d0cf71",
                 "shasum": ""
             },
             "require": {
@@ -7031,7 +7031,7 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
-            "time": "2024-11-27T15:42:28+00:00"
+            "time": "2025-01-13T16:57:11+00:00"
         },
         {
             "name": "mockery/mockery",
@@ -7272,6 +7272,80 @@
                 }
             ],
             "time": "2024-10-15T16:06:32+00:00"
+        },
+        {
+            "name": "peckphp/peck",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/peckphp/peck.git",
+                "reference": "41ab9908a55f0a427d2bb65bcdc3112027e54ef9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/peckphp/peck/zipball/41ab9908a55f0a427d2bb65bcdc3112027e54ef9",
+                "reference": "41ab9908a55f0a427d2bb65bcdc3112027e54ef9",
+                "shasum": ""
+            },
+            "require": {
+                "nunomaduro/termwind": "^1.17.0|^2.3.0",
+                "php": "^8.3.0",
+                "symfony/console": "^6.4.17|^7.2.1",
+                "symfony/finder": "^6.4.17|^7.2.2"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.19.0",
+                "pestphp/pest": "^2.36|^3.7.1",
+                "pestphp/pest-plugin-type-coverage": "^2.8.7|^3.2.3",
+                "phpstan/phpstan": "^1.12.15",
+                "rector/rector": "^1.2.10",
+                "symfony/var-dumper": "^7.2.0"
+            },
+            "bin": [
+                "bin/peck"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Peck\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nuno Maduro",
+                    "email": "enunomaduro@gmail.com"
+                }
+            ],
+            "description": "Peck is a powerful CLI tool designed to identify pure wording or spelling (grammar) mistakes in your codebase.",
+            "keywords": [
+                "checker",
+                "codebase",
+                "php",
+                "spelling"
+            ],
+            "support": {
+                "issues": "https://github.com/peckphp/peck/issues",
+                "source": "https://github.com/peckphp/peck/tree/v0.1.0"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.com/paypalme/enunomaduro",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/nunomaduro",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/nunomaduro",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2025-01-13T19:50:43+00:00"
         },
         {
             "name": "pestphp/pest",
