@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d3a45a7367d1ef8b84cd3e2a82ce689b",
+    "content-hash": "6ee4afc19008a2cf5fc513b2b630e9fa",
     "packages": [
         {
             "name": "brick/math",
@@ -9437,6 +9437,66 @@
                 }
             ],
             "time": "2024-10-09T05:16:32+00:00"
+        },
+        {
+            "name": "soloterm/solo",
+            "version": "v0.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/soloterm/solo.git",
+                "reference": "8482a69a773c0d52774f72fda84c45df85a50553"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/soloterm/solo/zipball/8482a69a773c0d52774f72fda84c45df85a50553",
+                "reference": "8482a69a773c0d52774f72fda84c45df85a50553",
+                "shasum": ""
+            },
+            "require": {
+                "ext-pcntl": "*",
+                "ext-posix": "*",
+                "illuminate/console": "^10|^11",
+                "illuminate/process": "^10|^11",
+                "illuminate/support": "^10|^11",
+                "joetannenbaum/chewie": "^0.1",
+                "laravel/prompts": "^0.1.21|^0.2|^0.3",
+                "php": "^8.2"
+            },
+            "require-dev": {
+                "illuminate/database": "^10|^11",
+                "laravel/serializable-closure": "^1.3",
+                "orchestra/testbench": "^8.29|^9.5",
+                "phpunit/phpunit": "^10.5|^11"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "SoloTerm\\Solo\\Providers\\SoloServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "SoloTerm\\Solo\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Aaron Francis",
+                    "email": "aarondfrancis@gmail.com"
+                }
+            ],
+            "description": "A Laravel package to run multiple commands at once, to aid in local development.",
+            "support": {
+                "issues": "https://github.com/soloterm/solo/issues",
+                "source": "https://github.com/soloterm/solo/tree/v0.3.1"
+            },
+            "time": "2025-01-31T04:14:07+00:00"
         },
         {
             "name": "staabm/side-effects-detector",
