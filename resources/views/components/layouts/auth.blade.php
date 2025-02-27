@@ -15,10 +15,10 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @fluxStyles
+    @fluxAppearance
 </head>
 
-<body class="flex justify-center items-center m-auto max-w-md min-h-screen bg-white dark:bg-zinc-800">
+<body class="flex items-center justify-center max-w-md min-h-screen m-auto bg-white dark:bg-zinc-800">
     <div class="w-full">
         {{ $slot }}
     </div>

@@ -1,3 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import '../../vendor/livewire/flux/dist/flux.css';
+
+/* Required for dark mode in Flux... */
+/* @custom-variant dark (&:where(.dark, .dark *));

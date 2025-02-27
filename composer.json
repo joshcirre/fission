@@ -15,8 +15,8 @@
         "laravel/pail": "^1.1",
         "laravel/prompts": "^0.3",
         "laravel/tinker": "^2.0",
-        "livewire/flux": "^1.0",
-        "livewire/flux-pro": "^1.0",
+        "livewire/flux": "^2.0",
+        "livewire/flux-pro": "^2.0",
         "livewire/livewire": "^3.0",
         "livewire/volt": "^1.0",
         "panphp/pan": "^0.1.1"
