@@ -12,13 +12,11 @@ use function Laravel\Prompts\warning;
 
 class FissionInstall extends Command
 {
-    protected $signature = 'fission:install {name? : The project name} {--l|laravel-installer : If the command is being run from Laravel installer}';
+    protected $signature = 'fission:install {name? : The project name}';
 
     protected $description = 'Run the Fission installation process';
 
     private $initializeGit = false;
-
-    private $viaLaravelInstaller = false;
 
     public function handle()
     {
@@ -26,20 +24,12 @@ class FissionInstall extends Command
             return 'local';
         });
 
-        // Check if being run from Laravel installer
-        $this->viaLaravelInstaller = $this->option('laravel-installer') || file_exists(base_path('.fission-via-laravel-installer'));
-
-        // Remove the marker file if it exists
-        if (file_exists(base_path('.fission-via-laravel-installer'))) {
-            @unlink(base_path('.fission-via-laravel-installer'));
-        }
-
         info('Starting Fission installation...');
 
-        // Handle Git repository based on installation method
+        // Handle Git repository
         $this->handleGitRepository();
 
-        // Handle Flux Pro activation (now optional)
+        // Handle Flux Pro activation (always optional)
         $this->handleFluxActivation();
 
         // Run npm install if not already done
@@ -66,30 +56,20 @@ class FissionInstall extends Command
     {
         info('Checking Git repository status...');
 
-        // If installed via Laravel installer, Git might be already initialized
-        // and we should respect that instead of removing it
-        if ($this->viaLaravelInstaller && File::isDirectory(base_path('.git'))) {
-            info('Git repository already initialized by Laravel installer.');
+        // Don't remove Git if it's already initialized (could be from Laravel installer)
+        if (File::isDirectory(base_path('.git'))) {
+            info('Git repository already initialized. Skipping.');
             return;
         }
 
-        if (File::isDirectory(base_path('.git'))) {
-            // Remove existing Git repository
-            File::deleteDirectory(base_path('.git'));
-            info('Removed existing Git repository.');
-        }
-
         // Ask if user wants to initialize a new repository after cleanup
-        $this->initializeGit = $this->viaLaravelInstaller ? true :
-            confirm('Would you like to initialize a fresh Git repository after installation?', true);
+        $this->initializeGit = confirm('Would you like to initialize a fresh Git repository after installation?', true);
     }
 
     private function handleFluxActivation()
     {
-        // Ask if user wants to install Flux Pro
-        $installFluxPro = $this->viaLaravelInstaller ?
-            false : // Default to no for non-interactive Laravel installer
-            confirm('Would you like to install Flux Pro?', false);
+        // Always ask if user wants to install Flux Pro
+        $installFluxPro = confirm('Would you like to install Flux Pro?', false);
 
         if ($installFluxPro) {
             // Check for auth.json
@@ -115,21 +95,14 @@ class FissionInstall extends Command
 
     private function handleNpmInstall()
     {
-        // Skip if already done by Laravel installer or if node_modules exists
+        // Skip if node_modules exists
         if (File::exists('node_modules')) {
             warning('Node modules already exist. Skipping npm install.');
             return;
         }
 
-        // If via Laravel installer, ask for confirmation
-        $shouldRunNpm = $this->viaLaravelInstaller ?
-            true :
-            true; // Always run npm install for direct installation
-
-        if ($shouldRunNpm) {
-            info('Running npm install...');
-            exec('npm install');
-        }
+        info('Running npm install...');
+        exec('npm install');
     }
 
     private function initializeGitRepository()
@@ -199,8 +172,7 @@ class FissionInstall extends Command
 
     private function runMigrations()
     {
-        // If via Laravel installer, migrations might have been run already
-        // In that case, check for database tables before asking
+        // Check for database tables before asking
         $migrationTableExists = false;
         try {
             $migrationTableExists = \Schema::hasTable('migrations');
@@ -213,9 +185,7 @@ class FissionInstall extends Command
             return;
         }
 
-        $shouldRunMigrations = $this->viaLaravelInstaller ?
-            true :
-            confirm('Do you want to run database migrations?', true);
+        $shouldRunMigrations = confirm('Do you want to run database migrations?', true);
 
         if ($shouldRunMigrations) {
             info('Running database migrations...');
@@ -235,9 +205,9 @@ class FissionInstall extends Command
 
     private function setProjectName()
     {
-        // If installed via Laravel installer, the app name might be set already
-        if ($this->viaLaravelInstaller && env('APP_NAME') !== 'Laravel') {
-            info('Project name already set by Laravel installer.');
+        // Only set project name if it's still the default "Laravel"
+        if (env('APP_NAME') !== 'Laravel') {
+            info('Project name already set. Skipping.');
             return;
         }
 
@@ -277,12 +247,7 @@ class FissionInstall extends Command
 
     private function cleanup()
     {
-        // Don't ask for confirmation if run via Laravel installer
-        $shouldCleanup = $this->viaLaravelInstaller ?
-            true :
-            confirm('Do you want to remove the installation files?', true);
-
-        if ($shouldCleanup) {
+        if (confirm('Do you want to remove the installation files?', true)) {
             info('Removing installation files...');
 
             // Remove the entire Commands folder
