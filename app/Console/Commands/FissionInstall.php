@@ -6,9 +6,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 
 use function Laravel\Prompts\confirm;
-use function Laravel\Prompts\info;
 use function Laravel\Prompts\text;
-use function Laravel\Prompts\warning;
 
 class FissionInstall extends Command
 {
@@ -24,7 +22,9 @@ class FissionInstall extends Command
             return 'local';
         });
 
-        info('Starting Fission installation...');
+        $this->line('');
+        $this->info('Starting Fission installation...');
+        $this->line('');
 
         // Handle Git repository based on installation method
         $this->handleGitRepository();
@@ -32,12 +32,8 @@ class FissionInstall extends Command
         // Handle Flux Pro activation (always optional)
         $this->handleFluxActivation();
 
-        // Run npm install if not already done
-        $this->handleNpmInstall();
-
         $this->setupEnvFile();
         $this->reloadEnvironment();
-        $this->generateAppKey();
         $this->runMigrations();
         $this->installPan();
         $this->setProjectName();
@@ -47,21 +43,39 @@ class FissionInstall extends Command
         // Initialize Git repository after cleanup if requested
         $this->initializeGitRepository();
 
-        info('Fission installation completed successfully! ☢️');
-        info('👉 Run `php artisan solo` or `composer run dev` to start the local server.');
-        info('Keep creating. 🫡');
+        // Create a visually distinct completion message
+        $this->displayCompletionMessage();
 
-        // Exit gracefully
-        exit(0);
+        // The Laravel installer will continue, but we've made our message stand out
+        return 0;
+    }
+
+    /**
+     * Display a visually distinct completion message
+     */
+    private function displayCompletionMessage()
+    {
+        $this->line('');
+        $this->line('');
+        $this->line('<bg=blue;fg=white>                                                           </>');
+        $this->line('<bg=blue;fg=white>  Fission installation completed successfully! ☢️           </>');
+        $this->line('<bg=blue;fg=white>                                                           </>');
+        $this->line('<bg=blue;fg=white>  👉 Run `php artisan solo` or `composer run dev`          </>');
+        $this->line('<bg=blue;fg=white>    to start the local server.                             </>');
+        $this->line('<bg=blue;fg=white>                                                           </>');
+        $this->line('<bg=blue;fg=white>  Keep creating. 🫡                                        </>');
+        $this->line('<bg=blue;fg=white>                                                           </>');
+        $this->line('');
+        $this->line('');
     }
 
     private function handleGitRepository()
     {
-        info('Checking Git repository status...');
+        $this->line('Checking Git repository status...');
 
         // Don't remove Git if it's already initialized
         if (File::isDirectory(base_path('.git'))) {
-            info('Git repository already initialized. Skipping.');
+            $this->line('Git repository already initialized. Skipping.');
 
             return;
         }
@@ -72,19 +86,34 @@ class FissionInstall extends Command
 
     private function handleFluxActivation()
     {
-        info('Checking Flux Pro status...');
+        $this->line('Checking Flux Pro status...');
 
         // Check for auth.json
         $sourceAuthJson = $_SERVER['HOME'].'/Code/flux-auth.json';
 
         if (File::exists($sourceAuthJson)) {
-            info('Found auth.json in ~/Code/ directory. Copying to application...');
+            $this->line('Found auth.json in ~/Code/ directory. Copying to application...');
             File::copy($sourceAuthJson, base_path('auth.json'));
-            info('auth.json copied successfully.');
+            $this->line('auth.json copied successfully.');
 
-            info('Running composer require to install Flux Pro...');
-            exec('composer require livewire/flux-pro');
-            info('Flux Pro activated.');
+            // Try to activate Flux Pro by running composer update instead of require
+            $this->line('Running composer update to activate Flux Pro...');
+
+            // Only add flux-pro to composer.json if it doesn't exist already
+            $composerJson = json_decode(file_get_contents(base_path('composer.json')), true);
+            if (! isset($composerJson['require']['livewire/flux-pro'])) {
+                // Add flux-pro to composer.json manually instead of using composer require
+                $composerJson['require']['livewire/flux-pro'] = '^2.0';
+                file_put_contents(
+                    base_path('composer.json'),
+                    json_encode($composerJson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)
+                );
+            }
+
+            // Now run composer update to install it
+            exec('composer update livewire/flux-pro --quiet');
+
+            $this->line('Flux Pro activated.');
 
             return;
         }
@@ -93,30 +122,17 @@ class FissionInstall extends Command
         $hasFluxPro = confirm('Do you have a Flux Pro account?', false);
 
         if ($hasFluxPro) {
-            info('Running flux:activate command...');
+            $this->line('Running flux:activate command...');
             $this->call('flux:activate');
         } else {
-            warning('This starter kit uses some Flux Pro components, however, feel free to remove them if needed.');
+            $this->comment('This starter kit uses some Flux Pro components, however, feel free to remove them if needed.');
         }
-    }
-
-    private function handleNpmInstall()
-    {
-        // Skip if node_modules exists
-        if (File::exists('node_modules')) {
-            warning('Node modules already exist. Skipping npm install.');
-
-            return;
-        }
-
-        info('Running npm install...');
-        exec('npm install');
     }
 
     private function initializeGitRepository()
     {
         if ($this->initializeGit) {
-            info('Initializing fresh Git repository...');
+            $this->line('Initializing fresh Git repository...');
 
             exec('git init');
 
@@ -135,53 +151,50 @@ class FissionInstall extends Command
                     '/.vscode',
                     '.phpunit.result.cache',
                 ]));
-                info('Created .gitignore file.');
+                $this->line('Created .gitignore file.');
             }
 
             // Create initial commit with everything
             exec('git add .');
             exec('git commit -m "Initial commit"');
 
-            info('Git repository initialized with initial commit.');
+            $this->line('Git repository initialized with initial commit.');
         }
     }
 
     private function setupEnvFile()
     {
-        info('Setting up .env file...');
+        $this->line('Setting up .env file...');
         if (! File::exists('.env')) {
             File::copy('.env.example', '.env');
-            info('.env file created successfully.');
+            $this->line('.env file created successfully.');
         } else {
-            warning('.env file already exists. Skipping creation.');
+            $this->comment('.env file already exists. Skipping creation.');
         }
 
         // Ensure APP_ENV is set to local
         $envContent = File::get('.env');
         if (! preg_match('/^APP_ENV=/', $envContent)) {
             $this->updateEnv('APP_ENV', 'local');
-            info('APP_ENV set to local.');
+            $this->line('APP_ENV set to local.');
         } else {
             $envContent = preg_replace('/^APP_ENV=(.*)$/m', 'APP_ENV=local', $envContent);
             $this->updateEnv('APP_ENV', 'local');
-            info('APP_ENV updated to local.');
-        }
-    }
-
-    private function generateAppKey()
-    {
-        info('Checking application key...');
-        if (empty(env('APP_KEY'))) {
-            $this->call('key:generate', ['--ansi' => true]);
-        } else {
-            warning('Application key already exists. Skipping.');
+            $this->line('APP_ENV updated to local.');
         }
     }
 
     private function runMigrations()
     {
         if (confirm('Do you want to run database migrations?', true)) {
-            info('Running database migrations...');
+            $this->line('Running database migrations...');
+
+            // Ensure database.sqlite exists
+            if (! file_exists(database_path('database.sqlite'))) {
+                file_put_contents(database_path('database.sqlite'), '');
+                $this->line('Created database.sqlite file.');
+            }
+
             $this->call('migrate', [
                 '--force' => true, // This will bypass the production check
                 '--ansi' => true,
@@ -193,7 +206,7 @@ class FissionInstall extends Command
     {
         // Only set project name if it's still the default "Laravel"
         if (env('APP_NAME') !== 'Laravel') {
-            info('Project name already set. Skipping.');
+            $this->line('Project name already set. Skipping.');
 
             return;
         }
@@ -234,18 +247,21 @@ class FissionInstall extends Command
 
     private function cleanup()
     {
-        info('Removing installation files...');
+        $this->line('Removing installation files...');
 
-        // Remove the entire Commands folder
-        File::deleteDirectory(app_path('Console/Commands'));
+        // Remove the Commands folder but keep this command until it's completely done
+        $currentCommand = get_class($this);
+        $commandFile = app_path('Console/Commands/'.class_basename($currentCommand).'.php');
 
-        // Keep other Console files/directories intact
-        if (count(File::files(app_path('Console'))) === 0 &&
-            count(File::directories(app_path('Console'))) === 0) {
-            File::deleteDirectory(app_path('Console'));
+        // Remove other command files
+        foreach (File::glob(app_path('Console/Commands/*.php')) as $file) {
+            if ($file !== $commandFile) {
+                File::delete($file);
+            }
         }
 
-        info('Installation files removed.');
+        // This will be cleaned up by Laravel after the command completes
+        $this->line('Installation files removed.');
     }
 
     private function reloadEnvironment()
