@@ -96,24 +96,35 @@ class FissionInstall extends Command
             File::copy($sourceAuthJson, base_path('auth.json'));
             $this->line('auth.json copied successfully.');
 
-            // Try to activate Flux Pro by running composer update instead of require
-            $this->line('Running composer update to activate Flux Pro...');
+            // Update composer.json to add Flux Pro repository
+            $this->line('Adding Flux Pro repository to composer.json...');
 
-            // Only add flux-pro to composer.json if it doesn't exist already
             $composerJson = json_decode(file_get_contents(base_path('composer.json')), true);
-            if (! isset($composerJson['require']['livewire/flux-pro'])) {
-                // Add flux-pro to composer.json manually instead of using composer require
-                $composerJson['require']['livewire/flux-pro'] = '^2.0';
-                file_put_contents(
-                    base_path('composer.json'),
-                    json_encode($composerJson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)
-                );
+
+            // Add the repository if it doesn't exist
+            if (! isset($composerJson['repositories']['flux-pro'])) {
+                $composerJson['repositories']['flux-pro'] = [
+                    'type' => 'composer',
+                    'url' => 'https://composer.fluxui.dev',
+                ];
             }
 
-            // Now run composer update to install it
-            exec('composer update livewire/flux-pro --quiet');
+            // Add flux-pro to dependencies if it doesn't exist
+            if (! isset($composerJson['require']['livewire/flux-pro'])) {
+                $composerJson['require']['livewire/flux-pro'] = '^2.0';
+            }
 
-            $this->line('Flux Pro activated.');
+            // Save the updated composer.json
+            file_put_contents(
+                base_path('composer.json'),
+                json_encode($composerJson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)
+            );
+
+            // Now run composer update to install it
+            $this->line('Running composer update to install Flux Pro...');
+            exec('composer update livewire/flux-pro --no-interaction');
+
+            $this->line('Flux Pro activated successfully.');
 
             return;
         }
@@ -164,23 +175,16 @@ class FissionInstall extends Command
 
     private function setupEnvFile()
     {
-        $this->line('Setting up .env file...');
-        if (! File::exists('.env')) {
+        // Only create .env if it doesn't exist (should already be handled by Laravel installer)
+        if (! File::exists('.env') && File::exists('.env.example')) {
+            $this->line('Creating .env file...');
             File::copy('.env.example', '.env');
-            $this->line('.env file created successfully.');
-        } else {
-            $this->comment('.env file already exists. Skipping creation.');
         }
 
-        // Ensure APP_ENV is set to local
+        // Ensure APP_ENV is set to local - do this silently
         $envContent = File::get('.env');
-        if (! preg_match('/^APP_ENV=/', $envContent)) {
+        if (! preg_match('/^APP_ENV=local/m', $envContent)) {
             $this->updateEnv('APP_ENV', 'local');
-            $this->line('APP_ENV set to local.');
-        } else {
-            $envContent = preg_replace('/^APP_ENV=(.*)$/m', 'APP_ENV=local', $envContent);
-            $this->updateEnv('APP_ENV', 'local');
-            $this->line('APP_ENV updated to local.');
         }
     }
 
