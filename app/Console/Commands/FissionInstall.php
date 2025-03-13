@@ -141,7 +141,7 @@ class FissionInstall extends Command
     {
         info('Checking application key...');
         if (empty(env('APP_KEY'))) {
-            $this->call('key:generate --ansi');
+            $this->call('key:generate', ['--ansi' => true]);
         } else {
             warning('Application key already exists. Skipping.');
         }
@@ -158,8 +158,9 @@ class FissionInstall extends Command
                 info('Created database.sqlite file.');
             }
 
-            $this->call('migrate --graceful --ansi', [
+            $this->call('migrate', [
                 '--force' => true, // This will bypass the production check
+                '--ansi' => true,
             ]);
         }
     }
