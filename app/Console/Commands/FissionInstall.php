@@ -51,30 +51,8 @@ class FissionInstall extends Command
         info('👉 Run `php artisan solo` or `composer run dev` to start the local server.');
         info('Keep creating. 🫡');
 
-        // Check if this is being run by Laravel installer
-        if ($this->isRunningFromLaravelInstaller()) {
-            // Exit with success code to prevent Laravel from running further steps
-            exit(0);
-        }
-    }
-
-    /**
-     * Simple check if we're running from Laravel installer
-     */
-    private function isRunningFromLaravelInstaller(): bool
-    {
-        // Check the backtrace to see if we were called from composer script
-        $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 10);
-        foreach ($backtrace as $trace) {
-            if (isset($trace['function']) && $trace['function'] === 'passthru') {
-                return true;
-            }
-        }
-
-        // Check if we're called from Laravel installer script
-        return isset($_SERVER['argv'][0]) &&
-               strpos($_SERVER['argv'][0], 'composer') !== false &&
-               isset($_SERVER['COMPOSER_BINARY']);
+        // Exit gracefully
+        exit(0);
     }
 
     private function handleGitRepository()
@@ -104,8 +82,8 @@ class FissionInstall extends Command
             File::copy($sourceAuthJson, base_path('auth.json'));
             info('auth.json copied successfully.');
 
-            info('Running composer install to activate Flux Pro...');
-            exec('composer install');
+            info('Running composer require to install Flux Pro...');
+            exec('composer require livewire/flux-pro');
             info('Flux Pro activated.');
 
             return;
@@ -202,31 +180,8 @@ class FissionInstall extends Command
 
     private function runMigrations()
     {
-        // Check for database tables before asking
-        $migrationTableExists = false;
-        try {
-            $migrationTableExists = \Schema::hasTable('migrations');
-        } catch (\Exception $e) {
-            // Database connection issue, continue anyway
-        }
-
-        if ($migrationTableExists) {
-            info('Migrations have already been run. Skipping.');
-
-            return;
-        }
-
-        $shouldRunMigrations = confirm('Do you want to run database migrations?', true);
-
-        if ($shouldRunMigrations) {
+        if (confirm('Do you want to run database migrations?', true)) {
             info('Running database migrations...');
-
-            // Ensure database.sqlite exists
-            if (! file_exists('database/database.sqlite')) {
-                file_put_contents('database/database.sqlite', '');
-                info('Created database.sqlite file.');
-            }
-
             $this->call('migrate', [
                 '--force' => true, // This will bypass the production check
                 '--ansi' => true,
@@ -279,22 +234,18 @@ class FissionInstall extends Command
 
     private function cleanup()
     {
-        if (confirm('Do you want to remove the installation files?', true)) {
-            info('Removing installation files...');
+        info('Removing installation files...');
 
-            // Remove the entire Commands folder
-            File::deleteDirectory(app_path('Console/Commands'));
+        // Remove the entire Commands folder
+        File::deleteDirectory(app_path('Console/Commands'));
 
-            // Keep other Console files/directories intact
-            if (count(File::files(app_path('Console'))) === 0 &&
-                count(File::directories(app_path('Console'))) === 0) {
-                File::deleteDirectory(app_path('Console'));
-            }
-
-            info('Installation files removed.');
-        } else {
-            info('Installation files kept. You can manually remove them later if needed.');
+        // Keep other Console files/directories intact
+        if (count(File::files(app_path('Console'))) === 0 &&
+            count(File::directories(app_path('Console'))) === 0) {
+            File::deleteDirectory(app_path('Console'));
         }
+
+        info('Installation files removed.');
     }
 
     private function reloadEnvironment()
