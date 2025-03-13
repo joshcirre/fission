@@ -15,7 +15,6 @@
         "laravel/prompts": "^0.3",
         "laravel/tinker": "^2.0",
         "livewire/flux": "^2.0",
-        "livewire/flux-pro": "^2.0",
         "livewire/livewire": "^3.0",
         "livewire/volt": "^1.6.7",
         "panphp/pan": "^0.1.1"
@@ -57,7 +56,9 @@
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
-            "@php artisan fission:install"
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+            "@php artisan key:generate --ansi",
+            "@php -r \"file_put_contents('.fission-via-laravel-installer', '');\""
         ],
         "dev": [
             "Composer\\Config::disableProcessTimeout",
@@ -80,12 +81,6 @@
     },
     "minimum-stability": "stable",
     "prefer-stable": true,
-    "repositories": {
-        "flux-pro": {
-            "type": "composer",
-            "url": "https://composer.fluxui.dev"
-        }
-    },
     "suggest": {
         "bentoproject/bento": "Adds Bento to your project",
         "filament/filament": "Adds Filament admin panel to your project",

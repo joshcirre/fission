@@ -12,15 +12,13 @@ use function Laravel\Prompts\warning;
 
 class FissionInstall extends Command
 {
-    protected $signature = 'fission:install {name? : The project name}';
+    protected $signature = 'fission:install {name? : The project name} {--l|laravel-installer : If the command is being run from Laravel installer}';
 
     protected $description = 'Run the Fission installation process';
 
-    private $authJsonExists = false;
-
-    private $additionalPackages = [];
-
     private $initializeGit = false;
+
+    private $viaLaravelInstaller = false;
 
     public function handle()
     {
@@ -28,28 +26,24 @@ class FissionInstall extends Command
             return 'local';
         });
 
+        // Check if being run from Laravel installer
+        $this->viaLaravelInstaller = $this->option('laravel-installer') || file_exists(base_path('.fission-via-laravel-installer'));
+
+        // Remove the marker file if it exists
+        if (file_exists(base_path('.fission-via-laravel-installer'))) {
+            @unlink(base_path('.fission-via-laravel-installer'));
+        }
+
         info('Starting Fission installation...');
 
-        // Remove existing Git repository first
-        $this->removeGitRepository();
+        // Handle Git repository based on installation method
+        $this->handleGitRepository();
 
-        $this->copyAuthJson();
+        // Handle Flux Pro activation (now optional)
+        $this->handleFluxActivation();
 
-        // Run npm install
-        if (! File::exists('node_modules')) {
-            info('Running npm install...');
-            exec('npm install');
-        } else {
-            warning('Node modules already exist. Skipping npm install.');
-        }
-
-        // Run flux:activate only if auth.json doesn't exist
-        if (! $this->authJsonExists) {
-            info('Activating Flux...');
-            $this->call('flux:activate');
-        } else {
-            info('auth.json found. Skipping Flux manual activation.');
-        }
+        // Run npm install if not already done
+        $this->handleNpmInstall();
 
         $this->setupEnvFile();
         $this->reloadEnvironment();
@@ -68,9 +62,16 @@ class FissionInstall extends Command
         info('Keep creating. 🫡');
     }
 
-    private function removeGitRepository()
+    private function handleGitRepository()
     {
         info('Checking Git repository status...');
+
+        // If installed via Laravel installer, Git might be already initialized
+        // and we should respect that instead of removing it
+        if ($this->viaLaravelInstaller && File::isDirectory(base_path('.git'))) {
+            info('Git repository already initialized by Laravel installer.');
+            return;
+        }
 
         if (File::isDirectory(base_path('.git'))) {
             // Remove existing Git repository
@@ -79,7 +80,56 @@ class FissionInstall extends Command
         }
 
         // Ask if user wants to initialize a new repository after cleanup
-        $this->initializeGit = confirm('Would you like to initialize a fresh Git repository after installation?', true);
+        $this->initializeGit = $this->viaLaravelInstaller ? true :
+            confirm('Would you like to initialize a fresh Git repository after installation?', true);
+    }
+
+    private function handleFluxActivation()
+    {
+        // Ask if user wants to install Flux Pro
+        $installFluxPro = $this->viaLaravelInstaller ?
+            false : // Default to no for non-interactive Laravel installer
+            confirm('Would you like to install Flux Pro?', false);
+
+        if ($installFluxPro) {
+            // Check for auth.json
+            $sourceAuthJson = $_SERVER['HOME'] . '/Code/flux-auth.json';
+
+            if (File::exists($sourceAuthJson)) {
+                info('Found auth.json in ~/Code/ directory. Copying to application...');
+                File::copy($sourceAuthJson, base_path('auth.json'));
+                info('auth.json copied successfully.');
+
+                info('Running composer install to activate Flux Pro...');
+                exec('composer install');
+                info('Flux Pro activated.');
+            } else {
+                // No auth.json found, use the flux:activate command
+                info('No preset auth.json found. Running flux:activate command...');
+                $this->call('flux:activate');
+            }
+        } else {
+            info('Skipping Flux Pro installation.');
+        }
+    }
+
+    private function handleNpmInstall()
+    {
+        // Skip if already done by Laravel installer or if node_modules exists
+        if (File::exists('node_modules')) {
+            warning('Node modules already exist. Skipping npm install.');
+            return;
+        }
+
+        // If via Laravel installer, ask for confirmation
+        $shouldRunNpm = $this->viaLaravelInstaller ?
+            true :
+            true; // Always run npm install for direct installation
+
+        if ($shouldRunNpm) {
+            info('Running npm install...');
+            exec('npm install');
+        }
     }
 
     private function initializeGitRepository()
@@ -149,7 +199,25 @@ class FissionInstall extends Command
 
     private function runMigrations()
     {
-        if (confirm('Do you want to run database migrations?', true)) {
+        // If via Laravel installer, migrations might have been run already
+        // In that case, check for database tables before asking
+        $migrationTableExists = false;
+        try {
+            $migrationTableExists = \Schema::hasTable('migrations');
+        } catch (\Exception $e) {
+            // Database connection issue, continue anyway
+        }
+
+        if ($migrationTableExists) {
+            info('Migrations have already been run. Skipping.');
+            return;
+        }
+
+        $shouldRunMigrations = $this->viaLaravelInstaller ?
+            true :
+            confirm('Do you want to run database migrations?', true);
+
+        if ($shouldRunMigrations) {
             info('Running database migrations...');
 
             // Ensure database.sqlite exists
@@ -167,6 +235,12 @@ class FissionInstall extends Command
 
     private function setProjectName()
     {
+        // If installed via Laravel installer, the app name might be set already
+        if ($this->viaLaravelInstaller && env('APP_NAME') !== 'Laravel') {
+            info('Project name already set by Laravel installer.');
+            return;
+        }
+
         $defaultName = $this->argument('name') ?: basename(getcwd());
         $name = text(
             label: 'What is the name of your project?',
@@ -203,14 +277,22 @@ class FissionInstall extends Command
 
     private function cleanup()
     {
-        if (confirm('Do you want to remove the installation files?', true)) {
+        // Don't ask for confirmation if run via Laravel installer
+        $shouldCleanup = $this->viaLaravelInstaller ?
+            true :
+            confirm('Do you want to remove the installation files?', true);
+
+        if ($shouldCleanup) {
             info('Removing installation files...');
 
             // Remove the entire Commands folder
-            File::deleteDirectory(app_path('Console'));
+            File::deleteDirectory(app_path('Console/Commands'));
 
-            // Remove the install.sh script
-            File::delete(base_path('install.sh'));
+            // Keep other Console files/directories intact
+            if (count(File::files(app_path('Console'))) === 0 &&
+                count(File::directories(app_path('Console'))) === 0) {
+                File::deleteDirectory(app_path('Console'));
+            }
 
             info('Installation files removed.');
         } else {
@@ -229,27 +311,5 @@ class FissionInstall extends Command
     private function installPan()
     {
         $this->call('install:pan');
-    }
-
-    private function copyAuthJson()
-    {
-        $sourceAuthJson = $_SERVER['HOME'].'/Code/flux-auth.json';
-        $destinationAuthJson = base_path('auth.json');
-
-        if (File::exists($sourceAuthJson)) {
-            info('Found auth.json in ~/Code/ directory. Copying to application...');
-            File::copy($sourceAuthJson, $destinationAuthJson);
-            info('auth.json copied successfully.');
-
-            // Run composer install again to ensure Flux Pro is properly installed
-            info('Running composer install to activate Flux Pro...');
-            exec('composer install');
-            info('Flux Pro activated.');
-
-            $this->authJsonExists = true;
-        } else {
-            warning('No preset auth.json found. You can add your credentials for Flux in a bit.');
-            $this->authJsonExists = false;
-        }
     }
 }
