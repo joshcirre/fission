@@ -153,8 +153,8 @@ class FissionInstall extends Command
             info('Running database migrations...');
 
             // Ensure database.sqlite exists
-            if (! File::exists('database/database.sqlite')) {
-                File::touch('database/database.sqlite');
+            if (! file_exists('database/database.sqlite')) {
+                file_put_contents('database/database.sqlite', '');
                 info('Created database.sqlite file.');
             }
 
