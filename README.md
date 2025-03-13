@@ -19,6 +19,9 @@ Eventually I knew I wanted to create my own starting kit that worked well for wh
 
 Once Livewire Flux released, it was the perfect time to make this happen.
 
+## Flux License Required
+A license for Flux (technically, "Flux Pro") is required to use Fission. Fission does not contain any of Flux's CSS, built CSS, or Blade components. However, if you do not have a license there are only two components used in the Flux Pro version (Toast and Card). Feel free to remove them from the starter kit.
+
 ## Installation
 
 This project includes a custom installation script that streamlines the setup process. If you are not using the Laravel installer, you can still use this script to install Fission. Use the composer create command to do so: `composer create-project joshcirre/fission myapp`.

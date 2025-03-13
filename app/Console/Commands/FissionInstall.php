@@ -26,7 +26,7 @@ class FissionInstall extends Command
 
         info('Starting Fission installation...');
 
-        // Handle Git repository
+        // Handle Git repository based on installation method
         $this->handleGitRepository();
 
         // Handle Flux Pro activation (always optional)
@@ -50,15 +50,41 @@ class FissionInstall extends Command
         info('Fission installation completed successfully! ☢️');
         info('👉 Run `php artisan solo` or `composer run dev` to start the local server.');
         info('Keep creating. 🫡');
+
+        // Check if this is being run by Laravel installer
+        if ($this->isRunningFromLaravelInstaller()) {
+            // Exit with success code to prevent Laravel from running further steps
+            exit(0);
+        }
+    }
+
+    /**
+     * Simple check if we're running from Laravel installer
+     */
+    private function isRunningFromLaravelInstaller(): bool
+    {
+        // Check the backtrace to see if we were called from composer script
+        $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 10);
+        foreach ($backtrace as $trace) {
+            if (isset($trace['function']) && $trace['function'] === 'passthru') {
+                return true;
+            }
+        }
+
+        // Check if we're called from Laravel installer script
+        return isset($_SERVER['argv'][0]) &&
+               strpos($_SERVER['argv'][0], 'composer') !== false &&
+               isset($_SERVER['COMPOSER_BINARY']);
     }
 
     private function handleGitRepository()
     {
         info('Checking Git repository status...');
 
-        // Don't remove Git if it's already initialized (could be from Laravel installer)
+        // Don't remove Git if it's already initialized
         if (File::isDirectory(base_path('.git'))) {
             info('Git repository already initialized. Skipping.');
+
             return;
         }
 
@@ -68,28 +94,31 @@ class FissionInstall extends Command
 
     private function handleFluxActivation()
     {
-        // Always ask if user wants to install Flux Pro
-        $installFluxPro = confirm('Would you like to install Flux Pro?', false);
+        info('Checking Flux Pro status...');
 
-        if ($installFluxPro) {
-            // Check for auth.json
-            $sourceAuthJson = $_SERVER['HOME'] . '/Code/flux-auth.json';
+        // Check for auth.json
+        $sourceAuthJson = $_SERVER['HOME'].'/Code/flux-auth.json';
 
-            if (File::exists($sourceAuthJson)) {
-                info('Found auth.json in ~/Code/ directory. Copying to application...');
-                File::copy($sourceAuthJson, base_path('auth.json'));
-                info('auth.json copied successfully.');
+        if (File::exists($sourceAuthJson)) {
+            info('Found auth.json in ~/Code/ directory. Copying to application...');
+            File::copy($sourceAuthJson, base_path('auth.json'));
+            info('auth.json copied successfully.');
 
-                info('Running composer install to activate Flux Pro...');
-                exec('composer install');
-                info('Flux Pro activated.');
-            } else {
-                // No auth.json found, use the flux:activate command
-                info('No preset auth.json found. Running flux:activate command...');
-                $this->call('flux:activate');
-            }
+            info('Running composer install to activate Flux Pro...');
+            exec('composer install');
+            info('Flux Pro activated.');
+
+            return;
+        }
+
+        // No auth.json found, ask if they have a Flux Pro account
+        $hasFluxPro = confirm('Do you have a Flux Pro account?', false);
+
+        if ($hasFluxPro) {
+            info('Running flux:activate command...');
+            $this->call('flux:activate');
         } else {
-            info('Skipping Flux Pro installation.');
+            warning('This starter kit uses some Flux Pro components, however, feel free to remove them if needed.');
         }
     }
 
@@ -98,6 +127,7 @@ class FissionInstall extends Command
         // Skip if node_modules exists
         if (File::exists('node_modules')) {
             warning('Node modules already exist. Skipping npm install.');
+
             return;
         }
 
@@ -182,6 +212,7 @@ class FissionInstall extends Command
 
         if ($migrationTableExists) {
             info('Migrations have already been run. Skipping.');
+
             return;
         }
 
@@ -208,6 +239,7 @@ class FissionInstall extends Command
         // Only set project name if it's still the default "Laravel"
         if (env('APP_NAME') !== 'Laravel') {
             info('Project name already set. Skipping.');
+
             return;
         }
 
