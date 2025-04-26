@@ -8,12 +8,13 @@ export default defineConfig(({ mode }) => {
         plugins: [
             laravel({
                 input: ["resources/css/app.css", "resources/js/app.js"],
-                refresh: true,
+                refresh: [`resources/views/**/*`],
             }),
             tailwindcss(),
         ],
         server: {
             open: env.APP_URL || "http://localhost:8000",
+            cors: true,
         },
     };
 });

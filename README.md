@@ -35,6 +35,7 @@ This project includes a custom installation script that streamlines the setup pr
 - Configures project name and URL
 - Offers to remove installation files
 - Provides instructions to start local development server
+- Install GNU Aspell at your computer if you would like to run Peck
 
 ## License
 

@@ -52,6 +52,7 @@ return [
 
         // Lazy commands do no automatically start when Solo starts.
         'Pan' => Command::from('php artisan pan')->lazy(),
+        'Peck' => Command::from('./vendor/bin/peck --ignore-all')->lazy(),
         'Pint' => Command::from('./vendor/bin/pint --ansi')->lazy(),
         'Queue' => Command::from('php artisan queue:work')->lazy(),
         'Tests' => Command::from('php artisan test --colors=always')->withEnv(['APP_ENV' => 'testing'])->lazy(),
