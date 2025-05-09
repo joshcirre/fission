@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Providers;
 
 use AaronFrancis\Solo\Facades\Solo;
 use AaronFrancis\Solo\Providers\SoloApplicationServiceProvider;
 
-class SoloServiceProvider extends SoloApplicationServiceProvider
+final class SoloServiceProvider extends SoloApplicationServiceProvider
 {
     public function register()
     {

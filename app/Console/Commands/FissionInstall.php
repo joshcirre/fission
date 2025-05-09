@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
@@ -8,7 +10,7 @@ use Illuminate\Support\Facades\File;
 use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\text;
 
-class FissionInstall extends Command
+final class FissionInstall extends Command
 {
     protected $signature = 'fission:install {name? : The project name}';
 
