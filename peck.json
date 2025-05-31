@@ -2,8 +2,13 @@
     "preset": "laravel",
     "ignore": {
         "words": [
-            "php"
+            "php",
+            "filesystems",
+            "favicon",
+            "js"
         ],
-        "paths": []
+        "paths": [
+            "app/Providers/SoloServiceProvider.php"
+        ]
     }
 }

@@ -22,6 +22,7 @@
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
+        "larastan/larastan": "^3.4",
         "laravel/breeze": "^2.2",
         "laravel/pail": "^1.2.2",
         "laravel/pint": "^1.18",
@@ -31,6 +32,7 @@
         "peckphp/peck": "^0.1.0",
         "pestphp/pest": "^3.2",
         "pestphp/pest-plugin-laravel": "^3.0",
+        "rector/rector": "^2.0",
         "soloterm/solo": "^0.4.0"
     },
     "autoload": {
@@ -59,12 +61,36 @@
         "post-create-project-cmd": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
             "@php artisan key:generate --ansi",
+            "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
             "@php artisan fission:install"
         ],
         "dev": [
             "Composer\\Config::disableProcessTimeout",
             "npx concurrently -k -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"php artisan pail\" \"npm run dev\" --names=server,queue,logs,vite"
-        ]
+        ],
+        "lint": [
+            "./vendor/bin/pint",
+            "npm run lint"
+        ],
+        "refactor": "./vendor/bin/rector process",
+        "test:typos": "./vendor/bin/peck",
+        "test:lint": [
+            "./vendor/bin/pint --test",
+            "npm run test:lint"
+        ],
+        "test:unit": "./vendor/bin/pest --parallel",
+        "test:unit:coverage": "./vendor/bin/pest --parallel --coverage",
+        "test:types": "./vendor/bin/phpstan analyse --memory-limit=256M",
+        "test:refactor": "./vendor/bin/rector process --dry-run",
+        "test": [
+            "@test:typos",
+            "@test:unit",
+            "@test:lint",
+            "@test:types",
+            "@test:refactor"
+        ],
+        "phpstan": "./vendor/bin/phpstan analyse --memory-limit=256M",
+        "phpstan-baseline": "./vendor/bin/phpstan analyse --generate-baseline --memory-limit=256M"
     },
     "extra": {
         "laravel": {
