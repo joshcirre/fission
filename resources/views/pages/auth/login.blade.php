@@ -39,7 +39,7 @@ new class extends Component {
                     <flux:input wire:model='form.email' label="Email" type="email" placeholder="Your email address" />
 
                     <flux:field>
-                        <flux:label class="flex justify-between">
+                        <flux:label class="flex justify-between w-full">
                             Password
 
                             <flux:link href="{{ route('password.request') }}" wire:navigate variant="subtle">Forgot password?
