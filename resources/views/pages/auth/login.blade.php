@@ -29,24 +29,25 @@ new class extends Component {
 <x-layouts.auth>
     @volt('pages.auth.login')
         <flux:card>
-            <form wire:submit='login' class="space-y-6">
+            <form wire:submit="login" class="space-y-6">
                 <div>
                     <flux:heading size="lg">Log in to your account</flux:heading>
                     <flux:subheading>Welcome back!</flux:subheading>
                 </div>
 
                 <div class="space-y-6">
-                    <flux:input wire:model='form.email' label="Email" type="email" placeholder="Your email address" />
+                    <flux:input wire:model="form.email" label="Email" type="email" placeholder="Your email address" />
 
                     <flux:field>
-                        <flux:label class="flex justify-between w-full">
+                        <flux:label class="flex w-full justify-between">
                             Password
 
-                            <flux:link href="{{ route('password.request') }}" wire:navigate variant="subtle">Forgot password?
+                            <flux:link href="{{ route('password.request') }}" wire:navigate variant="subtle">
+                                Forgot password?
                             </flux:link>
                         </flux:label>
 
-                        <flux:input wire:model='form.password' type="password" placeholder="Your password" />
+                        <flux:input wire:model="form.password" type="password" placeholder="Your password" />
 
                         <flux:error name="form.password" />
                     </flux:field>
@@ -57,9 +58,8 @@ new class extends Component {
                 <div class="space-y-2">
                     <flux:button variant="primary" class="w-full" type="submit">Log in</flux:button>
 
-                    <flux:button variant="ghost" class="w-full" href="{{ route('register') }}" wire:navigate>Sign up for a
-                        new
-                        account
+                    <flux:button variant="ghost" class="w-full" href="{{ route('register') }}" wire:navigate>
+                        Sign up for a new account
                     </flux:button>
                 </div>
             </form>

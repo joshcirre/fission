@@ -9,7 +9,7 @@ use AaronFrancis\Solo\Providers\SoloApplicationServiceProvider;
 
 final class SoloServiceProvider extends SoloApplicationServiceProvider
 {
-    public function register()
+    public function register(): void
     {
         Solo::useTheme('dark')
             // Commands that auto start.
@@ -32,7 +32,7 @@ final class SoloServiceProvider extends SoloApplicationServiceProvider
             ]);
     }
 
-    public function boot()
+    public function boot(): void
     {
         //
     }

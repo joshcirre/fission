@@ -81,12 +81,28 @@ new class extends Component {
                 </div>
 
                 <div class="space-y-6">
-                    <flux:input wire:model="email" label="Email" type="email" placeholder="Your email address" required
-                        autofocus />
-                    <flux:input wire:model="password" label="New Password" type="password" placeholder="Your new password"
-                        required />
-                    <flux:input wire:model="password_confirmation" label="Confirm Password" type="password"
-                        placeholder="Confirm your new password" required />
+                    <flux:input
+                        wire:model="email"
+                        label="Email"
+                        type="email"
+                        placeholder="Your email address"
+                        required
+                        autofocus
+                    />
+                    <flux:input
+                        wire:model="password"
+                        label="New Password"
+                        type="password"
+                        placeholder="Your new password"
+                        required
+                    />
+                    <flux:input
+                        wire:model="password_confirmation"
+                        label="Confirm Password"
+                        type="password"
+                        placeholder="Confirm your new password"
+                        required
+                    />
                 </div>
 
                 <div class="space-y-2">

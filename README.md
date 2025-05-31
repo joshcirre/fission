@@ -13,6 +13,7 @@
 > To get up and running quickly, use the new Laravel installer with the using option: `laravel new my-project --using=joshcirre/fission`
 
 ## Why Does This Exist?
+
 Up until Livewire Flux released, I used Breeze as a starting point for 99% of new projects that I would create. Typically, those new projects were built for demos on videos or starting points for tutorials. In addition, I would start side projects or app ideas with Breeze, as well.
 
 Eventually I knew I wanted to create my own starting kit that worked well for what I needed in most scenarios. Authentication and a dashboard where I can start writing code.
@@ -20,6 +21,7 @@ Eventually I knew I wanted to create my own starting kit that worked well for wh
 Once Livewire Flux released, it was the perfect time to make this happen.
 
 ## Flux License Required
+
 A license for Flux (technically, "Flux Pro") is required to use Fission. Fission does not contain any of Flux's CSS, built CSS, or Blade components. However, if you do not have a license there are only two components used in the Flux Pro version (Toast and Card). Feel free to remove them from the starter kit.
 
 ## Installation

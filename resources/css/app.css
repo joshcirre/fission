@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 @import '../../vendor/livewire/flux/dist/flux.css';
 
 /* Required for dark mode in Flux... */

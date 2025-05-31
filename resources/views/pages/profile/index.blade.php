@@ -38,7 +38,14 @@ new class extends Component {
 
         $validated = $this->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($user->id)],
+            'email' => [
+                'required',
+                'string',
+                'lowercase',
+                'email',
+                'max:255',
+                Rule::unique(User::class)->ignore($user->id),
+            ],
         ]);
 
         $user->fill($validated);
@@ -112,13 +119,24 @@ new class extends Component {
                     </div>
 
                     <div class="space-y-6">
-                        <flux:input wire:model="name" label="Name" type="text" placeholder="Your name" required
-                            autofocus />
+                        <flux:input
+                            wire:model="name"
+                            label="Name"
+                            type="text"
+                            placeholder="Your name"
+                            required
+                            autofocus
+                        />
 
-                        <flux:input wire:model="email" label="Email" type="email" placeholder="Your email address"
-                            required />
+                        <flux:input
+                            wire:model="email"
+                            label="Email"
+                            type="email"
+                            placeholder="Your email address"
+                            required
+                        />
 
-                        @if (auth()->user() instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && !auth()->user()->hasVerifiedEmail())
+                        @if (auth()->user() instanceof \Illuminate\Contracts\Auth\MustVerifyEmail &&! auth()->user()->hasVerifiedEmail())
                             <div>
                                 <p class="text-sm text-gray-800">
                                     Your email address is unverified.
@@ -131,7 +149,7 @@ new class extends Component {
                         @endif
                     </div>
 
-                    <div class="flex gap-4 justify-end items-center">
+                    <div class="flex items-center justify-end gap-4">
                         <flux:button type="submit" variant="primary">Save</flux:button>
                     </div>
                 </form>
@@ -141,17 +159,23 @@ new class extends Component {
                 <form wire:submit="updatePassword" class="space-y-6">
                     <div>
                         <flux:heading size="lg">Update Password</flux:heading>
-                        <flux:subheading>Ensure your account is using a long, random password to stay secure.
+                        <flux:subheading>
+                            Ensure your account is using a long, random password to stay secure.
                         </flux:subheading>
                     </div>
 
                     <div class="space-y-6">
                         <flux:input wire:model="current_password" label="Current Password" type="password" required />
                         <flux:input wire:model="password" label="New Password" type="password" required />
-                        <flux:input wire:model="password_confirmation" label="Confirm Password" type="password" required />
+                        <flux:input
+                            wire:model="password_confirmation"
+                            label="Confirm Password"
+                            type="password"
+                            required
+                        />
                     </div>
 
-                    <div class="flex gap-4 justify-end items-center">
+                    <div class="flex items-center justify-end gap-4">
                         <flux:button type="submit" variant="primary">Update Password</flux:button>
                     </div>
                 </form>
@@ -160,8 +184,9 @@ new class extends Component {
                 <div class="space-y-6">
                     <div>
                         <flux:heading size="lg">Delete Account</flux:heading>
-                        <flux:subheading>Once your account is deleted, all of its resources and data will be permanently
-                            deleted.</flux:subheading>
+                        <flux:subheading>
+                            Once your account is deleted, all of its resources and data will be permanently deleted.
+                        </flux:subheading>
                     </div>
 
                     <flux:modal.trigger name="delete-profile">
@@ -180,11 +205,16 @@ new class extends Component {
                             </div>
 
                             <div class="mt-6">
-                                <flux:input wire:model="delete_password" label="Password" type="password"
-                                    placeholder="Password" required />
+                                <flux:input
+                                    wire:model="delete_password"
+                                    label="Password"
+                                    type="password"
+                                    placeholder="Password"
+                                    required
+                                />
                             </div>
 
-                            <div class="flex gap-2 mt-6">
+                            <div class="mt-6 flex gap-2">
                                 <flux:spacer />
 
                                 <flux:modal.close>

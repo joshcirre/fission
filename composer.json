@@ -73,6 +73,12 @@
             "npm run lint"
         ],
         "refactor": "./vendor/bin/rector process",
+        "fix": [
+            "@test:types",
+            "@refactor",
+            "npm run lint:fix",
+            "./vendor/bin/pint"
+        ],
         "test:typos": "./vendor/bin/peck",
         "test:lint": [
             "./vendor/bin/pint --test",

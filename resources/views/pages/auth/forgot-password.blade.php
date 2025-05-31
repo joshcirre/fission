@@ -46,8 +46,14 @@ new class extends Component {
                 </div>
 
                 <div class="space-y-6">
-                    <flux:input wire:model="email" label="Email" type="email" placeholder="Your email address" required
-                        autofocus />
+                    <flux:input
+                        wire:model="email"
+                        label="Email"
+                        type="email"
+                        placeholder="Your email address"
+                        required
+                        autofocus
+                    />
                 </div>
 
                 <div class="space-y-2">

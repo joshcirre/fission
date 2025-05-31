@@ -16,13 +16,11 @@ final class FissionInstall extends Command
 
     protected $description = 'Run the Fission installation process';
 
-    private $initializeGit = false;
+    private bool $initializeGit = false;
 
-    public function handle()
+    public function handle(): int
     {
-        app()->detectEnvironment(function () {
-            return 'local';
-        });
+        app()->detectEnvironment(fn (): string => 'local');
 
         $this->line('');
         $this->info('Starting Fission installation...');
@@ -55,7 +53,7 @@ final class FissionInstall extends Command
     /**
      * Display a visually distinct completion message
      */
-    private function displayCompletionMessage()
+    private function displayCompletionMessage(): void
     {
         $this->line('');
         $this->line('');
@@ -71,7 +69,7 @@ final class FissionInstall extends Command
         $this->line('');
     }
 
-    private function handleGitRepository()
+    private function handleGitRepository(): void
     {
         $this->line('Checking Git repository status...');
 
@@ -86,7 +84,7 @@ final class FissionInstall extends Command
         $this->initializeGit = confirm('Would you like to initialize a fresh Git repository after installation?', true);
     }
 
-    private function handleFluxActivation()
+    private function handleFluxActivation(): void
     {
         $this->line('Checking Flux Pro status...');
 
@@ -142,7 +140,7 @@ final class FissionInstall extends Command
         }
     }
 
-    private function initializeGitRepository()
+    private function initializeGitRepository(): void
     {
         if ($this->initializeGit) {
             $this->line('Initializing fresh Git repository...');
@@ -175,7 +173,7 @@ final class FissionInstall extends Command
         }
     }
 
-    private function setupEnvFile()
+    private function setupEnvFile(): void
     {
         // Only create .env if it doesn't exist (should already be handled by Laravel installer)
         if (! File::exists('.env') && File::exists('.env.example')) {
@@ -185,12 +183,12 @@ final class FissionInstall extends Command
 
         // Ensure APP_ENV is set to local - do this silently
         $envContent = File::get('.env');
-        if (! preg_match('/^APP_ENV=local/m', $envContent)) {
+        if (in_array(preg_match('/^APP_ENV=local/m', $envContent), [0, false], true)) {
             $this->updateEnv('APP_ENV', 'local');
         }
     }
 
-    private function runMigrations()
+    private function runMigrations(): void
     {
         if (confirm('Do you want to run database migrations?', true)) {
             $this->line('Running database migrations...');
@@ -208,7 +206,7 @@ final class FissionInstall extends Command
         }
     }
 
-    private function setProjectName()
+    private function setProjectName(): void
     {
         // Only set project name if it's still the default "Laravel"
         if (env('APP_NAME') !== 'Laravel') {
@@ -238,7 +236,7 @@ final class FissionInstall extends Command
         $this->updateEnv('APP_URL', $url);
     }
 
-    private function updateEnv($key, $value)
+    private function updateEnv(string $key, string $value): void
     {
         $path = base_path('.env');
 
@@ -251,12 +249,12 @@ final class FissionInstall extends Command
         }
     }
 
-    private function cleanup()
+    private function cleanup(): void
     {
         $this->line('Removing installation files...');
 
         // Remove the Commands folder but keep this command until it's completely done
-        $currentCommand = get_class($this);
+        $currentCommand = self::class;
         $commandFile = app_path('Console/Commands/'.class_basename($currentCommand).'.php');
 
         // Remove other command files
@@ -270,7 +268,7 @@ final class FissionInstall extends Command
         $this->line('Installation files removed.');
     }
 
-    private function reloadEnvironment()
+    private function reloadEnvironment(): void
     {
         $app = app();
         $app->bootstrapWith([
@@ -278,7 +276,7 @@ final class FissionInstall extends Command
         ]);
     }
 
-    private function installPan()
+    private function installPan(): void
     {
         $this->call('install:pan');
     }

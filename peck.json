@@ -1,14 +1,7 @@
 {
     "preset": "laravel",
     "ignore": {
-        "words": [
-            "php",
-            "filesystems",
-            "favicon",
-            "js"
-        ],
-        "paths": [
-            "app/Providers/SoloServiceProvider.php"
-        ]
+        "words": ["php", "filesystems", "favicon", "js"],
+        "paths": ["app/Providers/SoloServiceProvider.php"]
     }
 }

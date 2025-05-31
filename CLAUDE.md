@@ -5,17 +5,20 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Development Commands
 
 ### Primary Development
+
 ```bash
 composer run dev  # Starts all services: Laravel server, queue, logs, and Vite
 ```
 
 This single command runs:
+
 - Laravel development server
 - Queue listener for background jobs
 - Laravel Pail for real-time log viewing
 - Vite dev server for frontend assets
 
 ### Alternative Commands
+
 ```bash
 php artisan solo      # Alternative development server
 npm run dev          # Vite dev server only
@@ -23,6 +26,7 @@ npm run build        # Build assets for production
 ```
 
 ### Testing
+
 ```bash
 ./vendor/bin/pest    # Run all tests
 php artisan test     # Alternative test command
@@ -33,6 +37,7 @@ php artisan test     # Alternative test command
 ### Code Quality
 
 #### Quick Commands
+
 ```bash
 composer lint        # Lint both PHP (Pint) and JS/CSS (Prettier)
 composer refactor    # Apply Rector refactoring rules
@@ -40,6 +45,7 @@ composer test        # Run all tests and checks
 ```
 
 #### Individual Tools
+
 ```bash
 ./vendor/bin/pint    # Format PHP code (strict Laravel conventions)
 ./vendor/bin/rector  # Apply code refactoring rules
@@ -50,6 +56,7 @@ npm run lint:fix     # Auto-fix JS/CSS formatting
 ```
 
 #### Test Commands
+
 ```bash
 composer test              # Run complete test suite
 composer test:unit         # Run Pest tests in parallel
@@ -73,9 +80,10 @@ This is **Fission**, an opinionated Laravel starter kit that uses:
 ### Key Architectural Decisions
 
 1. **File-Based Routing**: Pages are in `resources/views/pages/`. The file structure determines routes:
-   - `pages/index.blade.php` → `/`
-   - `pages/profile/index.blade.php` → `/profile`
-   - `pages/auth/login.blade.php` → `/auth/login`
+
+    - `pages/index.blade.php` → `/`
+    - `pages/profile/index.blade.php` → `/profile`
+    - `pages/auth/login.blade.php` → `/auth/login`
 
 2. **Single-File Components**: Livewire Volt allows PHP logic and Blade templates in one file. Components use the `@volt` directive.
 
@@ -106,12 +114,13 @@ This project is configured to work with Claude's Model Context Protocol (MCP) se
 ### Available MCP Servers
 
 1. **Context7** - Provides access to Laravel documentation
-   - Use for Laravel framework questions and best practices
-   - Includes up-to-date Laravel docs and examples
+
+    - Use for Laravel framework questions and best practices
+    - Includes up-to-date Laravel docs and examples
 
 2. **Flux UI** - Provides access to Livewire Flux component documentation
-   - Use for Flux UI component questions
-   - Includes component examples and API references
+    - Use for Flux UI component questions
+    - Includes component examples and API references
 
 ### Ensuring MCP Servers are Running
 
@@ -141,6 +150,7 @@ You are an expert in PHP, Laravel, Livewire Volt, Folio, Blade, Pest, and Tailwi
 ### 2. Project Structure & Architecture
 
 #### General Rules
+
 - **Delete .gitkeep** when adding files to directories
 - **Stick to existing structure** - no new folders without explicit requirement
 - **No DB:: usage** - always use `Model::query()` instead
@@ -148,15 +158,17 @@ You are an expert in PHP, Laravel, Livewire Volt, Folio, Blade, Pest, and Tailwi
 - **Use environment variables** via config files, never `env()` directly
 
 #### Page Creation (Folio)
+
 - **Create new pages** with `php artisan folio:page`
 - **All pages live in** `resources/views/pages/`
 - **File structure determines routes**:
-  - `pages/index.blade.php` → `/`
-  - `pages/about.blade.php` → `/about`
-  - `pages/users/[id].blade.php` → `/users/{id}`
+    - `pages/index.blade.php` → `/`
+    - `pages/about.blade.php` → `/about`
+    - `pages/users/[id].blade.php` → `/users/{id}`
 - **Interactive elements** must be wrapped in `@volt` directive
 
 #### Volt Component Example
+
 ```php
 @volt
 <?php
@@ -182,10 +194,12 @@ $double = computed(fn () => $this->count * 2);
 #### Directory Conventions
 
 **app/Actions**
+
 - Use Actions pattern for reusable business logic
 - Create with `php artisan make:action` (via Essentials package)
 - Name with verb phrases
 - Example implementation:
+
 ```php
 namespace App\Actions;
 
@@ -199,20 +213,25 @@ class CreateTodoAction
 ```
 
 **app/Models**
+
 - Avoid using `$fillable` - use `$guarded = []` instead
 - Always use `SoftDeletes` trait for models:
+
 ```php
 class User extends Model
 {
     use SoftDeletes;
 }
 ```
+
 - Prevent N+1 queries with eager loading:
+
 ```php
 $users = User::with('posts')->get();
 ```
 
 **database/migrations**
+
 - Omit `down()` method in new migrations
 - Use descriptive names with full timestamp
 
@@ -226,6 +245,7 @@ $users = User::with('posts')->get();
 ### 4. Livewire 3 & Volt Standards
 
 #### Key Changes from Livewire 2
+
 - **Namespace**: Components now use `App\Livewire` (not `App\Http\Livewire`)
 - **Events**: Use `$this->dispatch()` (not `emit` or `dispatchBrowserEvent`)
 - **Layout path**: `components.layouts.app` (not `layouts.app`)
@@ -233,16 +253,20 @@ $users = User::with('posts')->get();
 - **Alpine included**: Don't manually include Alpine.js
 
 #### Livewire Best Practices
+
 - **Single root element** in Blade components
 - **Add wire:key** in loops:
+
 ```blade
-@foreach($items as $item)
+@foreach ($items as $item)
     <div wire:key="item-{{ $item->id }}">
         {{ $item->name }}
     </div>
 @endforeach
 ```
+
 - **Use attributes** for event listeners:
+
 ```php
 #[On('todo-created')]
 public function refreshList()
@@ -250,12 +274,14 @@ public function refreshList()
     // ...
 }
 ```
+
 - **Loading states**: Use `wire:loading` and `wire:dirty`
 - **Confirmations**: Use `wire:confirm="Are you sure?"`
 
 ### 5. Testing Requirements
 
 #### General Testing Rules
+
 - **Use Pest PHP** for all tests
 - **Run `composer lint`** after changes
 - **Run `composer test`** before completing tasks
@@ -263,12 +289,14 @@ public function refreshList()
 - **Generate factories** with each model
 
 #### Test Directory Structure
+
 - Folio pages: `tests/Feature/Pages`
 - Volt components: `tests/Feature/Volt`
 - Actions: `tests/Unit/Actions`
 - Models: `tests/Unit/Models`
 
 #### Livewire Test Example
+
 ```php
 use Livewire\Volt\Volt;
 
@@ -291,12 +319,14 @@ test('counter increments', function () {
 ### 7. Code Quality Standards
 
 #### Before Committing
+
 1. Run `composer lint` to fix code style
 2. Run `composer test` to ensure all tests pass
 3. Run `composer refactor` to apply improvements
 4. Check `composer phpstan` for type safety
 
 #### Task Completion Checklist
+
 - [ ] All code follows these standards
 - [ ] Tests written and passing
 - [ ] Frontend assets recompiled if needed (`npm run build`)

@@ -5,9 +5,9 @@
 
 version: 2
 updates:
-  - package-ecosystem: "composer"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-    open-pull-requests-limit: 10
-    versioning-strategy: auto
+    - package-ecosystem: 'composer'
+      directory: '/'
+      schedule:
+          interval: 'weekly'
+      open-pull-requests-limit: 10
+      versioning-strategy: auto
