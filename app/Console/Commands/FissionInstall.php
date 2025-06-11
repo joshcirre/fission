@@ -42,6 +42,13 @@ final class FissionInstall extends Command
         // Initialize Git repository after cleanup if requested
         $this->initializeGitRepository();
 
+        // Run composer fix to ensure all files are properly formatted
+        $this->line('Formatting and fixing code style...');
+        exec('composer fix', $output, $returnCode);
+        if ($returnCode === 0) {
+            $this->info('✓ Code formatting completed successfully.');
+        }
+
         // Create a visually distinct completion message
         $this->displayCompletionMessage();
 
@@ -118,11 +125,6 @@ final class FissionInstall extends Command
                 base_path('composer.json'),
                 json_encode($composerJson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)
             );
-
-            // Format composer.json with Prettier to maintain code style
-            if (file_exists(base_path('node_modules/.bin/prettier'))) {
-                exec('npx prettier --write composer.json');
-            }
 
             // Now run composer update to install it
             $this->line('Running composer update to install Flux Pro...');
