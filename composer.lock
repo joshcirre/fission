@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "09949bb2371f7e33b3467ffba3856155",
+    "content-hash": "6fd6e6e9cd2cbc08be3fcb2c96203829",
     "packages": [
         {
             "name": "brick/math",
@@ -2869,94 +2869,6 @@
                 }
             ],
             "time": "2025-05-08T08:14:37+00:00"
-        },
-        {
-            "name": "panphp/pan",
-            "version": "v0.1.8",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/panphp/pan.git",
-                "reference": "115c70e42a36cc9778dce87b118221d11aadb58a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/panphp/pan/zipball/115c70e42a36cc9778dce87b118221d11aadb58a",
-                "reference": "115c70e42a36cc9778dce87b118221d11aadb58a",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^8.3.0"
-            },
-            "conflict": {
-                "laravel/framework": "<11.0.0"
-            },
-            "require-dev": {
-                "laravel/pint": "^1.18.1",
-                "orchestra/testbench": "^9.5.2",
-                "pestphp/pest": "^3.5.1",
-                "pestphp/pest-plugin-type-coverage": "^3.1.0",
-                "phpstan/phpstan": "^1.12.7",
-                "rector/rector": "^1.2.8",
-                "symfony/var-dumper": "^7.1.6"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Pan\\Adapters\\Laravel\\Providers\\PanServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Pan\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nuno Maduro",
-                    "email": "enunomaduro@gmail.com"
-                },
-                {
-                    "name": "David Hill",
-                    "email": "david@laravel.com"
-                }
-            ],
-            "description": "A simple, lightweight, and privacy-focused product analytics php package.",
-            "keywords": [
-                "analytics",
-                "laravel",
-                "library",
-                "pan",
-                "php"
-            ],
-            "support": {
-                "issues": "https://github.com/panphp/pan/issues",
-                "source": "https://github.com/panphp/pan/tree/v0.1.8"
-            },
-            "funding": [
-                {
-                    "url": "https://www.paypal.com/paypalme/enunomaduro",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/iamdavidhill",
-                    "type": "github"
-                },
-                {
-                    "url": "https://github.com/nunomaduro",
-                    "type": "github"
-                },
-                {
-                    "url": "https://www.patreon.com/nunomaduro",
-                    "type": "patreon"
-                }
-            ],
-            "time": "2024-11-02T02:04:52+00:00"
         },
         {
             "name": "phpoption/phpoption",

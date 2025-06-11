@@ -35,7 +35,6 @@ final class FissionInstall extends Command
         $this->setupEnvFile();
         $this->reloadEnvironment();
         $this->runMigrations();
-        $this->installPan();
         $this->setProjectName();
 
         $this->cleanup();
@@ -274,10 +273,5 @@ final class FissionInstall extends Command
         $app->bootstrapWith([
             \Illuminate\Foundation\Bootstrap\LoadEnvironmentVariables::class,
         ]);
-    }
-
-    private function installPan(): void
-    {
-        $this->call('install:pan');
     }
 }

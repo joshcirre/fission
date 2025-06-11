@@ -49,12 +49,6 @@ parameters:
 			path: tests/Pest.php
 
 		-
-			message: '#^Parameter \#2 \$alias of static method Illuminate\\Support\\Facades\\Blade\:\:component\(\) expects string\|null, Closure given\.$#'
-			identifier: argument.type
-			count: 2
-			path: tests/Pest.php
-
-		-
 			message: '#^Undefined variable\: \$this$#'
 			identifier: variable.undefined
 			count: 1

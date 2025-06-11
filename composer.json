@@ -17,8 +17,7 @@
         "livewire/flux": "^2.0",
         "livewire/livewire": "^3.0",
         "livewire/volt": "^1.6.7",
-        "nunomaduro/essentials": "@dev",
-        "panphp/pan": "^0.1.1"
+        "nunomaduro/essentials": "@dev"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
