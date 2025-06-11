@@ -1,93 +1,62 @@
 parameters:
-    ignoreErrors:
-        -
-            message: '#^Cannot call method hasVerifiedEmail\(\) on App\\Models\\User\|null\.$#'
-            identifier: method.nonObject
-            count: 1
-            path: app/Http/Controllers/Auth/VerifyEmailController.php
+	ignoreErrors:
+		-
+			message: '#^Cannot call method hasVerifiedEmail\(\) on App\\Models\\User\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Http/Controllers/Auth/VerifyEmailController.php
 
-        -
-            message: '#^Cannot call method markEmailAsVerified\(\) on App\\Models\\User\|null\.$#'
-            identifier: method.nonObject
-            count: 1
-            path: app/Http/Controllers/Auth/VerifyEmailController.php
+		-
+			message: '#^Cannot call method markEmailAsVerified\(\) on App\\Models\\User\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Http/Controllers/Auth/VerifyEmailController.php
 
-        -
-            message: '#^Parameter \#1 \$user of class Illuminate\\Auth\\Events\\Verified constructor expects Illuminate\\Contracts\\Auth\\MustVerifyEmail, App\\Models\\User\|null given\.$#'
-            identifier: argument.type
-            count: 1
-            path: app/Http/Controllers/Auth/VerifyEmailController.php
+		-
+			message: '#^Parameter \#1 \$user of class Illuminate\\Auth\\Events\\Verified constructor expects Illuminate\\Contracts\\Auth\\MustVerifyEmail, App\\Models\\User\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/Auth/VerifyEmailController.php
 
-        -
-            message: '#^Parameter \#1 \$credentials of static method Illuminate\\Support\\Facades\\Auth\:\:attempt\(\) expects array, mixed given\.$#'
-            identifier: argument.type
-            count: 1
-            path: app/Livewire/Forms/LoginForm.php
+		-
+			message: '#^Parameter \#1 \$credentials of static method Illuminate\\Support\\Facades\\Auth\:\:attempt\(\) expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Livewire/Forms/LoginForm.php
 
-        -
-            message: '#^Class App\\Models\\User uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
-            identifier: missingType.generics
-            count: 1
-            path: app/Models/User.php
+		-
+			message: '#^Class App\\Models\\User uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/User.php
 
-        -
-            message: '#^PHPDoc type array<int, string> of property App\\Models\\User\:\:\$fillable is not covariant with PHPDoc type list<string> of overridden property Illuminate\\Database\\Eloquent\\Model\:\:\$fillable\.$#'
-            identifier: property.phpDocType
-            count: 1
-            path: app/Models/User.php
+		-
+			message: '#^PHPDoc type array\<int, string\> of property App\\Models\\User\:\:\$fillable is not covariant with PHPDoc type list\<string\> of overridden property Illuminate\\Database\\Eloquent\\Model\:\:\$fillable\.$#'
+			identifier: property.phpDocType
+			count: 1
+			path: app/Models/User.php
 
-        -
-            message: '#^PHPDoc type array<int, string> of property App\\Models\\User\:\:\$hidden is not covariant with PHPDoc type list<string> of overridden property Illuminate\\Database\\Eloquent\\Model\:\:\$hidden\.$#'
-            identifier: property.phpDocType
-            count: 1
-            path: app/Models/User.php
+		-
+			message: '#^PHPDoc type array\<int, string\> of property App\\Models\\User\:\:\$hidden is not covariant with PHPDoc type list\<string\> of overridden property Illuminate\\Database\\Eloquent\\Model\:\:\$hidden\.$#'
+			identifier: property.phpDocType
+			count: 1
+			path: app/Models/User.php
 
+		-
+			message: '#^Cannot call method toBe\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Pest.php
 
-        -
-            message: '#^Call to an undefined method PHPUnit\\Framework\\TestCase\:\:get\(\)\.$#'
-            identifier: method.notFound
-            count: 1
-            path: tests/Feature/ExampleTest.php
+		-
+			message: '#^Parameter \#2 \$alias of static method Illuminate\\Support\\Facades\\Blade\:\:component\(\) expects string\|null, Closure given\.$#'
+			identifier: argument.type
+			count: 2
+			path: tests/Pest.php
 
-        -
-            message: '#^Cannot call method assertStatus\(\) on mixed\.$#'
-            identifier: method.nonObject
-            count: 1
-            path: tests/Feature/ExampleTest.php
-
-        -
-            message: '#^Call to an undefined method PHPUnit\\Framework\\TestCase\:\:actingAs\(\)\.$#'
-            identifier: method.notFound
-            count: 5
-            path: tests/Feature/ProfileTest.php
-
-        -
-            message: '#^Cannot call method assertNoRedirect\(\) on mixed\.$#'
-            identifier: method.nonObject
-            count: 4
-            path: tests/Feature/ProfileTest.php
-
-        -
-            message: '#^Cannot call method assertRedirect\(\) on mixed\.$#'
-            identifier: method.nonObject
-            count: 1
-            path: tests/Feature/ProfileTest.php
-
-        -
-            message: '#^Call to an undefined method PHPUnit\\Framework\\TestCase\:\:assertGuest\(\)\.$#'
-            identifier: method.notFound
-            count: 1
-            path: tests/Feature/ProfileTest.php
-
-        -
-            message: '#^Cannot call method toBe\(\) on mixed\.$#'
-            identifier: method.nonObject
-            count: 1
-            path: tests/Pest.php
-
-        -
-            message: '#^Undefined variable\: \$this$#'
-            identifier: variable.undefined
-            count: 1
-            path: tests/Pest.php
+		-
+			message: '#^Undefined variable\: \$this$#'
+			identifier: variable.undefined
+			count: 1
+			path: tests/Pest.php
 

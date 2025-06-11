@@ -23,7 +23,6 @@
     "require-dev": {
         "fakerphp/faker": "^1.23",
         "larastan/larastan": "^3.4",
-        "laravel/breeze": "^2.2",
         "laravel/pail": "^1.2.2",
         "laravel/pint": "^1.18",
         "laravel/sail": "^1.41",
@@ -120,5 +119,11 @@
         "spatie/ray": "Adds Spatie Ray for debugging",
         "sentry/sentry-laravel": "Adds Sentry error tracking to your project",
         "pirsch-analytics/laravel": "Adds Pirsch analytics to your project"
+    },
+    "repositories": {
+        "flux-pro": {
+            "type": "composer",
+            "url": "https://composer.fluxui.dev"
+        }
     }
 }

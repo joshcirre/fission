@@ -9,17 +9,17 @@
         "test:lint": "prettier --check ."
     },
     "devDependencies": {
-        "@tailwindcss/vite": "^4.0.9",
+        "@tailwindcss/vite": "^4.1.8",
         "autoprefixer": "^10.4.2",
-        "axios": "^1.8.2",
+        "axios": "^1.9.0",
         "concurrently": "^9.0.1",
-        "laravel-vite-plugin": "^1.2.0",
-        "open": "^8.4.0",
+        "laravel-vite-plugin": "^1.3.0",
+        "open": "^10.1.2",
         "prettier": "^3.4.2",
         "prettier-plugin-blade": "^2.1.19",
-        "prettier-plugin-tailwindcss": "^0.6.9",
-        "tailwindcss": "^4.0.7",
-        "vite": "^6.0"
+        "prettier-plugin-tailwindcss": "^0.6.12",
+        "tailwindcss": "^4.1.8",
+        "vite": "^6.3.5"
     },
     "overrides": {
         "laravel-vite-plugin": {
