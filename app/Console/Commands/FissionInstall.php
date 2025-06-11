@@ -42,13 +42,6 @@ final class FissionInstall extends Command
         // Initialize Git repository after cleanup if requested
         $this->initializeGitRepository();
 
-        // Run composer fix to ensure all files are properly formatted
-        $this->line('Formatting and fixing code style...');
-        exec('composer fix', $output, $returnCode);
-        if ($returnCode === 0) {
-            $this->info('✓ Code formatting completed successfully.');
-        }
-
         // Create a visually distinct completion message
         $this->displayCompletionMessage();
 
@@ -68,6 +61,9 @@ final class FissionInstall extends Command
         $this->line('<bg=blue;fg=white>                                                           </>');
         $this->line('<bg=blue;fg=white>  👉 Run `php artisan solo` or `composer run dev`          </>');
         $this->line('<bg=blue;fg=white>    to start the local server.                             </>');
+        $this->line('<bg=blue;fg=white>                                                           </>');
+        $this->line('<bg=blue;fg=white>  💡 npm install will automatically run `composer fix`     </>');
+        $this->line('<bg=blue;fg=white>    to finalize code formatting.                           </>');
         $this->line('<bg=blue;fg=white>                                                           </>');
         $this->line('<bg=blue;fg=white>  Keep creating. 🫡                                        </>');
         $this->line('<bg=blue;fg=white>                                                           </>');

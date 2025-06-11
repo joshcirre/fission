@@ -6,7 +6,8 @@
         "dev": "vite",
         "lint": "prettier --check .",
         "lint:fix": "prettier --write .",
-        "test:lint": "prettier --check ."
+        "test:lint": "prettier --check .",
+        "postinstall": "composer fix"
     },
     "devDependencies": {
         "@tailwindcss/vite": "^4.1.8",
