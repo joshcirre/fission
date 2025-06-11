@@ -119,6 +119,11 @@ final class FissionInstall extends Command
                 json_encode($composerJson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)
             );
 
+            // Format composer.json with Prettier to maintain code style
+            if (file_exists(base_path('node_modules/.bin/prettier'))) {
+                exec('npx prettier --write composer.json');
+            }
+
             // Now run composer update to install it
             $this->line('Running composer update to install Flux Pro...');
             exec('composer update livewire/flux-pro --no-interaction');
