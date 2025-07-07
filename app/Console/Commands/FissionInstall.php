@@ -236,6 +236,27 @@ final class FissionInstall extends Command
         );
 
         $this->updateEnv('APP_URL', $url);
+
+        // Get port number from $defaultUrl
+        $port = parse_url($url, PHP_URL_PORT) ?? '8000';
+
+        // Update package.json
+        $packageJsonPath = base_path('package.json');
+        $packageJson = json_decode(file_get_contents($packageJsonPath));
+        $packageJson->scripts->{"php:serve"} = ($port === null || $port == '8000') 
+        ? "php artisan serve" 
+        : "php artisan serve --port={$port}";
+        file_put_contents($packageJsonPath, json_encode($packageJson, JSON_PRETTY_PRINT));
+
+        // Update composer.json
+        $composerJsonPath = base_path('composer.json');
+        $composerJson = json_decode(file_get_contents($composerJsonPath));
+        // Modify the first command in the "dev" script directly
+        $composerJson->scripts->dev[1] = ($port === null || $port == '8000') 
+            ? "npx concurrently -k -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"php artisan pail\" \"npm run dev\" --names=server,queue,logs,vite" 
+            : "npx concurrently -k -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve --port={$port}\" \"php artisan queue:listen --tries=1\" \"php artisan pail\" \"npm run dev\" --names=server,queue,logs,vite";
+
+        file_put_contents($composerJsonPath, json_encode($composerJson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));        
     }
 
     private function updateEnv(string $key, string $value): void
