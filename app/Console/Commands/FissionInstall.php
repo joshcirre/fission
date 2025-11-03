@@ -59,11 +59,10 @@ final class FissionInstall extends Command
         $this->line('<bg=blue;fg=white>                                                           </>');
         $this->line('<bg=blue;fg=white>  Fission installation completed successfully! ☢️           </>');
         $this->line('<bg=blue;fg=white>                                                           </>');
-        $this->line('<bg=blue;fg=white>  👉 Run `php artisan solo` or `composer run dev`          </>');
-        $this->line('<bg=blue;fg=white>    to start the local server.                             </>');
-        $this->line('<bg=blue;fg=white>                                                           </>');
-        $this->line('<bg=blue;fg=white>  💡 npm install will automatically run `composer fix`     </>');
-        $this->line('<bg=blue;fg=white>    to finalize code formatting.                           </>');
+        $this->line('<bg=blue;fg=white>  Next steps:                                              </>');
+        $this->line('<bg=blue;fg=white>  1. Run `npm install` to install frontend dependencies    </>');
+        $this->line('<bg=blue;fg=white>  2. Run `composer run dev` to start the development       </>');
+        $this->line('<bg=blue;fg=white>     server (includes Laravel, queue, logs, and Vite)      </>');
         $this->line('<bg=blue;fg=white>                                                           </>');
         $this->line('<bg=blue;fg=white>  Keep creating. 🫡                                        </>');
         $this->line('<bg=blue;fg=white>                                                           </>');
@@ -88,17 +87,22 @@ final class FissionInstall extends Command
 
     private function handleFluxActivation(): void
     {
-        $this->line('Checking Flux Pro status...');
+        $this->line('Checking Flux Pro credentials...');
 
-        // Check for auth.json
+        // Check if auth.json already exists
+        if (File::exists(base_path('auth.json'))) {
+            $this->info('Flux Pro credentials already configured.');
+
+            return;
+        }
+
+        // Check for auth.json in home directory
         $sourceAuthJson = $_SERVER['HOME'].'/Code/flux-auth.json';
 
         if (File::exists($sourceAuthJson)) {
-            $this->line('Found auth.json in ~/Code/ directory. Copying to application...');
+            $this->line('Found flux-auth.json in ~/Code/ directory. Copying to application...');
             File::copy($sourceAuthJson, base_path('auth.json'));
-            $this->line('auth.json copied successfully.');
-
-            $this->installFluxPro();
+            $this->info('Flux Pro credentials copied successfully.');
         } else {
             // No auth.json found, ask if they have a Flux Pro account
             $hasFluxPro = confirm('Do you have a Flux Pro account?', true);
@@ -106,52 +110,11 @@ final class FissionInstall extends Command
             if ($hasFluxPro) {
                 $this->line('Running flux:activate command...');
                 $this->call('flux:activate');
-
-                // Check if activation was successful
-                if (File::exists(base_path('auth.json'))) {
-                    $this->installFluxPro();
-                }
             } else {
                 $this->warn('This starter kit requires Flux Pro for the UI components.');
                 $this->comment('You can activate it later by running: php artisan flux:activate');
+                $this->comment('Or manually add your credentials to auth.json');
             }
-        }
-    }
-
-    private function installFluxPro(): void
-    {
-        // Update composer.json to add Flux Pro repository
-        $this->line('Adding Flux Pro repository to composer.json...');
-
-        $composerJson = json_decode(file_get_contents(base_path('composer.json')), true);
-
-        // Add the repository if it doesn't exist
-        if (! isset($composerJson['repositories']['flux-pro'])) {
-            $composerJson['repositories']['flux-pro'] = [
-                'type' => 'composer',
-                'url' => 'https://composer.fluxui.dev',
-            ];
-        }
-
-        // Add flux-pro to dependencies if it doesn't exist
-        if (! isset($composerJson['require']['livewire/flux-pro'])) {
-            $composerJson['require']['livewire/flux-pro'] = '^2.0';
-        }
-
-        // Save the updated composer.json
-        file_put_contents(
-            base_path('composer.json'),
-            json_encode($composerJson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)
-        );
-
-        // Now run composer update to install it
-        $this->line('Running composer update to install Flux Pro...');
-        exec('composer update livewire/flux-pro --no-interaction 2>&1', $output, $returnCode);
-
-        if ($returnCode === 0) {
-            $this->info('Flux Pro activated successfully.');
-        } else {
-            $this->error('Flux Pro installation failed. Please check your credentials and try again.');
         }
     }
 
@@ -245,8 +208,14 @@ final class FissionInstall extends Command
             label: 'What is the URL of your project?',
             placeholder: $defaultUrl,
             default: $defaultUrl,
-            required: true
+            required: true,
+            validate: fn (string $value): ?string => filter_var($value, FILTER_VALIDATE_URL)
+                ? null
+                : 'Please enter a valid URL'
         );
+
+        // Remove trailing slash to prevent issues
+        $url = mb_rtrim($url, '/');
 
         $this->updateEnv('APP_URL', $url);
     }

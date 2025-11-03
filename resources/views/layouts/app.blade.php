@@ -65,20 +65,14 @@ new class extends Component {
             <flux:dropdown position="bottom" align="end">
                 <flux:button icon-trailing="chevron-down" variant="ghost">{{ auth()->user()->name }}</flux:button>
 
-                @volt('layout.navigation.profile.dropdown')
-                    <flux:navmenu>
-                        <flux:navmenu.item
-                            href="{{ route('profile.update') }}"
-                            wire:navigate
-                            icon="building-storefront"
-                        >
-                            Profile
-                        </flux:navmenu.item>
-                        <flux:navmenu.item wire:click="logout" icon="arrow-right-start-on-rectangle">
-                            Logout
-                        </flux:navmenu.item>
-                    </flux:navmenu>
-                @endvolt
+                <flux:navmenu>
+                    <flux:navmenu.item href="{{ route('profile.update') }}" wire:navigate icon="building-storefront">
+                        Profile
+                    </flux:navmenu.item>
+                    <flux:navmenu.item wire:click="logout" icon="arrow-right-start-on-rectangle">
+                        Logout
+                    </flux:navmenu.item>
+                </flux:navmenu>
             </flux:dropdown>
         </flux:header>
 
