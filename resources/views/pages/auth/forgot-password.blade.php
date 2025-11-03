@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Password;
-use Livewire\Volt\Component;
+use Livewire\Component;
 
 use function Laravel\Folio\name;
 

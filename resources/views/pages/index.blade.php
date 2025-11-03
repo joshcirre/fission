@@ -1,7 +1,7 @@
 <?php
 use function Laravel\Folio\{middleware, name};
 use App\Livewire\Actions\Logout;
-use Livewire\Volt\Component;
+use Livewire\Component;
 
 middleware(['auth', 'verified']);
 name('dashboard');
