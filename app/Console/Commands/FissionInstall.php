@@ -42,6 +42,9 @@ final class FissionInstall extends Command
         // Initialize Git repository after cleanup if requested
         $this->initializeGitRepository();
 
+        // Generate PHPStan baseline for test code
+        $this->generatePhpStanBaseline();
+
         // Create a visually distinct completion message
         $this->displayCompletionMessage();
 
@@ -187,7 +190,10 @@ final class FissionInstall extends Command
     private function setProjectName(): void
     {
         // Only set project name if it's still the default "Laravel"
-        if (env('APP_NAME') !== 'Laravel') {
+        $currentAppName = env('APP_NAME');
+        $currentAppUrl = env('APP_URL');
+
+        if ($currentAppName !== 'Laravel' && $currentAppName !== null) {
             $this->line('Project name already set. Skipping.');
 
             return;
@@ -203,21 +209,26 @@ final class FissionInstall extends Command
 
         $this->updateEnv('APP_NAME', $name);
 
-        $defaultUrl = 'http://localhost:8000';
-        $url = text(
-            label: 'What is the URL of your project?',
-            placeholder: $defaultUrl,
-            default: $defaultUrl,
-            required: true,
-            validate: fn (string $value): ?string => filter_var($value, FILTER_VALIDATE_URL)
-                ? null
-                : 'Please enter a valid URL'
-        );
+        // Only ask for URL if it's not already set or is still default
+        if (in_array($currentAppUrl, [null, 'http://localhost', 'http://localhost:8000'], true)) {
+            $defaultUrl = 'http://localhost:8000';
+            $url = text(
+                label: 'What is the URL of your project?',
+                placeholder: $defaultUrl,
+                default: $defaultUrl,
+                required: true,
+                validate: fn (string $value): ?string => filter_var($value, FILTER_VALIDATE_URL)
+                    ? null
+                    : 'Please enter a valid URL'
+            );
 
-        // Remove trailing slash to prevent issues
-        $url = mb_rtrim($url, '/');
+            // Remove trailing slash to prevent issues
+            $url = mb_rtrim($url, '/');
 
-        $this->updateEnv('APP_URL', $url);
+            $this->updateEnv('APP_URL', $url);
+        } else {
+            $this->line('APP_URL already configured: '.$currentAppUrl);
+        }
     }
 
     private function updateEnv(string $key, string $value): void
@@ -258,5 +269,18 @@ final class FissionInstall extends Command
         $app->bootstrapWith([
             \Illuminate\Foundation\Bootstrap\LoadEnvironmentVariables::class,
         ]);
+    }
+
+    private function generatePhpStanBaseline(): void
+    {
+        $this->line('Generating PHPStan baseline for test code...');
+
+        exec('./vendor/bin/phpstan analyse --memory-limit=256M --generate-baseline 2>&1', $output, $returnCode);
+
+        if ($returnCode === 0) {
+            $this->info('PHPStan baseline generated successfully.');
+        } else {
+            $this->comment('PHPStan baseline generation skipped.');
+        }
     }
 }

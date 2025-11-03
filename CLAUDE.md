@@ -121,41 +121,40 @@ Some commands require increased memory limits:
 
 This is **Fission**, an opinionated Laravel starter kit that uses:
 
-- **Laravel 12.x** with file-based routing (Folio)
-- **Livewire 3.x** with Volt single-file components
-- **Livewire Flux** UI component library (requires license)
+- **Laravel 12.x** with Livewire 4 full-page components
+- **Livewire 4 beta** with single-file components
+- **Livewire Flux Pro** UI component library (requires license)
 - **SQLite** database by default
 - **Tailwind CSS 4.x** with Vite
 
 ### Key Architectural Decisions
 
-1. **File-Based Routing**: Pages are in `resources/views/pages/`. The file structure determines routes:
+1. **Livewire Full-Page Components**: Pages are single-file Livewire components in `resources/views/pages/` with the ⚡ emoji prefix. Routes are explicitly defined in `routes/web.php`:
 
-    - `pages/index.blade.php` → `/`
-    - `pages/profile/index.blade.php` → `/profile`
-    - `pages/auth/login.blade.php` → `/auth/login`
+    - `⚡dashboard.blade.php` with `Route::livewire('/', 'pages::dashboard')` → `/`
+    - `⚡index.blade.php` in `profile/` with `Route::livewire('/profile', 'pages::profile.index')` → `/profile`
+    - `⚡login.blade.php` in `auth/` with `Route::livewire('/auth/login', 'pages::auth.login')` → `/auth/login`
 
-2. **Single-File Components**: Livewire Volt allows PHP logic and Blade templates in one file. Components use the `@volt` directive.
+2. **Single-File Components**: Livewire 4 allows PHP logic and Blade templates in one file using anonymous classes extending `Component`.
 
 3. **Authentication**: Pre-built auth system similar to Laravel Breeze with login, registration, password reset, and email verification.
 
-4. **UI Components**: Uses Livewire Flux (premium) for consistent UI components. Fallback to standard Blade components if Flux is unavailable.
+4. **UI Components**: Uses Livewire Flux Pro for consistent UI components.
 
 ### Important Service Providers
 
-- **FolioServiceProvider**: Configures page routes and middleware
-- **VoltServiceProvider**: Sets up Volt component discovery
 - **SoloServiceProvider**: Configures the Solo development server
 
 ### Development Workflow
 
-1. Routes are automatically created by adding files to `resources/views/pages/`
-2. Use Volt for interactive components within pages
-3. Flux components provide consistent UI (e.g., `<flux:button>`, `<flux:input>`)
-4. Tests use Pest PHP with Laravel-specific helpers
-5. Code style is enforced via Pint with strict settings
-6. Code quality is maintained via Rector with Laravel-optimized rules
-7. Static analysis is enforced via PHPStan at max level with Larastan
+1. Create routes in `routes/web.php` using `Route::livewire()` pointing to page components
+2. Create page components using `php artisan make:livewire pages::<name>`
+3. Use Livewire 4 single-file components with `#[Layout()]` attributes
+4. Flux Pro components provide consistent UI (e.g., `<flux:button>`, `<flux:input>`, `<flux:card>`)
+5. Tests use Pest PHP with Livewire testing helpers
+6. Code style is enforced via Pint with strict settings
+7. Code quality is maintained via Rector with Laravel-optimized rules
+8. Static analysis is enforced via PHPStan at max level with Larastan
 
 ## MCP Servers for Claude
 
@@ -186,15 +185,15 @@ These servers provide Claude with direct access to relevant documentation and to
 
 ## Coding Standards & Best Practices
 
-You are an expert in PHP, Laravel, Livewire Volt, Folio, Blade, Pest, and Tailwind CSS.
+You are an expert in PHP, Laravel, Livewire 4, Blade, Pest, and Tailwind CSS.
 
 ### 1. Language & Framework Requirements
 
 - **Use PHP 8.2+ features** (match version in composer.json)
 - **Follow pint.json coding rules** strictly
 - **Enforce strict types** and array shapes via PHPStan
-- **Use Livewire Volt** for interactive components with `@volt` directive
-- **Use Folio** for file-based routing in `resources/views/pages`
+- **Use Livewire 4 full-page components** for all pages
+- **Define routes explicitly** in `routes/web.php` using `Route::livewire()`
 - **Leverage MCP servers** (Context7 for Laravel, Flux UI for components)
 
 ### 2. Project Structure & Architecture
@@ -207,23 +206,27 @@ You are an expert in PHP, Laravel, Livewire Volt, Folio, Blade, Pest, and Tailwi
 - **No dependency changes** without explicit approval
 - **Use environment variables** via config files, never `env()` directly
 
-#### Page Creation (Folio)
+#### Page Creation (Livewire 4)
 
-- **Create new pages** with `php artisan folio:page`
-- **All pages live in** `resources/views/pages/`
-- **File structure determines routes**:
-    - `pages/index.blade.php` → `/`
-    - `pages/about.blade.php` → `/about`
-    - `pages/users/[id].blade.php` → `/users/{id}`
-- **Interactive elements** must be wrapped in `@volt` directive
+- **Create new pages** with `php artisan make:livewire pages::<name>`
+- **All pages live in** `resources/views/pages/` with the ⚡ emoji prefix
+- **Routes are explicitly defined** in `routes/web.php`:
+    - `⚡dashboard.blade.php` → `Route::livewire('/', 'pages::dashboard')->name('dashboard');`
+    - `⚡about.blade.php` → `Route::livewire('/about', 'pages::about')->name('about');`
+    - `⚡user-show.blade.php` → `Route::livewire('/users/{id}', 'pages::user-show')->name('users.show');`
+- **Components use `#[Layout()]` attribute** to specify the layout
 
-#### Volt Component Example
+#### Livewire 4 Component Example
 
 ```php
 <?php
-use Livewire\Volt\Component;
 
-new class extends Component {
+use Livewire\Attributes\Layout;
+use Livewire\Component;
+
+new
+#[Layout('layouts::app')]
+class extends Component {
     public int $count = 0;
 
     public function increment(): void
@@ -240,16 +243,16 @@ new class extends Component {
     {
         return $this->count * 2;
     }
-}; ?>
+};
 
-@volt('counter')
-    <div>
-        <h1>Count: {{ $count }}</h1>
-        <h2>Double: {{ $this->double }}</h2>
-        <button wire:click="increment">+</button>
-        <button wire:click="decrement">-</button>
-    </div>
-@endvolt
+?>
+
+<div>
+    <h1>Count: {{ $count }}</h1>
+    <h2>Double: {{ $this->double }}</h2>
+    <button wire:click="increment">+</button>
+    <button wire:click="decrement">-</button>
+</div>
 ```
 
 #### Directory Conventions
@@ -351,18 +354,18 @@ public function refreshList()
 
 #### Test Directory Structure
 
-- Folio pages: `tests/Feature/Pages`
-- Volt components: `tests/Feature/Volt`
+- Livewire pages: `tests/Feature/Pages`
+- Auth features: `tests/Feature/Auth`
 - Actions: `tests/Unit/Actions`
 - Models: `tests/Unit/Models`
 
-#### Livewire Test Example
+#### Livewire 4 Test Example
 
 ```php
-use Livewire\Volt\Volt;
+use Livewire\Livewire;
 
 test('counter increments', function () {
-    Volt::test('counter')
+    Livewire::test('pages::counter')
         ->assertSee('Count: 0')
         ->call('increment')
         ->assertSee('Count: 1');
@@ -416,7 +419,7 @@ These commands ensure code quality and prevent issues. Never commit without runn
 - **Implement proper pagination** for large datasets
 - **Use batch operations** when processing multiple records
 
-Remember: Always use `php artisan folio:page` for new pages, wrap interactive elements in `@volt`, and follow Livewire 3 conventions. Refer to Context7 MCP for Laravel docs and Flux UI MCP for component documentation.
+Remember: Always use `php artisan make:livewire pages::<name>` for new pages, add routes using `Route::livewire()` in `routes/web.php`, use `#[Layout()]` attributes for layouts, and follow Livewire 4 conventions. Refer to Context7 MCP for Laravel docs and Flux UI MCP for component documentation.
 
 # important-instruction-reminders
 
@@ -429,46 +432,64 @@ NEVER proactively create documentation files (\*.md) or README files. Only creat
 
 ### 1. Creating a New Page
 
-**Use Folio for automatic routing:**
+**Use Livewire 4 full-page components:**
 
 ```bash
-php artisan folio:page products
-# Creates: resources/views/pages/products.blade.php → /products
+php artisan make:livewire pages::products
+# Creates: resources/views/pages/⚡products.blade.php
+# Then add route to routes/web.php
 
-php artisan folio:page products/[id]
-# Creates: resources/views/pages/products/[id].blade.php → /products/{id}
+php artisan make:livewire pages::product-show
+# Creates: resources/views/pages/⚡product-show.blade.php
+# Then add route to routes/web.php with parameter
 ```
 
 **Basic page structure:**
 
 ```php
 <?php
-use function Laravel\Folio\name;
 
-name('products.index');
+use Livewire\Attributes\Layout;
+use Livewire\Component;
+
+new
+#[Layout('layouts::app')]
+class extends Component {
+    // Component logic here
+};
+
 ?>
 
-<x-layouts.app>
+<div>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <h1 class="text-2xl font-bold mb-6">Products</h1>
             <!-- Page content -->
         </div>
     </div>
-</x-layouts.app>
+</div>
 ```
 
-**With Volt interactivity:**
+**Add route to routes/web.php:**
+
+```php
+Route::livewire('/products', 'pages::products')
+    ->name('products.index')
+    ->middleware(['auth', 'verified']);
+```
+
+**With interactivity:**
 
 ```php
 <?php
-use function Laravel\Folio\name;
-use Livewire\Volt\Component;
+
+use Livewire\Attributes\Layout;
+use Livewire\Component;
 use App\Models\Product;
 
-name('products.index');
-
-new class extends Component {
+new
+#[Layout('layouts::app')]
+class extends Component {
     public string $search = '';
 
     public function getFilteredProductsProperty()
@@ -477,28 +498,28 @@ new class extends Component {
             ->when($this->search, fn($q) => $q->where('name', 'like', "%{$this->search}%"))
             ->get();
     }
-}; ?>
+};
 
-<x-layouts.app>
-    @volt('pages.products.index')
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <h1 class="text-2xl font-bold mb-6">Products</h1>
+?>
 
-                <flux:input wire:model.live="search" placeholder="Search products..." />
+<div>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <h1 class="text-2xl font-bold mb-6">Products</h1>
 
-                <div class="grid gap-4 mt-6">
-                    @foreach($this->filteredProducts as $product)
-                        <flux:card wire:key="product-{{ $product->id }}">
-                            <h3>{{ $product->name }}</h3>
-                            <p>{{ $product->description }}</p>
-                        </flux:card>
-                    @endforeach
-                </div>
+            <flux:input wire:model.live="search" placeholder="Search products..." />
+
+            <div class="grid gap-4 mt-6">
+                @foreach($this->filteredProducts as $product)
+                    <flux:card wire:key="product-{{ $product->id }}">
+                        <h3>{{ $product->name }}</h3>
+                        <p>{{ $product->description }}</p>
+                    </flux:card>
+                @endforeach
             </div>
         </div>
-    @endvolt
-</x-layouts.app>
+    </div>
+</div>
 ```
 
 ### 2. Creating a New Model with Factory
