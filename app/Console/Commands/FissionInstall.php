@@ -98,47 +98,60 @@ final class FissionInstall extends Command
             File::copy($sourceAuthJson, base_path('auth.json'));
             $this->line('auth.json copied successfully.');
 
-            // Update composer.json to add Flux Pro repository
-            $this->line('Adding Flux Pro repository to composer.json...');
+            $this->installFluxPro();
+        } else {
+            // No auth.json found, ask if they have a Flux Pro account
+            $hasFluxPro = confirm('Do you have a Flux Pro account?', true);
 
-            $composerJson = json_decode(file_get_contents(base_path('composer.json')), true);
+            if ($hasFluxPro) {
+                $this->line('Running flux:activate command...');
+                $this->call('flux:activate');
 
-            // Add the repository if it doesn't exist
-            if (! isset($composerJson['repositories']['flux-pro'])) {
-                $composerJson['repositories']['flux-pro'] = [
-                    'type' => 'composer',
-                    'url' => 'https://composer.fluxui.dev',
-                ];
+                // Check if activation was successful
+                if (File::exists(base_path('auth.json'))) {
+                    $this->installFluxPro();
+                }
+            } else {
+                $this->warn('This starter kit requires Flux Pro for the UI components.');
+                $this->comment('You can activate it later by running: php artisan flux:activate');
             }
+        }
+    }
 
-            // Add flux-pro to dependencies if it doesn't exist
-            if (! isset($composerJson['require']['livewire/flux-pro'])) {
-                $composerJson['require']['livewire/flux-pro'] = '^2.0';
-            }
+    private function installFluxPro(): void
+    {
+        // Update composer.json to add Flux Pro repository
+        $this->line('Adding Flux Pro repository to composer.json...');
 
-            // Save the updated composer.json
-            file_put_contents(
-                base_path('composer.json'),
-                json_encode($composerJson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)
-            );
+        $composerJson = json_decode(file_get_contents(base_path('composer.json')), true);
 
-            // Now run composer update to install it
-            $this->line('Running composer update to install Flux Pro...');
-            exec('composer update livewire/flux-pro --no-interaction');
-
-            $this->line('Flux Pro activated successfully.');
-
-            return;
+        // Add the repository if it doesn't exist
+        if (! isset($composerJson['repositories']['flux-pro'])) {
+            $composerJson['repositories']['flux-pro'] = [
+                'type' => 'composer',
+                'url' => 'https://composer.fluxui.dev',
+            ];
         }
 
-        // No auth.json found, ask if they have a Flux Pro account
-        $hasFluxPro = confirm('Do you have a Flux Pro account?', false);
+        // Add flux-pro to dependencies if it doesn't exist
+        if (! isset($composerJson['require']['livewire/flux-pro'])) {
+            $composerJson['require']['livewire/flux-pro'] = '^2.0';
+        }
 
-        if ($hasFluxPro) {
-            $this->line('Running flux:activate command...');
-            $this->call('flux:activate');
+        // Save the updated composer.json
+        file_put_contents(
+            base_path('composer.json'),
+            json_encode($composerJson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)
+        );
+
+        // Now run composer update to install it
+        $this->line('Running composer update to install Flux Pro...');
+        exec('composer update livewire/flux-pro --no-interaction 2>&1', $output, $returnCode);
+
+        if ($returnCode === 0) {
+            $this->info('Flux Pro activated successfully.');
         } else {
-            $this->comment('This starter kit uses some Flux Pro components, however, feel free to remove them if needed.');
+            $this->error('Flux Pro installation failed. Please check your credentials and try again.');
         }
     }
 
@@ -244,8 +257,8 @@ final class FissionInstall extends Command
 
         if (File::exists($path)) {
             file_put_contents($path, preg_replace(
-                "/^{$key}=.*/m",
-                "{$key}=\"{$value}\"",
+                sprintf('/^%s=.*/m', $key),
+                sprintf('%s="%s"', $key, $value),
                 file_get_contents($path)
             ));
         }

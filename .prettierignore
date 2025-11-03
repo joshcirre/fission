@@ -9,6 +9,8 @@
 /.vscode
 /.fleet
 /.zed
+/.junie
+CLAUDE.md
 *.log
 .env
 .env.*

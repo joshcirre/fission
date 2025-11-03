@@ -4,6 +4,9 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, process.cwd(), '')
+    // Clean up APP_URL: remove trailing slash and ensure it's a valid URL
+    const appUrl = env.APP_URL ? env.APP_URL.replace(/\/$/, '') : 'http://localhost:8000'
+
     return {
         plugins: [
             laravel({
@@ -13,7 +16,7 @@ export default defineConfig(({ mode }) => {
             tailwindcss(),
         ],
         server: {
-            open: env.APP_URL || 'http://localhost:8000',
+            open: appUrl,
         },
     }
 })

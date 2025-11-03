@@ -43,6 +43,72 @@ parameters:
 			path: app/Models/User.php
 
 		-
+			message: '#^Cannot call method middleware\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: routes/web.php
+
+		-
+			message: '#^Cannot call method name\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 7
+			path: routes/web.php
+
+		-
+			message: '#^Parameter \#1 \$view of function view expects view\-string\|null, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: routes/web.php
+
+		-
+			message: '#^Cannot access property \$password on App\\Models\\User\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/Auth/ResetPasswordTest.php
+
+		-
+			message: '#^Cannot call method middleware\(\) on Illuminate\\Routing\\Route\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Feature/Pages/DashboardTest.php
+
+		-
+			message: '#^Cannot access property \$email_verified_at on App\\Models\\User\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/ProfileTest.php
+
+		-
+			message: '#^Cannot access property \$password on App\\Models\\User\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/ProfileTest.php
+
+		-
+			message: '#^Cannot call method assertHasErrors\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 7
+			path: tests/Feature/ProfileTest.php
+
+		-
+			message: '#^Cannot call method assertRedirect\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Feature/ProfileTest.php
+
+		-
+			message: '#^Cannot call method call\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 11
+			path: tests/Feature/ProfileTest.php
+
+		-
+			message: '#^Cannot call method set\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 23
+			path: tests/Feature/ProfileTest.php
+
+		-
 			message: '#^Cannot call method toBe\(\) on mixed\.$#'
 			identifier: method.nonObject
 			count: 1

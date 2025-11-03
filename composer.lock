@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "073890d887efa35c5f24ca0e2813c344",
+    "content-hash": "cc2438325fc4a8e0e5418d58a96fd44f",
     "packages": [
         {
             "name": "brick/math",
@@ -1053,79 +1053,6 @@
             "time": "2025-08-22T14:27:06+00:00"
         },
         {
-            "name": "laravel/folio",
-            "version": "v1.1.10",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laravel/folio.git",
-                "reference": "593e2b53104008ec019c0079355dcd878a1f5d1e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laravel/folio/zipball/593e2b53104008ec019c0079355dcd878a1f5d1e",
-                "reference": "593e2b53104008ec019c0079355dcd878a1f5d1e",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/console": "^10.19|^11.0|^12.0",
-                "illuminate/container": "^10.19|^11.0|^12.0",
-                "illuminate/contracts": "^10.19|^11.0|^12.0",
-                "illuminate/filesystem": "^10.19|^11.0|^12.0",
-                "illuminate/pipeline": "^10.19|^11.0|^12.0",
-                "illuminate/routing": "^10.19|^11.0|^12.0",
-                "illuminate/support": "^10.19|^11.0|^12.0",
-                "illuminate/view": "^10.19|^11.0|^12.0",
-                "php": "^8.1",
-                "spatie/once": "^3.1",
-                "symfony/console": "^6.0|^7.0"
-            },
-            "require-dev": {
-                "orchestra/testbench": "^8.6.0|^9.0|^10.0",
-                "pestphp/pest": "^2.5|^3.0",
-                "phpstan/phpstan": "^1.10"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Laravel\\Folio\\FolioServiceProvider"
-                    ]
-                },
-                "branch-alias": {
-                    "dev-master": "1.x-dev"
-                }
-            },
-            "autoload": {
-                "files": [
-                    "functions.php"
-                ],
-                "psr-4": {
-                    "Laravel\\Folio\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Taylor Otwell",
-                    "email": "taylor@laravel.com"
-                }
-            ],
-            "description": "Page based routing for Laravel.",
-            "homepage": "https://github.com/laravel/folio",
-            "keywords": [
-                "laravel",
-                "routing"
-            ],
-            "support": {
-                "issues": "https://github.com/laravel/folio/issues",
-                "source": "https://github.com/laravel/folio"
-            },
-            "time": "2025-01-26T19:34:47+00:00"
-        },
-        {
             "name": "laravel/framework",
             "version": "v12.36.1",
             "source": {
@@ -2146,6 +2073,63 @@
                 "source": "https://github.com/livewire/flux/tree/v2.6.1"
             },
             "time": "2025-10-28T21:12:05+00:00"
+        },
+        {
+            "name": "livewire/flux-pro",
+            "version": "2.6.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.fluxui.dev/download/a0397651-df75-43ac-b21a-8a5ac8ad46b4/flux-pro-2.6.1.zip",
+                "reference": "12a6570b061c858739b40a9509424c4b4cc42b62",
+                "shasum": "10e8f4dad0b0232e5b47ce291ef1c55610be5298"
+            },
+            "require": {
+                "illuminate/console": "^10.0|^11.0|^12.0",
+                "illuminate/support": "^10.0|^11.0|^12.0",
+                "illuminate/view": "^10.0|^11.0|^12.0",
+                "laravel/prompts": "^0.1.24|^0.2|^0.3",
+                "livewire/flux": "2.6.1|dev-main",
+                "livewire/livewire": "^3.6.2|^4.0",
+                "php": "^8.1",
+                "symfony/console": "^6.0|^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "Flux": "FluxPro\\FluxPro"
+                    },
+                    "providers": [
+                        "FluxPro\\FluxProServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "FluxPro\\": "src/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Caleb Porzio",
+                    "email": "calebporzio@gmail.com"
+                }
+            ],
+            "description": "The pro version of Flux, the official UI component library for Livewire.",
+            "keywords": [
+                "components",
+                "flux",
+                "laravel",
+                "livewire",
+                "ui"
+            ],
+            "time": "2025-10-28T21:23:07+00:00"
         },
         {
             "name": "livewire/livewire",

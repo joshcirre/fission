@@ -10,11 +10,7 @@ use Livewire\Attributes\Layout;
 use Livewire\Attributes\Locked;
 use Livewire\Component;
 
-use function Laravel\Folio\name;
-
-name('password.reset');
-
-new class extends Component {
+new #[Layout('layouts::auth')] class extends Component {
     #[Locked]
     public string $token = '';
     public string $email = '';
@@ -69,52 +65,52 @@ new class extends Component {
 
         $this->redirectRoute('login', navigate: true);
     }
-}; ?>
+};
 
-<x-layouts.auth>
+?>
+
+<div>
     <flux:card>
-        @volt('pages.auth.reset-password')
-            <form wire:submit="resetPassword" class="space-y-6">
-                <div>
-                    <flux:heading size="lg">Reset your password</flux:heading>
-                    <flux:subheading>Enter your new password</flux:subheading>
-                </div>
+        <form wire:submit="resetPassword" class="space-y-6">
+            <div>
+                <flux:heading size="lg">Reset your password</flux:heading>
+                <flux:subheading>Enter your new password</flux:subheading>
+            </div>
 
-                <div class="space-y-6">
-                    <flux:input
-                        wire:model="email"
-                        label="Email"
-                        type="email"
-                        placeholder="Your email address"
-                        required
-                        autofocus
-                    />
-                    <flux:input
-                        wire:model="password"
-                        label="New Password"
-                        type="password"
-                        placeholder="Your new password"
-                        required
-                    />
-                    <flux:input
-                        wire:model="password_confirmation"
-                        label="Confirm Password"
-                        type="password"
-                        placeholder="Confirm your new password"
-                        required
-                    />
-                </div>
+            <div class="space-y-6">
+                <flux:input
+                    wire:model="email"
+                    label="Email"
+                    type="email"
+                    placeholder="Your email address"
+                    required
+                    autofocus
+                />
+                <flux:input
+                    wire:model="password"
+                    label="New Password"
+                    type="password"
+                    placeholder="Your new password"
+                    required
+                />
+                <flux:input
+                    wire:model="password_confirmation"
+                    label="Confirm Password"
+                    type="password"
+                    placeholder="Confirm your new password"
+                    required
+                />
+            </div>
 
-                <div class="space-y-2">
-                    <flux:button variant="primary" class="w-full" type="submit">
-                        {{ __('Reset Password') }}
-                    </flux:button>
+            <div class="space-y-2">
+                <flux:button variant="primary" class="w-full" type="submit">
+                    {{ __('Reset Password') }}
+                </flux:button>
 
-                    <flux:button variant="ghost" class="w-full" href="{{ route('login') }}" wire:navigate>
-                        Back to login
-                    </flux:button>
-                </div>
-            </form>
-        @endvolt
+                <flux:button variant="ghost" class="w-full" href="{{ route('login') }}" wire:navigate>
+                    Back to login
+                </flux:button>
+            </div>
+        </form>
     </flux:card>
-</x-layouts.auth>
+</div>
