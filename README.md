@@ -7,7 +7,7 @@
 </p>
 
 > [!IMPORTANT]
-> This is an opinionated starter kit created by me (Josh Cirre) using Laravel Folio, Livewire Volt, and Livewire Flux. While PRs are welcome, this is designed to fit the needs of one person.
+> This is an opinionated starter kit created by me (Josh Cirre) using Laravel Livewire and Livewire Flux. While PRs are welcome, this is designed to fit the needs of one person.
 
 > [!TIP]
 > To get up and running quickly, use the new Laravel installer with the using option: `laravel new my-project --using=joshcirre/fission`

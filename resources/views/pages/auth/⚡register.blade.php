@@ -52,20 +52,13 @@ new #[Layout('layouts::auth')] class extends Component {
 
                 <flux:input label="Password" type="password" placeholder="Your password" wire:model="password" />
 
-                <flux:input
-                    label="Confirm Password"
-                    type="password"
-                    placeholder="Confirm your password"
-                    wire:model="password_confirmation"
-                />
+                <flux:input label="Confirm Password" type="password" placeholder="Confirm your password" wire:model="password_confirmation" />
             </div>
 
             <div class="space-y-2">
                 <flux:button variant="primary" class="w-full" type="submit">Register</flux:button>
 
-                <flux:button variant="ghost" class="w-full" href="{{ route('login') }}" wire:navigate>
-                    Already have an account?
-                </flux:button>
+                <flux:button variant="ghost" class="w-full" href="{{ route('login') }}" wire:navigate>Already have an account?</flux:button>
             </div>
         </form>
     </flux:card>

@@ -44,14 +44,7 @@ new #[Layout('layouts::auth')] class extends Component {
             </div>
 
             <div class="space-y-6">
-                <flux:input
-                    wire:model="email"
-                    label="Email"
-                    type="email"
-                    placeholder="Your email address"
-                    required
-                    autofocus
-                />
+                <flux:input wire:model="email" label="Email" type="email" placeholder="Your email address" required autofocus />
             </div>
 
             <div class="space-y-2">
@@ -59,9 +52,7 @@ new #[Layout('layouts::auth')] class extends Component {
                     {{ __('Email Password Reset Link') }}
                 </flux:button>
 
-                <flux:button variant="ghost" class="w-full" href="{{ route('login') }}" wire:navigate>
-                    Back to login
-                </flux:button>
+                <flux:button variant="ghost" class="w-full" href="{{ route('login') }}" wire:navigate>Back to login</flux:button>
             </div>
         </form>
     </flux:card>
