@@ -26,17 +26,36 @@ A license for Flux (technically, "Flux Pro") is required to use Fission. Fission
 
 ## Installation
 
-This project includes a custom installation script that streamlines the setup process. If you are not using the Laravel installer, you can still use this script to install Fission. Use the composer create command to do so: `composer create-project joshcirre/fission myapp`.
+### Quick Start (Recommended)
 
-- Installs required Composer packages
-- Sets up environment (.env file)
-- Activates Flux Pro (skipped if auth file found)
-- Installs NPM dependencies
-- Generates application key
-- Offers to run database migrations
-- Configures project name and URL
-- Offers to remove installation files
-- Provides instructions to start local development server
+```bash
+laravel new my-project --using=joshcirre/fission
+```
+
+### Manual Installation
+
+```bash
+composer create-project joshcirre/fission my-project
+cd my-project
+composer setup
+```
+
+### Cloning the Repository
+
+```bash
+git clone https://github.com/joshcirre/fission.git my-project
+cd my-project
+composer install
+composer setup
+```
+
+The `composer setup` command handles:
+- Environment configuration (.env)
+- Application key generation
+- SQLite database creation
+- Database migrations
+- NPM dependency installation
+- Asset building
 
 ## Development
 
