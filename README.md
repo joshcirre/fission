@@ -38,6 +38,48 @@ This project includes a custom installation script that streamlines the setup pr
 - Offers to remove installation files
 - Provides instructions to start local development server
 
+## Development
+
+```bash
+composer dev          # Start server, queue, logs, and Vite
+```
+
+### Code Quality
+
+Fission enforces strict code quality through automated tooling:
+
+```bash
+composer fix          # Fix everything: types, refactoring, formatting
+composer test         # Run all checks: tests, linting, types, refactoring
+```
+
+| Command | Purpose |
+|---------|---------|
+| `composer fix` | PHPStan → Rector → Prettier → Pint |
+| `composer test` | Typos → Pest → Lint check → PHPStan → Rector dry-run |
+| `composer lint` | Pint + Prettier (quick format) |
+| `composer refactor` | Rector only |
+
+### Individual Test Commands
+
+```bash
+composer test:unit          # Pest tests (parallel)
+composer test:unit:coverage # Pest with coverage
+composer test:types         # PHPStan analysis
+composer test:lint          # Check formatting (no fix)
+composer test:refactor      # Rector dry-run
+composer test:typos         # Peck typo checker
+```
+
+### Tooling Stack
+
+- **[Pest](https://pestphp.com)** - Testing framework
+- **[PHPStan](https://phpstan.org)** + Larastan - Static analysis (max level)
+- **[Rector](https://getrector.com)** - Automated refactoring
+- **[Pint](https://laravel.com/docs/pint)** - PHP code style (strict Laravel)
+- **[Prettier](https://prettier.io)** - JS/CSS formatting
+- **[Peck](https://github.com/peckphp/peck)** - Typo detection
+
 ## License
 
 The Fission starter kit is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

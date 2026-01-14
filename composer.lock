@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cc2438325fc4a8e0e5418d58a96fd44f",
+    "content-hash": "428d834f75805b5b34f8f2eec7bb70f7",
     "packages": [
         {
             "name": "brick/math",
@@ -10284,8 +10284,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "livewire/livewire": 10,
-        "nunomaduro/essentials": 20
+        "livewire/livewire": 10
     },
     "prefer-stable": true,
     "prefer-lowest": false,
