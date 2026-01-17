@@ -85,27 +85,9 @@ parameters:
 			path: tests/Feature/ProfileTest.php
 
 		-
-			message: '#^Cannot call method assertHasErrors\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 7
-			path: tests/Feature/ProfileTest.php
-
-		-
-			message: '#^Cannot call method assertRedirect\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: tests/Feature/ProfileTest.php
-
-		-
-			message: '#^Cannot call method call\(\) on mixed\.$#'
-			identifier: method.nonObject
+			message: '#^Unable to resolve the template type TComponent in call to method Livewire\\LivewireManager\:\:test\(\)$#'
+			identifier: argument.templateType
 			count: 11
-			path: tests/Feature/ProfileTest.php
-
-		-
-			message: '#^Cannot call method set\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 23
 			path: tests/Feature/ProfileTest.php
 
 		-

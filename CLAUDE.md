@@ -921,7 +921,7 @@ This application is a Laravel application and its main Laravel ecosystems packag
 - livewire/volt (VOLT) - v1
 - larastan/larastan (LARASTAN) - v3
 - laravel/pint (PINT) - v1
-- pestphp/pest (PEST) - v3
+- pestphp/pest (PEST) - v4
 - rector/rector (RECTOR) - v2
 - tailwindcss (TAILWINDCSS) - v4
 

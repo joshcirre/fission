@@ -1,0 +1,48 @@
+name: Tests
+
+on:
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
+
+jobs:
+    tests:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Setup PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: '8.4'
+                  extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite
+                  coverage: none
+
+            - name: Configure Flux Pro
+              run: composer config http-basic.composer.fluxui.dev "${{ secrets.FLUX_USERNAME }}" "${{ secrets.FLUX_LICENSE_KEY }}"
+
+            - name: Install Composer dependencies
+              run: composer install --prefer-dist --no-interaction
+
+            - name: Copy environment file
+              run: cp .env.example .env
+
+            - name: Generate application key
+              run: php artisan key:generate
+
+            - name: Create database
+              run: touch database/database.sqlite
+
+            - name: Run migrations
+              run: php artisan migrate --force
+
+            - name: Install Node dependencies
+              run: npm ci
+
+            - name: Build assets
+              run: npm run build
+
+            - name: Run tests
+              run: ./vendor/bin/pest --parallel

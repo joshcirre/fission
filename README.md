@@ -10,7 +10,7 @@
 > This is an opinionated starter kit created by me (Josh Cirre) using Laravel Livewire and Livewire Flux. While PRs are welcome, this is designed to fit the needs of one person.
 
 > [!TIP]
-> To get up and running quickly, use the new Laravel installer with the using option: `laravel new my-project --using=joshcirre/fission`
+> Clone the repository and run `composer setup` to get started quickly. See [Installation](#installation) below.
 
 ## Why Does This Exist?
 
@@ -29,10 +29,12 @@ A license for Flux (technically, "Flux Pro") is required to use Fission. Fission
 ### Quick Start (Recommended)
 
 ```bash
-laravel new my-project --using=joshcirre/fission
+git clone https://github.com/joshcirre/fission.git my-project
+cd my-project
+composer setup
 ```
 
-### Manual Installation
+### Using Composer Create-Project
 
 ```bash
 composer create-project joshcirre/fission my-project
@@ -40,16 +42,11 @@ cd my-project
 composer setup
 ```
 
-### Cloning the Repository
-
-```bash
-git clone https://github.com/joshcirre/fission.git my-project
-cd my-project
-composer install
-composer setup
-```
+> [!NOTE]
+> The `laravel new --using` flag is not recommended due to archive extraction issues with special characters in filenames.
 
 The `composer setup` command handles:
+
 - Environment configuration (.env)
 - Application key generation
 - SQLite database creation
@@ -72,12 +69,12 @@ composer fix          # Fix everything: types, refactoring, formatting
 composer test         # Run all checks: tests, linting, types, refactoring
 ```
 
-| Command | Purpose |
-|---------|---------|
-| `composer fix` | PHPStan → Rector → Prettier → Pint |
-| `composer test` | Typos → Pest → Lint check → PHPStan → Rector dry-run |
-| `composer lint` | Pint + Prettier (quick format) |
-| `composer refactor` | Rector only |
+| Command             | Purpose                                              |
+| ------------------- | ---------------------------------------------------- |
+| `composer fix`      | PHPStan → Rector → Prettier → Pint                   |
+| `composer test`     | Typos → Pest → Lint check → PHPStan → Rector dry-run |
+| `composer lint`     | Pint + Prettier (quick format)                       |
+| `composer refactor` | Rector only                                          |
 
 ### Individual Test Commands
 
