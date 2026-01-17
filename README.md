@@ -47,10 +47,13 @@ composer setup
 
 The `composer setup` command handles:
 
+- Dependency installation
 - Environment configuration (.env)
 - Application key generation
 - SQLite database creation
+- Flux Pro credential setup
 - Database migrations
+- Project name configuration
 - NPM dependency installation
 - Asset building
 
