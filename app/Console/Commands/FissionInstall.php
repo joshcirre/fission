@@ -52,25 +52,17 @@ final class FissionInstall extends Command
         return 0;
     }
 
-    /**
-     * Display a visually distinct completion message
-     */
     private function displayCompletionMessage(): void
     {
-        $this->line('');
-        $this->line('');
-        $this->line('<bg=blue;fg=white>                                                           </>');
-        $this->line('<bg=blue;fg=white>  Fission installation completed successfully! ☢️           </>');
-        $this->line('<bg=blue;fg=white>                                                           </>');
-        $this->line('<bg=blue;fg=white>  Next steps:                                              </>');
-        $this->line('<bg=blue;fg=white>  1. Run `npm install` to install frontend dependencies    </>');
-        $this->line('<bg=blue;fg=white>  2. Run `composer run dev` to start the development       </>');
-        $this->line('<bg=blue;fg=white>     server (includes Laravel, queue, logs, and Vite)      </>');
-        $this->line('<bg=blue;fg=white>                                                           </>');
-        $this->line('<bg=blue;fg=white>  Keep creating. 🫡                                        </>');
-        $this->line('<bg=blue;fg=white>                                                           </>');
-        $this->line('');
-        $this->line('');
+        $this->newLine(2);
+        $this->info('Fission installation completed successfully!');
+        $this->newLine();
+        $this->comment('Next steps:');
+        $this->line('  1. Run <info>composer run dev</info> to start the development server');
+        $this->line('     (includes Laravel, queue, logs, and Vite)');
+        $this->newLine();
+        $this->line('  Keep creating.');
+        $this->newLine(2);
     }
 
     private function handleGitRepository(): void
