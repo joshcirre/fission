@@ -77,15 +77,43 @@ final class FissionInstall extends Command
     {
         $this->line('Checking Git repository status...');
 
-        // Don't remove Git if it's already initialized
         if (File::isDirectory(base_path('.git'))) {
-            $this->line('Git repository already initialized. Skipping.');
+            // Check if this is a clone of the fission template
+            if ($this->isCloneOfFissionTemplate()) {
+                $this->warn('This appears to be a clone of the Fission starter template.');
+
+                if (confirm('Would you like to remove the existing Git history and start fresh?', true)) {
+                    File::deleteDirectory(base_path('.git'));
+                    $this->info('Removed existing Git history.');
+                    $this->initializeGit = true;
+                } else {
+                    $this->line('Keeping existing Git repository.');
+                }
+            } else {
+                $this->line('Git repository already initialized. Skipping.');
+            }
 
             return;
         }
 
         // Ask if user wants to initialize a new repository after cleanup
         $this->initializeGit = confirm('Would you like to initialize a fresh Git repository after installation?', true);
+    }
+
+    private function isCloneOfFissionTemplate(): bool
+    {
+        $output = [];
+        exec('git remote get-url origin 2>/dev/null', $output, $returnCode);
+
+        if ($returnCode !== 0 || $output === []) {
+            return false;
+        }
+
+        $remoteUrl = $output[0];
+
+        // Check for various forms of the fission repo URL
+        return str_contains($remoteUrl, 'joshcirre/fission')
+            || str_contains($remoteUrl, 'github.com/joshcirre/fission');
     }
 
     private function handleFluxActivation(): void
