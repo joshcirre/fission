@@ -43,18 +43,6 @@ parameters:
 			path: app/Models/User.php
 
 		-
-			message: '#^Cannot call method middleware\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 2
-			path: routes/web.php
-
-		-
-			message: '#^Cannot call method name\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 7
-			path: routes/web.php
-
-		-
 			message: '#^Parameter \#1 \$view of function view expects view\-string\|null, string given\.$#'
 			identifier: argument.type
 			count: 1
@@ -89,15 +77,3 @@ parameters:
 			identifier: argument.templateType
 			count: 11
 			path: tests/Feature/ProfileTest.php
-
-		-
-			message: '#^Cannot call method toBe\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: tests/Pest.php
-
-		-
-			message: '#^Undefined variable\: \$this$#'
-			identifier: variable.undefined
-			count: 1
-			path: tests/Pest.php

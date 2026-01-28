@@ -20,8 +20,18 @@ jobs:
                   extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite
                   coverage: none
 
-            - name: Configure Flux Pro
-              run: composer config http-basic.composer.fluxui.dev "${{ secrets.FLUX_USERNAME }}" "${{ secrets.FLUX_LICENSE_KEY }}"
+            - name: Setup Flux Pro or remove if unavailable
+              env:
+                  FLUX_USERNAME: ${{ secrets.FLUX_USERNAME }}
+                  FLUX_LICENSE_KEY: ${{ secrets.FLUX_LICENSE_KEY }}
+              run: |
+                  if [ -n "$FLUX_USERNAME" ] && [ -n "$FLUX_LICENSE_KEY" ]; then
+                    echo "Configuring Flux Pro credentials..."
+                    composer config http-basic.composer.fluxui.dev "$FLUX_USERNAME" "$FLUX_LICENSE_KEY"
+                  else
+                    echo "Flux Pro credentials not available, removing dependency..."
+                    composer remove livewire/flux-pro --no-update --no-interaction
+                  fi
 
             - name: Install Composer dependencies
               run: composer install --prefer-dist --no-interaction
