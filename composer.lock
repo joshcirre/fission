@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "da9952333256bd33c38b2502fd084f83",
+    "content-hash": "22f21c4d0996c6753c05893229a2d273",
     "packages": [
         {
             "name": "brick/math",
@@ -3308,16 +3308,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.12.19",
+            "version": "v0.12.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "a4f766e5c5b6773d8399711019bb7d90875a50ee"
+                "reference": "19678eb6b952a03b8a1d96ecee9edba518bb0373"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/a4f766e5c5b6773d8399711019bb7d90875a50ee",
-                "reference": "a4f766e5c5b6773d8399711019bb7d90875a50ee",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/19678eb6b952a03b8a1d96ecee9edba518bb0373",
+                "reference": "19678eb6b952a03b8a1d96ecee9edba518bb0373",
                 "shasum": ""
             },
             "require": {
@@ -3381,9 +3381,9 @@
             ],
             "support": {
                 "issues": "https://github.com/bobthecow/psysh/issues",
-                "source": "https://github.com/bobthecow/psysh/tree/v0.12.19"
+                "source": "https://github.com/bobthecow/psysh/tree/v0.12.20"
             },
-            "time": "2026-01-30T17:33:13+00:00"
+            "time": "2026-02-11T15:05:28+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
@@ -6870,33 +6870,33 @@
         },
         {
             "name": "laravel/boost",
-            "version": "v1.8.10",
+            "version": "v2.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/boost.git",
-                "reference": "aad8b2a423b0a886c2ce7ee92abbfde69992ff32"
+                "reference": "81ecf79e82c979efd92afaeac012605cc7b2f31f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/boost/zipball/aad8b2a423b0a886c2ce7ee92abbfde69992ff32",
-                "reference": "aad8b2a423b0a886c2ce7ee92abbfde69992ff32",
+                "url": "https://api.github.com/repos/laravel/boost/zipball/81ecf79e82c979efd92afaeac012605cc7b2f31f",
+                "reference": "81ecf79e82c979efd92afaeac012605cc7b2f31f",
                 "shasum": ""
             },
             "require": {
                 "guzzlehttp/guzzle": "^7.9",
-                "illuminate/console": "^10.49.0|^11.45.3|^12.41.1",
-                "illuminate/contracts": "^10.49.0|^11.45.3|^12.41.1",
-                "illuminate/routing": "^10.49.0|^11.45.3|^12.41.1",
-                "illuminate/support": "^10.49.0|^11.45.3|^12.41.1",
+                "illuminate/console": "^11.45.3|^12.41.1",
+                "illuminate/contracts": "^11.45.3|^12.41.1",
+                "illuminate/routing": "^11.45.3|^12.41.1",
+                "illuminate/support": "^11.45.3|^12.41.1",
                 "laravel/mcp": "^0.5.1",
-                "laravel/prompts": "0.1.25|^0.3.6",
+                "laravel/prompts": "^0.3.10",
                 "laravel/roster": "^0.2.9",
-                "php": "^8.1"
+                "php": "^8.2"
             },
             "require-dev": {
-                "laravel/pint": "^1.20.0",
+                "laravel/pint": "^1.27.0",
                 "mockery/mockery": "^1.6.12",
-                "orchestra/testbench": "^8.36.0|^9.15.0|^10.6",
+                "orchestra/testbench": "^9.15.0|^10.6",
                 "pestphp/pest": "^2.36.0|^3.8.4|^4.1.5",
                 "phpstan/phpstan": "^2.1.27",
                 "rector/rector": "^2.1"
@@ -6932,7 +6932,7 @@
                 "issues": "https://github.com/laravel/boost/issues",
                 "source": "https://github.com/laravel/boost"
             },
-            "time": "2026-01-14T14:51:16+00:00"
+            "time": "2026-02-10T17:40:45+00:00"
         },
         {
             "name": "laravel/mcp",
@@ -8398,11 +8398,11 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "2.1.38",
+            "version": "2.1.39",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/dfaf1f530e1663aa167bc3e52197adb221582629",
-                "reference": "dfaf1f530e1663aa167bc3e52197adb221582629",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/c6f73a2af4cbcd99c931d0fb8f08548cc0fa8224",
+                "reference": "c6f73a2af4cbcd99c931d0fb8f08548cc0fa8224",
                 "shasum": ""
             },
             "require": {
@@ -8447,7 +8447,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-01-30T17:12:46+00:00"
+            "time": "2026-02-11T14:48:56+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
