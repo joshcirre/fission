@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bac0cf3af3ea70fafd0a204ba326bb9d",
+    "content-hash": "da9952333256bd33c38b2502fd084f83",
     "packages": [
         {
             "name": "brick/math",
@@ -6779,43 +6779,6 @@
             "time": "2025-03-19T14:43:43+00:00"
         },
         {
-            "name": "joetannenbaum/chewie",
-            "version": "0.1.11",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/joetannenbaum/chewie.git",
-                "reference": "7040f1c157e6756f45f49f4a821303cae3cfe424"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/joetannenbaum/chewie/zipball/7040f1c157e6756f45f49f4a821303cae3cfe424",
-                "reference": "7040f1c157e6756f45f49f4a821303cae3cfe424",
-                "shasum": ""
-            },
-            "require": {
-                "laravel/prompts": "0.x"
-            },
-            "require-dev": {
-                "pestphp/pest": "^2.33",
-                "tightenco/duster": "^2.7"
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "src/helpers.php"
-                ],
-                "psr-4": {
-                    "Chewie\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "support": {
-                "issues": "https://github.com/joetannenbaum/chewie/issues",
-                "source": "https://github.com/joetannenbaum/chewie/tree/0.1.11"
-            },
-            "time": "2024-12-07T01:53:54+00:00"
-        },
-        {
             "name": "larastan/larastan",
             "version": "v3.9.2",
             "source": {
@@ -9893,76 +9856,6 @@
                 }
             ],
             "time": "2025-02-07T05:00:38+00:00"
-        },
-        {
-            "name": "soloterm/solo",
-            "version": "v0.4.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/soloterm/solo.git",
-                "reference": "80778094596b1489d3fbf22e3db990c2d752d8fe"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/soloterm/solo/zipball/80778094596b1489d3fbf22e3db990c2d752d8fe",
-                "reference": "80778094596b1489d3fbf22e3db990c2d752d8fe",
-                "shasum": ""
-            },
-            "require": {
-                "ext-pcntl": "*",
-                "ext-posix": "*",
-                "illuminate/console": "^10|^11|^12",
-                "illuminate/process": "^10|^11|^12",
-                "illuminate/support": "^10|^11|^12",
-                "joetannenbaum/chewie": "^0.1",
-                "laravel/prompts": "^0.1.21|^0.2|^0.3",
-                "php": "^8.2"
-            },
-            "require-dev": {
-                "illuminate/database": "^10|^11|^12",
-                "laravel/serializable-closure": "^1.3",
-                "orchestra/testbench": "^8.29|^9.5|^10",
-                "phpunit/phpunit": "^10.5|^11"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "SoloTerm\\Solo\\Providers\\SoloServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "SoloTerm\\Solo\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Aaron Francis",
-                    "email": "aarondfrancis@gmail.com"
-                }
-            ],
-            "description": "A Laravel package to run multiple commands at once, to aid in local development.",
-            "support": {
-                "issues": "https://github.com/soloterm/solo/issues",
-                "source": "https://github.com/soloterm/solo/tree/v0.4.0"
-            },
-            "funding": [
-                {
-                    "url": "https://aaronfrancis.com/backstage",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/aarondfrancis",
-                    "type": "github"
-                }
-            ],
-            "time": "2025-02-19T19:10:50+00:00"
         },
         {
             "name": "staabm/side-effects-detector",
