@@ -12,6 +12,19 @@
 > [!TIP]
 > Clone the repository and run `composer setup` to get started quickly. See [Installation](#installation) below.
 
+## TweakFlux — Deep Theming for Flux UI
+
+Fission pairs well with [**TweakFlux**](https://github.com/joshcirre/tweakflux), a theming package that lets you transform every Flux component with a single command. Override Tailwind v4 CSS custom properties to apply 20+ preset themes or generate your own — zero vendor files touched.
+
+```bash
+composer global require joshcirre/tweakflux
+tweakflux apply bubblegum
+```
+
+<p align="center">
+  <img src="art/tweakflux-preview.jpeg" alt="TweakFlux Bubblegum theme preview" width="700">
+</p>
+
 ## Why Does This Exist?
 
 Up until Livewire Flux released, I used Breeze as a starting point for 99% of new projects that I would create. Typically, those new projects were built for demos on videos or starting points for tutorials. In addition, I would start side projects or app ideas with Breeze, as well.
@@ -98,6 +111,16 @@ composer test:typos         # Peck typo checker
 - **[Pint](https://laravel.com/docs/pint)** - PHP code style (strict Laravel)
 - **[Prettier](https://prettier.io)** - JS/CSS formatting
 - **[Peck](https://github.com/peckphp/peck)** - Typo detection
+
+## Recommended AI Skills
+
+If you use [AI coding assistants](https://skills.sh) with this project, these skills provide useful context for the stack:
+
+| Skill | Install |
+|-------|---------|
+| **Flux UI Development** — Flux UI component usage, variants, and patterns | `npx skills add laravel/boost --skill fluxui-development` |
+| **Livewire Development** — Livewire 4 component patterns, directives, islands, and testing | `npx skills add spatie/freek.dev@livewire-development` |
+| **TweakFlux Theme Generator** — Generate custom Flux UI themes from descriptions or palettes | `tweakflux boost` (requires [joshcirre/tweakflux](https://github.com/joshcirre/tweakflux)) |
 
 ## License
 
