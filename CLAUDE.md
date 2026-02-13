@@ -33,9 +33,19 @@ composer fix     # Fix code style, apply refactoring, and format code
 
 ## Architecture
 
+All Livewire components use **Single-File Component (SFC)** format with the `⚡` emoji prefix. The `make:livewire` command defaults to SFC with emoji enabled — no flags needed.
+
+There are three view namespaces:
+
+| Namespace | Directory | Purpose |
+|---|---|---|
+| `pages::` | `resources/views/pages/` | Full-page Livewire components routed via `Route::livewire()` |
+| `layouts::` | `resources/views/layouts/` | Layout templates referenced via `#[Layout('layouts::app')]` |
+| *(default)* | `resources/views/components/` | Reusable Livewire SFC components (non-page) |
+
 ### Page Components
 
-Pages are Livewire 4 full-page components in `resources/views/pages/` with `⚡` prefix:
+Pages are Livewire 4 full-page components in the `pages::` namespace with `⚡` prefix:
 
 ```
 resources/views/pages/
@@ -50,7 +60,30 @@ resources/views/pages/
 
 Routes are defined in `routes/web.php` using `Route::livewire()`.
 
-### Component Structure
+### Reusable Components
+
+Non-page components live in `resources/views/components/` and are referenced without a namespace prefix:
+
+```
+resources/views/components/
+├── ⚡counter.blade.php         → <livewire:counter />
+└── dashboard/
+    └── ⚡stats-card.blade.php  → <livewire:dashboard.stats-card />
+```
+
+### Layouts
+
+Layout templates live in the `layouts::` namespace:
+
+```
+resources/views/layouts/
+├── app.blade.php               → #[Layout('layouts::app')]
+└── auth.blade.php              → #[Layout('layouts::auth')]
+```
+
+### SFC Structure
+
+All components follow this single-file format:
 
 ```php
 <?php
@@ -77,7 +110,9 @@ class extends Component {
 </div>
 ```
 
-### Creating New Pages
+### Creating Components
+
+**Pages** (full-page, routed):
 
 ```bash
 php artisan make:livewire pages::<name>
@@ -87,6 +122,12 @@ Then add route in `routes/web.php`:
 
 ```php
 Route::livewire('/path', 'pages::name')->name('name');
+```
+
+**Reusable components** (non-page):
+
+```bash
+php artisan make:livewire <name>
 ```
 
 ## Coding Standards
@@ -144,9 +185,9 @@ app/
 └── Providers/        # Service providers
 
 resources/views/
-├── components/       # Reusable Blade components
-├── layouts/          # Layout templates
-└── pages/            # Livewire full-page components (⚡ prefix)
+├── components/       # Reusable Livewire SFC components (⚡ prefix)
+├── layouts/          # Layout templates (layouts:: namespace)
+└── pages/            # Full-page Livewire SFC components (⚡ prefix, pages:: namespace)
 
 tests/
 ├── Feature/          # Integration tests
