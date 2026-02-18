@@ -9,7 +9,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^8.2",
+        "php": "^8.5",
         "laravel/framework": "^12.0",
         "laravel/prompts": "^0.3",
         "laravel/tinker": "^2.0",
@@ -67,28 +67,28 @@
             "@php artisan key:generate",
             "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
             "@php artisan fission:install",
-            "npm install",
-            "npm run build"
+            "bun install",
+            "bun run build"
         ],
         "dev": [
             "Composer\\Config::disableProcessTimeout",
-            "npx concurrently -k -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"php artisan pail\" \"npm run dev\" --names=server,queue,logs,vite"
+            "bunx concurrently -k -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"php artisan pail\" \"bun run dev\" --names=server,queue,logs,vite"
         ],
         "lint": [
             "./vendor/bin/pint",
-            "npm run lint"
+            "bun run lint"
         ],
         "refactor": "./vendor/bin/rector process",
         "fix": [
             "@test:types",
             "@refactor",
-            "npm run lint:fix",
+            "bun run lint:fix",
             "./vendor/bin/pint"
         ],
         "test:typos": "./vendor/bin/peck",
         "test:lint": [
             "./vendor/bin/pint --test",
-            "npm run test:lint"
+            "bun run test:lint"
         ],
         "test:unit": "./vendor/bin/pest --parallel",
         "test:unit:coverage": "./vendor/bin/pest --parallel --coverage",

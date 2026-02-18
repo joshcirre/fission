@@ -4,9 +4,9 @@
     "scripts": {
         "build": "vite build",
         "dev": "vite",
-        "lint": "prettier --check .",
-        "lint:fix": "prettier --write .",
-        "test:lint": "prettier --check ."
+        "lint": "oxlint --fix && prettier --write .",
+        "lint:fix": "oxlint --fix && prettier --write .",
+        "test:lint": "oxlint && prettier --check ."
     },
     "devDependencies": {
         "@tailwindcss/vite": "^4.1.8",
@@ -15,6 +15,7 @@
         "concurrently": "^9.0.1",
         "laravel-vite-plugin": "^1.3.0",
         "open": "^10.1.2",
+        "oxlint": "^1.0.0",
         "prettier": "^3.4.2",
         "prettier-plugin-blade": "^2.1.19",
         "prettier-plugin-tailwindcss": "^0.6.12",
