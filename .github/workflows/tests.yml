@@ -48,11 +48,14 @@ jobs:
             - name: Run migrations
               run: php artisan migrate --force
 
+            - name: Install bun
+              uses: oven-sh/setup-bun@v2
+
             - name: Install Node dependencies
-              run: npm ci
+              run: bun install
 
             - name: Build assets
-              run: npm run build
+              run: bun run build
 
             - name: Run tests
               run: ./vendor/bin/pest --parallel
