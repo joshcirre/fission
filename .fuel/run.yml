@@ -1,0 +1,4 @@
+processes:
+  app:
+    command: "echo 'No dev server configured yet'"
+    auto_restart: false

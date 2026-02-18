@@ -1,7 +1,7 @@
 {
     "preset": "laravel",
     "ignore": {
-        "words": ["php", "filesystems", "favicon", "js", "tweakflux", "opencode"],
+        "words": ["php", "filesystems", "favicon", "js", "tweakflux", "opencode", "bento", "nightwatch", "pirsch"],
         "paths": []
     }
 }

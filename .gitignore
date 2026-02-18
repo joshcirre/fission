@@ -21,3 +21,16 @@ yarn-error.log
 /.zed
 .helm
 .rector_cache
+.fuel/*
+!.fuel/reality.md
+!.fuel/plans/
+!.fuel/docs/
+!.fuel/prompts/
+.fuel/prompts/*.new
+.fuel/quality-gate.pending
+.fuel/.last_init_version
+.fuel/context/
+.fuel/logs/
+!.fuel/setup.sh
+!.fuel/teardown.sh
+!.fuel/run.yml
