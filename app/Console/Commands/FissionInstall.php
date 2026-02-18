@@ -8,6 +8,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 
 use function Laravel\Prompts\confirm;
+use function Laravel\Prompts\multiselect;
 use function Laravel\Prompts\text;
 
 final class FissionInstall extends Command
@@ -31,6 +32,9 @@ final class FissionInstall extends Command
 
         // Handle Flux Pro activation (always optional)
         $this->handleFluxActivation();
+
+        // Optionally install additional packages
+        $this->handleOptionalPackages();
 
         $this->setupEnvFile();
         $this->reloadEnvironment();
@@ -262,6 +266,72 @@ final class FissionInstall extends Command
                 file_get_contents($path)
             ));
         }
+    }
+
+    private function handleOptionalPackages(): void
+    {
+        if (! confirm('Would you like to install optional packages?', false)) {
+            return;
+        }
+
+        /** @var array<int, string> $selected */
+        $selected = multiselect(
+            label: 'Which packages would you like to install?',
+            options: [
+                'bento' => 'Bento – Customer engagement & email automation',
+                'filament' => 'Filament – Admin panel & UI toolkit',
+                'nightwatch' => 'Nightwatch – End-to-end browser testing',
+                'laravel-ai' => 'Laravel AI – First-party AI integrations',
+                'pirsch' => 'Pirsch Analytics – Privacy-friendly analytics',
+            ],
+            hint: 'Space to select, Enter to confirm.',
+        );
+
+        foreach ($selected as $package) {
+            match ($package) {
+                'bento' => $this->installBento(),
+                'filament' => $this->installFilament(),
+                'nightwatch' => $this->installNightwatch(),
+                'laravel-ai' => $this->installLaravelAi(),
+                'pirsch' => $this->installPirsch(),
+            };
+        }
+    }
+
+    private function installBento(): void
+    {
+        $this->line('Installing Bento...');
+        passthru('composer require bentoproject/bento --no-interaction');
+        $this->info('Bento installed. Add your BENTO_SITE_UUID and BENTO_PUBLISHABLE_KEY to .env to complete setup.');
+    }
+
+    private function installFilament(): void
+    {
+        $this->line('Installing Filament...');
+        passthru('composer require filament/filament --no-interaction');
+        $this->call('filament:install', ['--panels' => true]);
+        $this->info('Filament installed.');
+    }
+
+    private function installNightwatch(): void
+    {
+        $this->line('Installing Nightwatch...');
+        passthru('composer require laravel/nightwatch --no-interaction');
+        $this->info('Nightwatch installed. Run php artisan nightwatch:install to complete setup.');
+    }
+
+    private function installLaravelAi(): void
+    {
+        $this->line('Installing Laravel AI...');
+        passthru('composer require laravel/ai --no-interaction');
+        $this->info('Laravel AI installed.');
+    }
+
+    private function installPirsch(): void
+    {
+        $this->line('Installing Pirsch Analytics...');
+        passthru('composer require pirsch-analytics/laravel --no-interaction');
+        $this->info('Pirsch Analytics installed. Add your PIRSCH_CLIENT_ID to .env to complete setup.');
     }
 
     private function cleanup(): void

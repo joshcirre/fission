@@ -2,6 +2,6 @@
     "preset": "laravel",
     "ignore": {
         "words": ["php", "filesystems", "favicon", "js", "tweakflux", "opencode"],
-        "paths": ["app/Providers/SoloServiceProvider.php"]
+        "paths": []
     }
 }

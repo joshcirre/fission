@@ -14,4 +14,3 @@ parameters:
 
     excludePaths:
         - app/Console/Commands/FissionInstall.php
-        - app/Providers/SoloServiceProvider.php

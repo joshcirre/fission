@@ -14,6 +14,6 @@ new #[Layout('layouts::app')] class extends Component {
 
 <div>
     <div>
-        <flux:button data-pan="playground-button">Hi everyone</flux:button>
+        <flux:button variant="primary">Hi everyone</flux:button>
     </div>
 </div>

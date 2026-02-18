@@ -120,13 +120,6 @@
     },
     "minimum-stability": "stable",
     "prefer-stable": true,
-    "suggest": {
-        "bentoproject/bento": "Adds Bento to your project",
-        "filament/filament": "Adds Filament admin panel to your project",
-        "spatie/ray": "Adds Spatie Ray for debugging",
-        "sentry/sentry-laravel": "Adds Sentry error tracking to your project",
-        "pirsch-analytics/laravel": "Adds Pirsch analytics to your project"
-    },
     "repositories": {
         "flux-pro": {
             "type": "composer",
