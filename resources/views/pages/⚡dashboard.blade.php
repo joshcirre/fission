@@ -1,11 +1,10 @@
 <?php
 
-use App\Livewire\Actions\Logout;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
 new #[Layout('layouts::app')] class extends Component {
-    // dashboard logic
+    //
 };
 
 ?>
