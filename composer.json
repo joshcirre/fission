@@ -9,10 +9,11 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^8.5",
+        "php": "^8.4",
         "laravel/framework": "^12.0",
         "laravel/prompts": "^0.3",
         "laravel/tinker": "^2.0",
+        "livewire/blaze": "^1.0",
         "livewire/flux": "^2.0",
         "livewire/flux-pro": "^2.0",
         "livewire/livewire": "^4.0@beta",

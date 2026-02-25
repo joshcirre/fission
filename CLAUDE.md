@@ -23,7 +23,7 @@ composer fix     # Fix code style, apply refactoring, and format code
 
 ## Stack
 
-- **PHP 8.2+** with strict types
+- **PHP 8.4+** with strict types
 - **Laravel 12** with Livewire 4
 - **Livewire Volt** for single-file components
 - **Livewire Flux Pro** UI components
