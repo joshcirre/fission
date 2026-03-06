@@ -1,10 +1,10 @@
 {
-  "version": 1,
-  "skills": {
-    "playwriter": {
-      "source": "remorses/playwriter",
-      "sourceType": "github",
-      "computedHash": "7e38f668dcd0280f7dba0c5ec9eb88f14f4e2bc1345d4e5703e03a85402379d3"
+    "version": 1,
+    "skills": {
+        "playwriter": {
+            "source": "remorses/playwriter",
+            "sourceType": "github",
+            "computedHash": "7e38f668dcd0280f7dba0c5ec9eb88f14f4e2bc1345d4e5703e03a85402379d3"
+        }
     }
-  }
 }
