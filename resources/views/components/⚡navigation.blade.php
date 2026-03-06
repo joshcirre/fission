@@ -18,7 +18,7 @@ new class extends Component {
         <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left" />
 
         <flux:brand href="/" logo="https://fluxui.dev/img/demo/logo.png" name="Fission" class="max-lg:hidden dark:hidden" />
-        <flux:brand href="/" logo="https://fluxui.dev/img/demo/dark-mode-logo.png" name="Fission" class="max-lg:hidden! hidden dark:flex" />
+        <flux:brand href="/" logo="https://fluxui.dev/img/demo/dark-mode-logo.png" name="Fission" class="hidden max-lg:hidden! dark:flex" />
 
         <flux:navbar class="max-lg:hidden">
             <flux:navbar.item icon="home" href="/" wire:navigate>Home</flux:navbar.item>
@@ -54,4 +54,8 @@ new class extends Component {
             <flux:sidebar.item icon="face-smile" href="/playground" wire:navigate>Playground</flux:sidebar.item>
         </flux:sidebar.nav>
     </flux:sidebar>
+
+    <flux:main container>
+        {{ $slot }}
+    </flux:main>
 </div>

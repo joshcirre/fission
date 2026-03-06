@@ -18,13 +18,9 @@
     </head>
 
     <body class="min-h-screen bg-white dark:bg-zinc-800">
-        <livewire:navigation />
-
-        <flux:main container>
-            <div class="flex-1 self-stretch max-md:pt-6">
-                {{ $slot }}
-            </div>
-        </flux:main>
+        <livewire:navigation>
+            {{ $slot }}
+        </livewire:navigation>
         @persist('toast')
             <flux:toast />
         @endpersist
