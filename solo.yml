@@ -16,8 +16,8 @@ processes:
     auto_restart: true
     restart_when_changed: []
     env: {}
-  'npm: dev':
-    command: npm run dev
+  'bun: dev':
+    command: bun run dev
     working_dir: null
     auto_start: true
     auto_restart: false

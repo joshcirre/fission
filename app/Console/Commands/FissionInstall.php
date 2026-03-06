@@ -287,51 +287,41 @@ final class FissionInstall extends Command
             hint: 'Space to select, Enter to confirm.',
         );
 
+        if ($selected === []) {
+            return;
+        }
+
+        $packageMap = [
+            'bento' => 'bentoproject/bento',
+            'filament' => 'filament/filament',
+            'nightwatch' => 'laravel/nightwatch',
+            'laravel-ai' => 'laravel/ai',
+            'pirsch' => 'pirsch-analytics/laravel',
+        ];
+
+        // Collect all composer packages and install in a single command
+        // to avoid autoloader regeneration breaking the running process
+        $composerPackages = array_map(fn (string $key): string => $packageMap[$key], $selected);
+
+        $this->line('Installing packages: '.implode(', ', $composerPackages));
+        passthru('composer require '.implode(' ', $composerPackages).' --no-interaction');
+
+        // Run post-install steps
         foreach ($selected as $package) {
             match ($package) {
-                'bento' => $this->installBento(),
-                'filament' => $this->installFilament(),
-                'nightwatch' => $this->installNightwatch(),
-                'laravel-ai' => $this->installLaravelAi(),
-                'pirsch' => $this->installPirsch(),
+                'bento' => $this->info('Bento installed. Add your BENTO_SITE_UUID and BENTO_PUBLISHABLE_KEY to .env to complete setup.'),
+                'filament' => $this->postInstallFilament(),
+                'nightwatch' => $this->info('Nightwatch installed. Run php artisan nightwatch:install to complete setup.'),
+                'laravel-ai' => $this->info('Laravel AI installed.'),
+                'pirsch' => $this->info('Pirsch Analytics installed. Add your PIRSCH_CLIENT_ID to .env to complete setup.'),
             };
         }
     }
 
-    private function installBento(): void
+    private function postInstallFilament(): void
     {
-        $this->line('Installing Bento...');
-        passthru('composer require bentoproject/bento --no-interaction');
-        $this->info('Bento installed. Add your BENTO_SITE_UUID and BENTO_PUBLISHABLE_KEY to .env to complete setup.');
-    }
-
-    private function installFilament(): void
-    {
-        $this->line('Installing Filament...');
-        passthru('composer require filament/filament --no-interaction');
         $this->call('filament:install', ['--panels' => true]);
         $this->info('Filament installed.');
-    }
-
-    private function installNightwatch(): void
-    {
-        $this->line('Installing Nightwatch...');
-        passthru('composer require laravel/nightwatch --no-interaction');
-        $this->info('Nightwatch installed. Run php artisan nightwatch:install to complete setup.');
-    }
-
-    private function installLaravelAi(): void
-    {
-        $this->line('Installing Laravel AI...');
-        passthru('composer require laravel/ai --no-interaction');
-        $this->info('Laravel AI installed.');
-    }
-
-    private function installPirsch(): void
-    {
-        $this->line('Installing Pirsch Analytics...');
-        passthru('composer require pirsch-analytics/laravel --no-interaction');
-        $this->info('Pirsch Analytics installed. Add your PIRSCH_CLIENT_ID to .env to complete setup.');
     }
 
     private function cleanup(): void
