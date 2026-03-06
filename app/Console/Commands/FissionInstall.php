@@ -320,7 +320,7 @@ final class FissionInstall extends Command
 
     private function postInstallFilament(): void
     {
-        $this->call('filament:install', ['--panels' => true]);
+        passthru('php artisan filament:install --panels --no-interaction');
         $this->info('Filament installed.');
     }
 
