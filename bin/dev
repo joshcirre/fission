@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Find an available port starting from 8000
+PORT=8000
+while ! php -r "exit(@stream_socket_server('tcp://127.0.0.1:$PORT') ? 0 : 1);" 2>/dev/null; do
+    PORT=$((PORT + 1))
+done
+
+URL="http://localhost:$PORT"
+
+# Open browser after a short delay to let the server start
+(sleep 2 && open "$URL") &
+
+# Run all dev services with the determined port
+npx concurrently -k \
+    -c "#93c5fd,#c4b5fd,#fb7185,#fdba74" \
+    --names=server,queue,logs,vite \
+    "php artisan serve --port=$PORT" \
+    "php artisan queue:listen --tries=1" \
+    "php artisan pail" \
+    "bun run dev"
