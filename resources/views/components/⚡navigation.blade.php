@@ -17,8 +17,8 @@ new class extends Component {
     <flux:header class="border-b border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
         <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left" />
 
-        <flux:brand href="/" logo="https://fluxui.dev/img/demo/logo.png" name="Fission" class="max-lg:hidden dark:hidden" />
-        <flux:brand href="/" logo="https://fluxui.dev/img/demo/dark-mode-logo.png" name="Fission" class="hidden max-lg:hidden! dark:flex" />
+        <flux:brand href="/" logo="/img/logo.svg" name="Fission" class="max-lg:hidden dark:hidden" />
+        <flux:brand href="/" logo="/img/logo-dark.svg" name="Fission" class="hidden max-lg:hidden! dark:flex" />
 
         <flux:navbar class="max-lg:hidden">
             <flux:navbar.item icon="home" href="/" wire:navigate>Home</flux:navbar.item>
@@ -40,12 +40,7 @@ new class extends Component {
 
     <flux:sidebar sticky collapsible="mobile" class="border-r border-zinc-200 bg-zinc-50 lg:hidden dark:border-zinc-700 dark:bg-zinc-900">
         <flux:sidebar.header>
-            <flux:sidebar.brand
-                href="/"
-                logo="https://fluxui.dev/img/demo/logo.png"
-                logo:dark="https://fluxui.dev/img/demo/dark-mode-logo.png"
-                name="Fission"
-            />
+            <flux:sidebar.brand href="/" logo="/img/logo.svg" logo:dark="/img/logo-dark.svg" name="Fission" />
             <flux:sidebar.collapse class="in-data-flux-sidebar-on-desktop:not-in-data-flux-sidebar-collapsed-desktop:-mr-2" />
         </flux:sidebar.header>
 
