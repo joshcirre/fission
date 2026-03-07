@@ -26,5 +26,8 @@
         @endpersist
 
         @fluxScripts()
+        @persist('instruckt')
+                    <x-instruckt-toolbar />
+                @endpersist
     </body>
 </html>

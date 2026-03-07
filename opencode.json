@@ -9,6 +9,16 @@
                 "artisan",
                 "boost:mcp"
             ]
+        },
+        "instruckt": {
+            "type": "local",
+            "enabled": true,
+            "command": [
+                "php",
+                "/Users/josh/Code/fission/artisan",
+                "mcp:start",
+                "instruckt"
+            ]
         }
     }
 }
