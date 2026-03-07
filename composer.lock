@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "92d9ab66bf5760861ae5d5d7cd1141c6",
+    "content-hash": "b866cce9b1b611774010eb02d98963d4",
     "packages": [
         {
             "name": "brick/math",
@@ -6842,16 +6842,16 @@
         },
         {
             "name": "joshcirre/instruckt-laravel",
-            "version": "v0.4.16",
+            "version": "v0.4.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/joshcirre/instruckt-laravel.git",
-                "reference": "318613a0497c1d16a3fb286798c0d42429bb061f"
+                "reference": "277c847f30169e23826269994d8a533521995dc4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/joshcirre/instruckt-laravel/zipball/318613a0497c1d16a3fb286798c0d42429bb061f",
-                "reference": "318613a0497c1d16a3fb286798c0d42429bb061f",
+                "url": "https://api.github.com/repos/joshcirre/instruckt-laravel/zipball/277c847f30169e23826269994d8a533521995dc4",
+                "reference": "277c847f30169e23826269994d8a533521995dc4",
                 "shasum": ""
             },
             "require": {
@@ -6888,9 +6888,9 @@
             ],
             "support": {
                 "issues": "https://github.com/joshcirre/instruckt-laravel/issues",
-                "source": "https://github.com/joshcirre/instruckt-laravel/tree/v0.4.16"
+                "source": "https://github.com/joshcirre/instruckt-laravel/tree/v0.4.17"
             },
-            "time": "2026-03-07T07:56:06+00:00"
+            "time": "2026-03-07T09:01:23+00:00"
         },
         {
             "name": "larastan/larastan",
