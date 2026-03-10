@@ -6842,16 +6842,16 @@
         },
         {
             "name": "joshcirre/instruckt-laravel",
-            "version": "v0.4.17",
+            "version": "v0.4.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/joshcirre/instruckt-laravel.git",
-                "reference": "277c847f30169e23826269994d8a533521995dc4"
+                "reference": "ca60241d3a2836d0c5355a5b680bf4495a11bb90"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/joshcirre/instruckt-laravel/zipball/277c847f30169e23826269994d8a533521995dc4",
-                "reference": "277c847f30169e23826269994d8a533521995dc4",
+                "url": "https://api.github.com/repos/joshcirre/instruckt-laravel/zipball/ca60241d3a2836d0c5355a5b680bf4495a11bb90",
+                "reference": "ca60241d3a2836d0c5355a5b680bf4495a11bb90",
                 "shasum": ""
             },
             "require": {
@@ -6888,9 +6888,9 @@
             ],
             "support": {
                 "issues": "https://github.com/joshcirre/instruckt-laravel/issues",
-                "source": "https://github.com/joshcirre/instruckt-laravel/tree/v0.4.17"
+                "source": "https://github.com/joshcirre/instruckt-laravel/tree/v0.4.20"
             },
-            "time": "2026-03-07T09:01:23+00:00"
+            "time": "2026-03-10T05:48:01+00:00"
         },
         {
             "name": "larastan/larastan",
