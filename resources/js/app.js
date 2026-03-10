@@ -1,4 +1,4 @@
 import './bootstrap';
-import { init as instruckt } from 'instruckt';
-
-instruckt({ endpoint: '/instruckt', adapters: ['livewire', 'blade'] });
+if (import.meta.env.DEV) {
+    import('instruckt').then(({ init }) => init({ endpoint: '/instruckt', adapters: ['livewire', 'blade'] }));
+}
