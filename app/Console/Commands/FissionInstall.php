@@ -41,6 +41,12 @@ final class FissionInstall extends Command
         $this->runMigrations();
         $this->setProjectName();
 
+        // Update Boost guidelines & skills (picks up any optional packages just installed)
+        $this->updateBoost();
+
+        // Install Instruckt agent integration
+        $this->installInstruckt();
+
         $this->cleanup();
 
         // Initialize Git repository after cleanup if requested
@@ -322,6 +328,18 @@ final class FissionInstall extends Command
     {
         passthru('php artisan filament:install --panels --no-interaction');
         $this->info('Filament installed.');
+    }
+
+    private function updateBoost(): void
+    {
+        $this->line('Updating Boost guidelines & skills...');
+        $this->call('boost:update', ['--no-interaction' => true]);
+    }
+
+    private function installInstruckt(): void
+    {
+        $this->line('Installing Instruckt agent integration...');
+        $this->call('instruckt:install', ['--no-interaction' => true]);
     }
 
     private function cleanup(): void
