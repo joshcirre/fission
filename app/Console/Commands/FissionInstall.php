@@ -286,7 +286,7 @@ final class FissionInstall extends Command
             options: [
                 'bento' => 'Bento – Customer engagement & email automation',
                 'filament' => 'Filament – Admin panel & UI toolkit',
-                'nightwatch' => 'Nightwatch – End-to-end browser testing',
+                'nightwatch' => 'Nightwatch – Application monitoring & alerting',
                 'laravel-ai' => 'Laravel AI – First-party AI integrations',
                 'pirsch' => 'Pirsch Analytics – Privacy-friendly analytics',
             ],
