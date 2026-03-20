@@ -298,8 +298,8 @@ final class FissionInstall extends Command
         }
 
         $packageMap = [
-            'bento' => 'bentoproject/bento',
-            'filament' => 'filament/filament',
+            'bento' => 'bentonow/bento-laravel-sdk',
+            'filament' => 'filament/filament:"^5.0"',
             'nightwatch' => 'laravel/nightwatch',
             'laravel-ai' => 'laravel/ai',
             'pirsch' => 'pirsch-analytics/laravel',
