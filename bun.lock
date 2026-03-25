@@ -3,18 +3,18 @@
   "workspaces": {
     "": {
       "devDependencies": {
-        "@tailwindcss/vite": "^4.2.1",
+        "@tailwindcss/vite": "^4.2.2",
         "autoprefixer": "^10.4.27",
         "axios": "^1.13.6",
         "concurrently": "^9.2.1",
-        "instruckt": "^0.4.28",
+        "instruckt": "^0.4.31",
         "laravel-vite-plugin": "^1.3.0",
         "open": "^10.2.0",
-        "oxlint": "^1.51.0",
+        "oxlint": "^1.57.0",
         "prettier": "^3.8.1",
         "prettier-plugin-blade": "^2.1.21",
         "prettier-plugin-tailwindcss": "^0.6.14",
-        "tailwindcss": "^4.2.1",
+        "tailwindcss": "^4.2.2",
         "vite": "^6.4.1",
       },
     },
@@ -304,7 +304,7 @@
 
     "hasown": ["hasown@2.0.2", "", { "dependencies": { "function-bind": "^1.1.2" } }, "sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ=="],
 
-    "instruckt": ["instruckt@0.4.31", "", { "dependencies": { "element-source": "^0.0.4", "modern-screenshot": "^4.6.8" }, "peerDependencies": { "vite": "^6.0.0 || ^7.0.0 || ^8.0.0" }, "optionalPeers": ["vite"] }, "sha512-WkiIy9Mt6fr+SJ6DKsKY7cuvg9OVFI0WnjwN1Kug9qZvJ20LB4/3SXtn1HX/jzSM1fLKrBpegwZ9redA4bSJtA=="],
+    "instruckt": ["instruckt@0.4.32", "", { "dependencies": { "element-source": "^0.0.4", "modern-screenshot": "^4.6.8" }, "peerDependencies": { "vite": "^6.0.0 || ^7.0.0 || ^8.0.0" }, "optionalPeers": ["vite"] }, "sha512-nwUrvKO1qMx/SQ4JCJ+5GvMspkhpC4Lj6lmmeMO0qjpH3f3VaXyoIajWXEP+24MGWPms1O24VL6ZOPsjNPqCsA=="],
 
     "is-docker": ["is-docker@3.0.0", "", { "bin": "cli.js" }, "sha512-eljcgEDlEns/7AXFosB5K/2nCM4P7FQPkGc/DWLy5rmFEWvZayGrik1d9/QIY5nJ4f9YsVvBkA6kJpHn9rISdQ=="],
 
