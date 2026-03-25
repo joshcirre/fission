@@ -122,6 +122,7 @@ If you use [AI coding assistants](https://skills.sh) with this project, these sk
 | **Livewire Development** — Livewire 4 component patterns, directives, islands, and testing | `npx skills add spatie/freek.dev@livewire-development` |
 | **TweakFlux Theme Generator** — Generate custom Flux UI themes from descriptions or palettes | `tweakflux boost` (requires [joshcirre/tweakflux](https://github.com/joshcirre/tweakflux)) |
 | **Playwriter** — Control your actual Chrome browser from AI agents (requires [Chrome extension](https://playwriter.dev)) | Included in `.agents/skills/` · CLI: `npm i -g playwriter` |
+| **Expect CLI** — Adversarial browser testing for code changes (requires `npm i -g expect-cli`) | Included in `.agents/skills/` · Init: `npx -y expect-cli@latest init` |
 
 ## License
 
