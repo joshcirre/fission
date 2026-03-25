@@ -5,6 +5,8 @@
 /public/storage
 /storage/*.key
 /vendor
+bun.lock
+composer.lock
 .env
 .env.backup
 .env.production
