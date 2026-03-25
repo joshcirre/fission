@@ -41,11 +41,11 @@ final class FissionInstall extends Command
         $this->runMigrations();
         $this->setProjectName();
 
-        // Update Boost guidelines & skills (picks up any optional packages just installed)
-        $this->updateBoost();
-
         // Install Instruckt agent integration
         $this->installInstruckt();
+
+        // Update Boost guidelines & skills (picks up any optional packages just installed)
+        $this->updateBoost();
 
         $this->cleanup();
 

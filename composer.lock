@@ -1654,16 +1654,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "3.32.0",
+            "version": "3.33.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "254b1595b16b22dbddaaef9ed6ca9fdac4956725"
+                "reference": "570b8871e0ce693764434b29154c54b434905350"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/254b1595b16b22dbddaaef9ed6ca9fdac4956725",
-                "reference": "254b1595b16b22dbddaaef9ed6ca9fdac4956725",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/570b8871e0ce693764434b29154c54b434905350",
+                "reference": "570b8871e0ce693764434b29154c54b434905350",
                 "shasum": ""
             },
             "require": {
@@ -1731,9 +1731,9 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/flysystem/issues",
-                "source": "https://github.com/thephpleague/flysystem/tree/3.32.0"
+                "source": "https://github.com/thephpleague/flysystem/tree/3.33.0"
             },
-            "time": "2026-02-25T17:01:41+00:00"
+            "time": "2026-03-25T07:59:30+00:00"
         },
         {
             "name": "league/flysystem-local",
@@ -6735,16 +6735,16 @@
         },
         {
             "name": "joshcirre/instruckt-laravel",
-            "version": "v0.4.27",
+            "version": "v0.4.28",
             "source": {
                 "type": "git",
                 "url": "https://github.com/joshcirre/instruckt-laravel.git",
-                "reference": "bcdaddd637db34dc9044dbfd282a88d21bf622fc"
+                "reference": "e04b53bf576646bbd1941cbbfed66d8909e3561c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/joshcirre/instruckt-laravel/zipball/bcdaddd637db34dc9044dbfd282a88d21bf622fc",
-                "reference": "bcdaddd637db34dc9044dbfd282a88d21bf622fc",
+                "url": "https://api.github.com/repos/joshcirre/instruckt-laravel/zipball/e04b53bf576646bbd1941cbbfed66d8909e3561c",
+                "reference": "e04b53bf576646bbd1941cbbfed66d8909e3561c",
                 "shasum": ""
             },
             "require": {
@@ -6781,9 +6781,9 @@
             ],
             "support": {
                 "issues": "https://github.com/joshcirre/instruckt-laravel/issues",
-                "source": "https://github.com/joshcirre/instruckt-laravel/tree/v0.4.27"
+                "source": "https://github.com/joshcirre/instruckt-laravel/tree/v0.4.28"
             },
-            "time": "2026-03-25T06:30:26+00:00"
+            "time": "2026-03-25T08:36:16+00:00"
         },
         {
             "name": "larastan/larastan",
