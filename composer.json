@@ -76,7 +76,7 @@
         ],
         "dev": [
             "Composer\\Config::disableProcessTimeout",
-            "./bin/dev"
+            "php ./bin/dev"
         ],
         "lint": [
             "./vendor/bin/pint",

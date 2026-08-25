@@ -1,21 +1,59 @@
-#!/bin/bash
+#!/usr/bin/env php
+<?php
 
-# Find an available port starting from 8000
-PORT=8000
-while ! php -r "exit(@stream_socket_server('tcp://127.0.0.1:$PORT') ? 0 : 1);" 2>/dev/null; do
-    PORT=$((PORT + 1))
-done
+function getUsedPorts(): array
+{
+    $ports = [];
 
-URL="http://localhost:$PORT"
+    if (PHP_OS_FAMILY === 'Windows') {
+        $output = shell_exec('netstat -ano');
+        if ($output) {
+            preg_match_all('/(?:TCP|UDP)\s+\S+:(\d+)\s+/i', $output, $matches);
+            $ports = array_map('intval', $matches[1] ?? []);
+        }
+    } else {
+        // Linux / macOS
+        $output = shell_exec('ss -tuln 2>/dev/null') ?: shell_exec('netstat -tuln 2>/dev/null');
+        if ($output) {
+            preg_match_all('/:(\d+)\s/', $output, $matches);
+            $ports = array_map('intval', $matches[1] ?? []);
+        }
+    }
 
-# Open browser after a short delay to let the server start
-(sleep 2 && open "$URL") &
+    return array_unique($ports);
+}
 
-# Run all dev services with the determined port
-npx concurrently -k \
-    -c "#93c5fd,#c4b5fd,#fb7185,#fdba74" \
-    --names=server,queue,logs,vite \
-    "php artisan serve --port=$PORT" \
-    "php artisan queue:listen --tries=1" \
-    "php artisan pail" \
-    "bun run dev"
+function findAvailablePort(int $start = 8000): int
+{
+    $used = array_flip(getUsedPorts()); // O(1) lookup
+    $port = $start;
+
+    while (isset($used[$port])) {
+        $port++;
+    }
+
+    return $port;
+}
+
+$port = findAvailablePort();
+$url = "http://localhost:$port";
+
+// Open browser after a short delay (Windows-safe)
+if (PHP_OS_FAMILY === 'Windows') {
+    $ps = "Start-Sleep -Seconds 2; Start-Process '$url'";
+    pclose(popen("powershell -WindowStyle Hidden -Command \"$ps\"", 'r'));
+} else {
+    $openCommand = PHP_OS_FAMILY === 'Darwin' ? "open $url" : "xdg-open $url";
+    exec("(sleep 2 && $openCommand) > /dev/null 2>&1 &");
+}
+
+// Run all dev services
+$command = sprintf(
+    'bunx concurrently -k -c "#93c5fd,#c4b5fd,,#fdba74" --names=server,queue,vite ' .
+    '"php artisan serve --port=%d" ' .
+    '"php artisan queue:listen --tries=1" ' .
+    '"bun run dev"',
+    $port
+);
+
+passthru($command);
