@@ -92,14 +92,15 @@ final class FissionInstall extends Command
 
     private function isCloneOfFissionTemplate(): bool
     {
-        $output = [];
-        exec('git remote get-url origin 2>/dev/null', $output, $returnCode);
+        $process = new \Symfony\Component\Process\Process(['git', 'remote', 'get-url', 'origin']);
+        $process->setWorkingDirectory(base_path());
+        $process->run();
 
-        if ($returnCode !== 0 || $output === []) {
+        if (! $process->isSuccessful()) {
             return false;
         }
 
-        $remoteUrl = $output[0];
+        $remoteUrl = trim($process->getOutput());
 
         return str_contains($remoteUrl, 'joshcirre/fission')
             || str_contains($remoteUrl, 'github.com/joshcirre/fission');
@@ -314,13 +315,19 @@ final class FissionInstall extends Command
 
     private function handleTeamSupport(): void
     {
+        if (! class_exists(\App\Support\RemovesTeamSupport::class)) {
+            note('Teams support step already completed. Skipping.');
+
+            return;
+        }
+
         if (confirm('Would you like to add teams support to your application?', false)) {
             info('Teams support enabled.');
 
             return;
         }
 
-        spin(fn () => app(RemovesTeamSupport::class)->handle(), 'Removing teams support');
+        spin(fn () => app(\App\Support\RemovesTeamSupport::class)->handle(), 'Removing teams support');
     }
 
     private function postInstallFilament(): void

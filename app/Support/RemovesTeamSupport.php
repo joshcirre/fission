@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Support;
 
 use Illuminate\Filesystem\Filesystem;
+use RuntimeException;
 
 final readonly class RemovesTeamSupport
 {
@@ -24,15 +25,20 @@ final readonly class RemovesTeamSupport
             $this->files->delete($this->path($file));
         }
 
-        foreach ($this->replacementFiles() as $target => $stub) {
-            $this->files->ensureDirectoryExists(dirname($this->path($target)));
-            $this->files->copy($this->stub($stub), $this->path($target));
+        foreach ($this->replacementFiles() as $target => $stubRelative) {
+            $from = resource_path('stubs/no-teams/'.$stubRelative);
+            $to   = $this->path($target);
+
+            if (! file_exists($from)) {
+                throw new RuntimeException("Stub missing: {$from}");
+            }
+
+            $this->files->ensureDirectoryExists(dirname($to));
+            $this->files->copy($from, $to);
         }
     }
 
-    /**
-     * @return list<string>
-     */
+    /** @return list<string> */
     private function directoriesToDelete(): array
     {
         return [
@@ -42,9 +48,7 @@ final readonly class RemovesTeamSupport
         ];
     }
 
-    /**
-     * @return list<string>
-     */
+    /** @return list<string> */
     private function filesToDelete(): array
     {
         return [
@@ -70,11 +74,13 @@ final readonly class RemovesTeamSupport
      */
     private function replacementFiles(): array
     {
+        $v = "\u{26A1}"; // ⚡ — escape only, never paste the emoji
+
         return [
             'app/Models/User.php' => 'app/Models/User.php',
-            'resources/views/components/⚡navigation.blade.php' => 'resources/views/components/⚡navigation.blade.php',
-            'resources/views/pages/auth/⚡register.blade.php' => 'resources/views/pages/auth/⚡register.blade.php',
-            'resources/views/pages/profile/⚡index.blade.php' => 'resources/views/pages/profile/⚡index.blade.php',
+            "resources/views/components/{$v}navigation.blade.php" => 'resources/views/components/navigation.blade.php',
+            "resources/views/pages/auth/{$v}register.blade.php"   => 'resources/views/pages/auth/register.blade.php',
+            "resources/views/pages/profile/{$v}index.blade.php"  => 'resources/views/pages/profile/index.blade.php',
             'routes/web.php' => 'routes/web.php',
             'tests/Feature/Auth/RegisterTest.php' => 'tests/Feature/Auth/RegisterTest.php',
         ];
@@ -82,11 +88,6 @@ final readonly class RemovesTeamSupport
 
     private function path(string $relativePath): string
     {
-        return mb_rtrim($this->basePath ?? base_path(), '/').'/'.$relativePath;
-    }
-
-    private function stub(string $relativePath): string
-    {
-        return mb_rtrim($this->stubPath ?? resource_path('stubs/no-teams'), '/').'/'.$relativePath;
+        return base_path($relativePath);
     }
 }
